@@ -34,7 +34,7 @@ let PO_ROUND = "PORound=0&"
 let OUTCOME = "Outcome=&"
 let LOCATION = "Location=&"
 let MONTH = "Month=0&"
-let SEASON_SEGEMENT = "SeasonSegment=&"
+let SEASON_SEGMENT = "SeasonSegment=&"
 let DATE_FROM = "DateFrom=&"
 let DATE_TO = "DateTo=&"
 let OPPONENT_TEAM_ID = "OpponentTeamID=0&"
@@ -47,11 +47,12 @@ let LAST_N_GAMES = "LastNGames=0&"
 let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
-
+let SEASON_YEAR_CURRENT = "2017-18"
+let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable
 
-let SEASON = "Season="
+let SEASON_SELECT = "Season="
 let PLAYER_ID = "PlayerID="
 let TEAM_ID = "TeamID="
 
