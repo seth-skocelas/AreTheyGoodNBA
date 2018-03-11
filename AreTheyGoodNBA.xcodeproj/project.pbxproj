@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370D2050ACB6008BE29A /* AppDelegate.swift */; };
-		974437102050ACB6008BE29A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370F2050ACB6008BE29A /* ViewController.swift */; };
+		974437102050ACB6008BE29A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370F2050ACB6008BE29A /* MainVC.swift */; };
 		974437132050ACB6008BE29A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974437112050ACB6008BE29A /* Main.storyboard */; };
 		974437152050ACB6008BE29A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 974437142050ACB6008BE29A /* Assets.xcassets */; };
 		974437182050ACB6008BE29A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974437162050ACB6008BE29A /* LaunchScreen.storyboard */; };
+		974437242054A9B1008BE29A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974437232054A9B1008BE29A /* Constants.swift */; };
+		ABD77877328B2C0B9F1C3DE8 /* Pods_AreTheyGoodNBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		868531CF5E24C016E5C0A889 /* Pods-AreTheyGoodNBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.release.xcconfig"; sourceTree = "<group>"; };
 		9744370A2050ACB6008BE29A /* AreTheyGoodNBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AreTheyGoodNBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9744370D2050ACB6008BE29A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9744370F2050ACB6008BE29A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9744370F2050ACB6008BE29A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		974437122050ACB6008BE29A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		974437142050ACB6008BE29A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		974437172050ACB6008BE29A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		974437192050ACB6008BE29A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		974437232054A9B1008BE29A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AreTheyGoodNBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE67E05E0859F6E3FDD034DA /* Pods-AreTheyGoodNBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABD77877328B2C0B9F1C3DE8 /* Pods_AreTheyGoodNBA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17623241758F3D6DFF5B15FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE67E05E0859F6E3FDD034DA /* Pods-AreTheyGoodNBA.debug.xcconfig */,
+				868531CF5E24C016E5C0A889 /* Pods-AreTheyGoodNBA.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		53025390B8AE07EEE1F774B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		974437012050ACB6008BE29A = {
 			isa = PBXGroup;
 			children = (
 				9744370C2050ACB6008BE29A /* AreTheyGoodNBA */,
 				9744370B2050ACB6008BE29A /* Products */,
+				17623241758F3D6DFF5B15FE /* Pods */,
+				53025390B8AE07EEE1F774B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +80,47 @@
 		9744370C2050ACB6008BE29A /* AreTheyGoodNBA */ = {
 			isa = PBXGroup;
 			children = (
+				9744371F2054A7B1008BE29A /* Model */,
+				974437202054A7BB008BE29A /* View */,
+				974437212054A7CB008BE29A /* Controller */,
+				974437222054A7E0008BE29A /* Extension */,
 				9744370D2050ACB6008BE29A /* AppDelegate.swift */,
-				9744370F2050ACB6008BE29A /* ViewController.swift */,
 				974437112050ACB6008BE29A /* Main.storyboard */,
 				974437142050ACB6008BE29A /* Assets.xcassets */,
 				974437162050ACB6008BE29A /* LaunchScreen.storyboard */,
 				974437192050ACB6008BE29A /* Info.plist */,
+				974437232054A9B1008BE29A /* Constants.swift */,
 			);
 			path = AreTheyGoodNBA;
+			sourceTree = "<group>";
+		};
+		9744371F2054A7B1008BE29A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		974437202054A7BB008BE29A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		974437212054A7CB008BE29A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9744370F2050ACB6008BE29A /* MainVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		974437222054A7E0008BE29A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9744371C2050ACB6008BE29A /* Build configuration list for PBXNativeTarget "AreTheyGoodNBA" */;
 			buildPhases = (
+				61BD8C913EDFAB2CD20F2C3B /* [CP] Check Pods Manifest.lock */,
 				974437062050ACB6008BE29A /* Sources */,
 				974437072050ACB6008BE29A /* Frameworks */,
 				974437082050ACB6008BE29A /* Resources */,
+				F371233DF0C4655ABC525164 /* [CP] Embed Pods Frameworks */,
+				DB602769E5E5FAE2D8C10CF4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +193,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		61BD8C913EDFAB2CD20F2C3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AreTheyGoodNBA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB602769E5E5FAE2D8C10CF4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F371233DF0C4655ABC525164 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		974437062050ACB6008BE29A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				974437102050ACB6008BE29A /* ViewController.swift in Sources */,
+				974437102050ACB6008BE29A /* MainVC.swift in Sources */,
 				9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */,
+				974437242054A9B1008BE29A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +389,7 @@
 		};
 		9744371D2050ACB6008BE29A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE67E05E0859F6E3FDD034DA /* Pods-AreTheyGoodNBA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +405,7 @@
 		};
 		9744371E2050ACB6008BE29A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 868531CF5E24C016E5C0A889 /* Pods-AreTheyGoodNBA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

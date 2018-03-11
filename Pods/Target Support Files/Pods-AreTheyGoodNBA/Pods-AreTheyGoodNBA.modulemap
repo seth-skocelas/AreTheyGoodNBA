@@ -1,0 +1,6 @@
+framework module Pods_AreTheyGoodNBA {
+  umbrella header "Pods-AreTheyGoodNBA-umbrella.h"
+
+  export *
+  module * { export * }
+}
