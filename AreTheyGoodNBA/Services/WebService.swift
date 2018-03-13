@@ -94,10 +94,47 @@ class WebService {
         
     }
     
-    func getFranchiseHistory() {
+    func getFranchiseHistory(completed: @escaping DownloadComplete) {
         
         let urlString = "\(BASE_URL)\(TEAM_HISTORY)\(LEAGUE_ID)"
-        print(urlString)
+        //print(urlString)
+        let queryURL = URL(string: urlString)!
+        
+        Alamofire.request(queryURL).responseJSON { response in
+            
+            let result = response.result
+            
+            if let baseDict = result.value as? Dictionary<String, AnyObject> {
+                
+                let resultSets = baseDict["resultSets"] as! [Dictionary<String, AnyObject>]
+                let franchiseHistory = resultSets[0]
+                
+                let headers = franchiseHistory["headers"] as! [AnyObject]
+                
+                let rowSet = franchiseHistory["rowSet"] as! [AnyObject]
+                
+                
+                var franchiseHistoryArray = [AnyObject]()
+                
+                for i in 0 ..< rowSet.count {
+                    
+                    let rowSetValues = rowSet[i] as! [AnyObject]
+                    var franchiseDict = Dictionary<String, AnyObject>()
+                    
+                    for j in 0 ..< headers.count {
+                        franchiseDict.updateValue(rowSetValues[j], forKey: headers[j] as! String)
+                    }
+                    
+                    franchiseHistoryArray.append(franchiseHistory as AnyObject)
+                    
+                }
+                
+                print(franchiseHistoryArray)
+                
+            }
+            
+            completed()
+        }
         
     }
     
