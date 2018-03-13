@@ -30,7 +30,7 @@ let PER_MODE_36 = "PerMode=Per36&"
 let PLUS_MINUS_YES = "PlusMinus=Y&"
 let PLUS_MINUS_NO = "PlusMinus=N&"
 let RANK = "Rank=N&"
-let SEASON_TYPE_REGULAR = "SeasonType=Regular Season&"
+let SEASON_TYPE_REGULAR = "SeasonType=Regular+Season&"
 let SEASON_TYPE_POST = "SeasonType=Playoffs&"
 let PO_ROUND = "PORound=0&"
 let OUTCOME = "Outcome=&"
@@ -57,6 +57,15 @@ let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 let SEASON_SELECT = "Season="
 let PLAYER_ID = "PlayerID="
 let TEAM_ID = "TeamID="
+
+enum MeasureType {
+    
+    case RegularBase
+    case RegularAdvanced
+    case PostBase
+    case PostAdvanced
+    
+}
 
 
 
