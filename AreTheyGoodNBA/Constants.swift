@@ -10,6 +10,8 @@ import Foundation
 
 let BASE_URL = "https://stats.nba.com/stats/"
 
+typealias DownloadComplete = () -> ()
+
 //Endpoints
 
 let PLAYER_INFO = "commonplayerinfo/?"

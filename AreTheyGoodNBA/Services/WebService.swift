@@ -13,17 +13,84 @@ class WebService {
     
     static let instance = WebService()
     
-    func getCommonPlayerInfo(playerID: Int) {
+    func getCommonPlayerInfo(playerID: Int, completed: @escaping DownloadComplete) {
         
         let urlString = "\(BASE_URL)\(PLAYER_INFO)\(PLAYER_ID)\(playerID)"
-        print(urlString)
+        //print(urlString)
+        let queryURL = URL(string: urlString)!
+        
+        Alamofire.request(queryURL).responseJSON { response in
+            
+            let result = response.result
+            
+            if let baseDict = result.value as? Dictionary<String, AnyObject> {
+
+                let resultSets = baseDict["resultSets"] as! [Dictionary<String, AnyObject>]
+                let commonPlayerInfo = resultSets[0]
+                
+                let headers = commonPlayerInfo["headers"] as! [AnyObject]
+                print(headers[0])
+                
+                let rowSet = commonPlayerInfo["rowSet"] as! [AnyObject]
+                let rowSetValues = rowSet[0] as! [AnyObject]
+                print(rowSetValues[0])
+                
+                var commonPlayerInfoDict = Dictionary<String, AnyObject>()
+                
+                for i in 0 ..< headers.count {
+                    commonPlayerInfoDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                }
+                
+                print(commonPlayerInfoDict)
+                
+            }
+            
+            completed()
+        }
         
     }
     
-    func getCommonTeamRoster(teamID: Int) {
+    func getCommonTeamRoster(teamID: Int, completed: @escaping DownloadComplete) {
         
         let urlString = "\(BASE_URL)\(TEAM_ROSTER)\(CURRENT_SEASON)\(TEAM_ID)\(teamID)"
-        print(urlString)
+        //print(urlString)
+        let queryURL = URL(string: urlString)!
+        
+        Alamofire.request(queryURL).responseJSON { response in
+            
+            let result = response.result
+            
+            if let baseDict = result.value as? Dictionary<String, AnyObject> {
+                
+                let resultSets = baseDict["resultSets"] as! [Dictionary<String, AnyObject>]
+                let commonTeamRoster = resultSets[0]
+                
+                let headers = commonTeamRoster["headers"] as! [AnyObject]
+                
+                let rowSet = commonTeamRoster["rowSet"] as! [AnyObject]
+                
+                
+                var commonTeamRosterArray = [AnyObject]()
+                
+                for i in 0 ..< rowSet.count {
+                    
+                    let rowSetValues = rowSet[i] as! [AnyObject]
+                    var teamPlayerDict = Dictionary<String, AnyObject>()
+                    
+                    for j in 0 ..< headers.count {
+                        teamPlayerDict.updateValue(rowSetValues[j], forKey: headers[j] as! String)
+                    }
+                    
+                    commonTeamRosterArray.append(teamPlayerDict as AnyObject)
+                    
+                }
+                
+                print(commonTeamRosterArray)
+                
+            }
+            
+            completed()
+        }
         
     }
     
