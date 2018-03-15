@@ -18,8 +18,8 @@ class MainVC: UIViewController {
         //WebService.instance.getCommonTeamRoster(teamID: 1610612745) {}
         //WebService.instance.getFranchiseHistory() {}
         //WebService.instance.getPlayerCareerStats(playerID: 201935)
-        WebService.instance.getTeamSeasonStats(teamID: 1610612745, measureType: MeasureType.RegularAdvanced) {}
-        //WebService.instance.getPlayerSeasonStats(playerID: 201935)
+        //WebService.instance.getTeamSeasonStats(teamID: 1610612745, measureType: MeasureType.RegularAdvanced) {}
+        WebService.instance.getPlayerSeasonStats(playerID: 201935, measureType: MeasureType.RegularAdvanced) {}
         
     }
 

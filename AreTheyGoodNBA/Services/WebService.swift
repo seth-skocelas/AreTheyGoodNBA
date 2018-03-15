@@ -208,17 +208,88 @@ class WebService {
         
     }
     
-    func getPlayerSeasonStats(playerID: Int) {
+    func getPlayerSeasonStatsURL(playerID: Int, measureType: MeasureType) -> String {
         
-        let urlRegularAdvanced = "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
-
-        let urlRegularBase = "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
         
-        let urlPlayoffsAdvanced = "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(playerID)"
+        if measureType == MeasureType.RegularAdvanced {
+            
+            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
+            
+        }
+            
+        else if measureType == MeasureType.PostBase {
+            
+            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
+            
+        }
+            
+        else if measureType == MeasureType.PostAdvanced {
+            
+            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(playerID)"
+            
+        }
+            
+        else { //return RegularBase
+            
+            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
+        }
         
-        let urlPlayoffsBase = "\(BASE_URL)\(PLAYER_SEASON_STATS)\(CURRENT_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
         
-        print(urlRegularBase)
+    }
+    
+    func getPlayerSeasonStats(playerID: Int, measureType: MeasureType, completed: @escaping DownloadComplete) {
+        
+        let urlString = getPlayerSeasonStatsURL(playerID: playerID, measureType: measureType)
+        let queryURL = URL(string: urlString)!
+        
+        Alamofire.request(queryURL).responseJSON { response in
+            
+            let result = response.result
+            
+            if let baseDict = result.value as? Dictionary<String, AnyObject> {
+                
+                let resultSets = baseDict["resultSets"] as! [Dictionary<String, AnyObject>]
+                
+                let overallStats = resultSets[0]
+                var headers = overallStats["headers"] as! [AnyObject]
+                
+                var rowSet = overallStats["rowSet"] as! [AnyObject]
+                var rowSetValues = rowSet[0] as! [AnyObject]
+                
+                var overallPlayerStatsDict = Dictionary<String, AnyObject>()
+                
+                for i in 0 ..< headers.count {
+                    overallPlayerStatsDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                }
+                
+                //print(overallPlayerStatsDict)
+                
+                let playerYearStats = resultSets[1]
+                headers = playerYearStats["headers"] as! [AnyObject]
+                
+                rowSet = playerYearStats["rowSet"] as! [AnyObject]
+                
+                var playerYearStatsArray = [AnyObject]()
+                
+                for i in 0 ..< rowSet.count {
+                    
+                    let rowSetValues = rowSet[i] as! [AnyObject]
+                    var playerYearDict = Dictionary<String, AnyObject>()
+                    
+                    for j in 0 ..< headers.count {
+                        playerYearDict.updateValue(rowSetValues[j], forKey: headers[j] as! String)
+                        }
+                    
+                    playerYearStatsArray.append(playerYearDict as AnyObject)
+                    
+                    }
+                
+                print(playerYearStatsArray)
+                
+            }
+            
+            completed()
+        }
         
     }
     
