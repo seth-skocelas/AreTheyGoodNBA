@@ -67,6 +67,13 @@ enum MeasureType {
     
 }
 
+enum StatDuration {
+    
+    case CurrentSeason
+    case Career
+    
+}
+
 
 
 

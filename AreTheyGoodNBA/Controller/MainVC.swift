@@ -17,7 +17,7 @@ class MainVC: UIViewController {
         WebService.instance.getCommonPlayerInfo(playerID: 201935) { (commonPlayerInfoDict) in
             
             var testPlayer = Player(commonPlayerInfo: commonPlayerInfoDict)
-            print("\(testPlayer.name) with id of \(testPlayer.playerID)" )
+            print("\(testPlayer.name) with id of \(testPlayer.playerID) on the \(testPlayer.currentTeam)" )
             
             
         }

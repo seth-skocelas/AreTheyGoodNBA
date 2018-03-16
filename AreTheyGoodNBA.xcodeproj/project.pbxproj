@@ -16,6 +16,7 @@
 		974437272054E930008BE29A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974437262054E930008BE29A /* WebService.swift */; };
 		97A6B7AF205B7DCB00EA31E7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7AE205B7DCB00EA31E7 /* Player.swift */; };
 		97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7B0205B7DEE00EA31E7 /* Team.swift */; };
+		97A6B7B3205C7B6E00EA31E7 /* PlayerTradStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7B2205C7B6E00EA31E7 /* PlayerTradStats.swift */; };
 		ABD77877328B2C0B9F1C3DE8 /* Pods_AreTheyGoodNBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		974437262054E930008BE29A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		97A6B7AE205B7DCB00EA31E7 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		97A6B7B0205B7DEE00EA31E7 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		97A6B7B2205C7B6E00EA31E7 /* PlayerTradStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTradStats.swift; sourceTree = "<group>"; };
 		B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AreTheyGoodNBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67E05E0859F6E3FDD034DA /* Pods-AreTheyGoodNBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 			children = (
 				97A6B7AE205B7DCB00EA31E7 /* Player.swift */,
 				97A6B7B0205B7DEE00EA31E7 /* Team.swift */,
+				97A6B7B2205C7B6E00EA31E7 /* PlayerTradStats.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */,
+				97A6B7B3205C7B6E00EA31E7 /* PlayerTradStats.swift in Sources */,
 				974437102050ACB6008BE29A /* MainVC.swift in Sources */,
 				9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */,
 				974437272054E930008BE29A /* WebService.swift in Sources */,
