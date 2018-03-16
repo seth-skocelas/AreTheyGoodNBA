@@ -14,6 +14,8 @@
 		974437182050ACB6008BE29A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974437162050ACB6008BE29A /* LaunchScreen.storyboard */; };
 		974437242054A9B1008BE29A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974437232054A9B1008BE29A /* Constants.swift */; };
 		974437272054E930008BE29A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974437262054E930008BE29A /* WebService.swift */; };
+		97A6B7AF205B7DCB00EA31E7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7AE205B7DCB00EA31E7 /* Player.swift */; };
+		97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7B0205B7DEE00EA31E7 /* Team.swift */; };
 		ABD77877328B2C0B9F1C3DE8 /* Pods_AreTheyGoodNBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		974437192050ACB6008BE29A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		974437232054A9B1008BE29A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		974437262054E930008BE29A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		97A6B7AE205B7DCB00EA31E7 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		97A6B7B0205B7DEE00EA31E7 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AreTheyGoodNBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67E05E0859F6E3FDD034DA /* Pods-AreTheyGoodNBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +104,8 @@
 		9744371F2054A7B1008BE29A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				97A6B7AE205B7DCB00EA31E7 /* Player.swift */,
+				97A6B7B0205B7DEE00EA31E7 /* Team.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,9 +269,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */,
 				974437102050ACB6008BE29A /* MainVC.swift in Sources */,
 				9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */,
 				974437272054E930008BE29A /* WebService.swift in Sources */,
+				97A6B7AF205B7DCB00EA31E7 /* Player.swift in Sources */,
 				974437242054A9B1008BE29A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

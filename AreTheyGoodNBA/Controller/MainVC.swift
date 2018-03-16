@@ -14,12 +14,18 @@ class MainVC: UIViewController {
         
         super.viewDidLoad()
         
-        //WebService.instance.getCommonPlayerInfo(playerID: 201935) {}
+        WebService.instance.getCommonPlayerInfo(playerID: 201935) { (commonPlayerInfoDict) in
+            
+            var testPlayer = Player(commonPlayerInfo: commonPlayerInfoDict)
+            print("\(testPlayer.name) with id of \(testPlayer.playerID)" )
+            
+            
+        }
         //WebService.instance.getCommonTeamRoster(teamID: 1610612745) {}
         //WebService.instance.getFranchiseHistory() {}
         //WebService.instance.getPlayerCareerStats(playerID: 201935)
         //WebService.instance.getTeamSeasonStats(teamID: 1610612745, measureType: MeasureType.RegularAdvanced) {}
-        WebService.instance.getPlayerSeasonStats(playerID: 201935, measureType: MeasureType.RegularAdvanced) {}
+        //WebService.instance.getPlayerSeasonStats(playerID: 201935, measureType: MeasureType.RegularAdvanced) {}
         
     }
 

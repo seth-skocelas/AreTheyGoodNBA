@@ -13,11 +13,13 @@ class WebService {
     
     static let instance = WebService()
     
-    func getCommonPlayerInfo(playerID: Int, completed: @escaping DownloadComplete) {
+    func getCommonPlayerInfo(playerID: Int, completed: @escaping (_ commonPlayerInfoDict: Dictionary<String, AnyObject>) -> ()) {
         
         let urlString = "\(BASE_URL)\(PLAYER_INFO)\(PLAYER_ID)\(playerID)"
         //print(urlString)
         let queryURL = URL(string: urlString)!
+        
+        var commonPlayerInfoDict = Dictionary<String, AnyObject>()
         
         Alamofire.request(queryURL).responseJSON { response in
             
@@ -35,8 +37,6 @@ class WebService {
                 let rowSetValues = rowSet[0] as! [AnyObject]
                 print(rowSetValues[0])
                 
-                var commonPlayerInfoDict = Dictionary<String, AnyObject>()
-                
                 for i in 0 ..< headers.count {
                     commonPlayerInfoDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
                 }
@@ -45,7 +45,7 @@ class WebService {
                 
             }
             
-            completed()
+            completed(commonPlayerInfoDict)
         }
         
     }
