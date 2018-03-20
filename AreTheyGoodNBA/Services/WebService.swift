@@ -237,10 +237,13 @@ class WebService {
         
     }
     
-    func getPlayerSeasonStats(playerID: Int, measureType: MeasureType, completed: @escaping DownloadComplete) {
+    func getPlayerSeasonStats(playerID: Int, measureType: MeasureType, completed: @escaping (_ overallSeasonDict: Dictionary<String, AnyObject>,_ playerYearStats: [AnyObject] ) -> ()) {
         
         let urlString = getPlayerSeasonStatsURL(playerID: playerID, measureType: measureType)
         let queryURL = URL(string: urlString)!
+        
+        var overallPlayerStatsDict = Dictionary<String, AnyObject>()
+        var playerYearStatsArray = [AnyObject]()
         
         Alamofire.request(queryURL).responseJSON { response in
             
@@ -254,41 +257,47 @@ class WebService {
                 var headers = overallStats["headers"] as! [AnyObject]
                 
                 var rowSet = overallStats["rowSet"] as! [AnyObject]
-                var rowSetValues = rowSet[0] as! [AnyObject]
                 
-                var overallPlayerStatsDict = Dictionary<String, AnyObject>()
+                if rowSet.isEmpty == false {
                 
-                for i in 0 ..< headers.count {
-                    overallPlayerStatsDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                    var rowSetValues = rowSet[0] as! [AnyObject]
+                
+                
+                    for i in 0 ..< headers.count {
+                        overallPlayerStatsDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                    }
+                
+                    //print(overallPlayerStatsDict)
+                    
                 }
-                
-                //print(overallPlayerStatsDict)
                 
                 let playerYearStats = resultSets[1]
                 headers = playerYearStats["headers"] as! [AnyObject]
                 
                 rowSet = playerYearStats["rowSet"] as! [AnyObject]
                 
-                var playerYearStatsArray = [AnyObject]()
+                if rowSet.isEmpty == false {
                 
-                for i in 0 ..< rowSet.count {
-                    
-                    let rowSetValues = rowSet[i] as! [AnyObject]
-                    var playerYearDict = Dictionary<String, AnyObject>()
-                    
-                    for j in 0 ..< headers.count {
-                        playerYearDict.updateValue(rowSetValues[j], forKey: headers[j] as! String)
+                    for i in 0 ..< rowSet.count {
+                        
+                        let rowSetValues = rowSet[i] as! [AnyObject]
+                        var playerYearDict = Dictionary<String, AnyObject>()
+                        
+                        for j in 0 ..< headers.count {
+                            playerYearDict.updateValue(rowSetValues[j], forKey: headers[j] as! String)
+                            }
+                        
+                        playerYearStatsArray.append(playerYearDict as AnyObject)
+                        
                         }
                     
-                    playerYearStatsArray.append(playerYearDict as AnyObject)
-                    
-                    }
-                
-                print(playerYearStatsArray)
+                    print(playerYearStatsArray)
+            
+                }
                 
             }
             
-            completed()
+            completed(overallPlayerStatsDict, playerYearStatsArray)
         }
         
     }

@@ -10,21 +10,56 @@ import Foundation
 
 class PlayerTradStats {
     
-    private var statType: MeasureType!
-    private var statDuration: StatDuration!
+    private var _statType: MeasureType!
+    private var _statDuration: StatDuration!
     
-    private var gamesPlayed: Int!
-    private var minutesPlayed: Int!
-    private var threePointPercent: Float!
-    private var threePointPerMin: Float!
-    private var threePointAttempts: Float!
-    private var fieldGoalPercent: Float!
-    private var fieldGoalPerMin: Float!
-    private var fieldGoalAttempts: Float!
-    private var rebounds: Float!
-    private var assists: Float!
-    private var turnovers: Float!
-    private var plusMinus: Float!
+    private var _gamesPlayed: Int!
+    private var _minutesPlayed: Float!
+    private var _threePointPercent: Float!
+    private var _threePointPerMin: Float!
+    private var _threePointAttempts: Float!
+    private var _fieldGoalPercent: Float!
+    private var _fieldGoalPerMin: Float!
+    private var _fieldGoalAttempts: Float!
+    private var _rebounds: Float!
+    private var _assists: Float!
+    private var _turnovers: Float!
+    private var _plusMinus: Float!
     
+    var gamesPlayed: Int {
+        if _gamesPlayed == nil {
+            return -1
+        }
+        return _gamesPlayed
+    }
+    
+    var fieldGoalPercent: Float {
+        if _fieldGoalPercent == nil {
+            return -1
+        }
+        return _fieldGoalPercent
+    }
+    
+    
+    init(statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
+        
+        self._statType = statType
+        self._statDuration = statDuration
+        
+        self._gamesPlayed = dict["GP"] as! Int
+        self._minutesPlayed = dict["MIN"] as! Float
+        self._threePointPercent = dict["FG3_PCT"] as! Float
+        self._threePointPerMin = dict["FG3M"] as! Float
+        self._threePointAttempts = dict["FG3A"] as! Float
+        self._fieldGoalPercent = dict["FG_PCT"] as! Float
+        self._fieldGoalPerMin = dict["FGM"] as! Float
+        self._fieldGoalAttempts = dict["FGA"] as! Float
+        self._rebounds = dict["REB"] as! Float
+        self._assists = dict["AST"] as! Float
+        self._turnovers = dict["TOV"] as! Float
+        self._plusMinus = dict["PLUS_MINUS"] as! Float
+
+        
+    }
     
 }
