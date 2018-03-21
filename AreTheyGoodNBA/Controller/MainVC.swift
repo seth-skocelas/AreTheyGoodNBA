@@ -18,6 +18,7 @@ class MainVC: UIViewController {
 
             var testPlayer = Player(commonPlayerInfo: commonPlayerInfoDict)
             print("\(testPlayer.name) with id of \(testPlayer.playerID) on the \(testPlayer.currentTeam)" )
+            //print("CareerFGReg: \(testPlayer.careerRegularSeasonTradStats.fieldGoalPercent), CareerFGPost: \(testPlayer.careerPostSeasonTradStats.fieldGoalPercent)")
 
 
         }

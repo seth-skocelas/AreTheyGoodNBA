@@ -25,6 +25,7 @@ class PlayerTradStats {
     private var _assists: Float!
     private var _turnovers: Float!
     private var _plusMinus: Float!
+    // PlusMinus only available for current season (might be able to pull this if I pull year by year and average)
     
     var gamesPlayed: Int {
         if _gamesPlayed == nil {
@@ -57,8 +58,9 @@ class PlayerTradStats {
         self._rebounds = dict["REB"] as! Float
         self._assists = dict["AST"] as! Float
         self._turnovers = dict["TOV"] as! Float
-        self._plusMinus = dict["PLUS_MINUS"] as! Float
-
+        if statDuration == StatDuration.CurrentSeason {
+            self._plusMinus = dict["PLUS_MINUS"] as! Float
+        }
         
     }
     

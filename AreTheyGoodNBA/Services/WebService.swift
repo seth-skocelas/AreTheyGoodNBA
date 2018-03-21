@@ -138,10 +138,62 @@ class WebService {
         
     }
     
-    func getPlayerCareerStats(playerID: Int) {
+    func getPlayerCareerStats(playerID: Int, completed: @escaping (_ playerCareerRegularStats: Dictionary<String, AnyObject>,_ playerCareerPlayoffStats: Dictionary<String, AnyObject> ) -> ()) {
         
         let urlString = "\(BASE_URL)\(PLAYER_CAREER_STATS)\(PER_MODE_GAME)\(PLAYER_ID)\(playerID)"
-        print(urlString)
+        let queryURL = URL(string: urlString)!
+        
+        var playerCareerRegularStats = Dictionary<String, AnyObject>()
+        var playerCareerPlayoffStats = Dictionary<String, AnyObject>()
+        
+        
+        Alamofire.request(queryURL).responseJSON { response in
+            
+            let result = response.result
+            
+            if let baseDict = result.value as? Dictionary<String, AnyObject> {
+                
+                let resultSets = baseDict["resultSets"] as! [Dictionary<String, AnyObject>]
+                let careerTotalsRegularSeason = resultSets[1]
+                
+                var headers = careerTotalsRegularSeason["headers"] as! [AnyObject]
+                
+                var rowSet = careerTotalsRegularSeason["rowSet"] as! [AnyObject]
+                
+                if rowSet.isEmpty == false {
+                    
+                    var rowSetValues = rowSet[0] as! [AnyObject]
+                    
+                    
+                    for i in 0 ..< headers.count {
+                        playerCareerRegularStats.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                    }
+                    
+                    //print(overallPlayerStatsDict)
+                }
+                
+                let careerTotalsPostSeason = resultSets[3]
+                
+                headers = careerTotalsPostSeason["headers"] as! [AnyObject]
+                
+                rowSet = careerTotalsPostSeason["rowSet"] as! [AnyObject]
+                
+                if rowSet.isEmpty == false {
+                    
+                    var rowSetValues = rowSet[0] as! [AnyObject]
+                    
+                    
+                    for i in 0 ..< headers.count {
+                        playerCareerPlayoffStats.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                    }
+                    
+                    //print(overallPlayerStatsDict)
+                }
+                
+            }
+            completed(playerCareerRegularStats, playerCareerPlayoffStats)
+        }
+        
         
     }
     

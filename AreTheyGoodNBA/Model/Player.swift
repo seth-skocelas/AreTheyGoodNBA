@@ -22,6 +22,8 @@ class Player {
     
     private var _currentRegularSeasonTradStats: PlayerTradStats!
     private var _currentPostSeasonTradStats: PlayerTradStats!
+    private var _careerRegularSeasonTradStats: PlayerTradStats!
+    private var _careerPostSeasonTradStats: PlayerTradStats!
     
     var name: String {
         return _name
@@ -74,6 +76,14 @@ class Player {
         return _currentPostSeasonTradStats
     }
     
+    var careerRegularSeasonTradStats: PlayerTradStats {
+        return _careerRegularSeasonTradStats
+    }
+    
+    var careerPostSeasonTradStats: PlayerTradStats {
+        return _careerPostSeasonTradStats
+    }
+    
     
     //Get data from nba.com API dictionary
     init(commonPlayerInfo: Dictionary<String, AnyObject>) {
@@ -90,6 +100,7 @@ class Player {
         
         getPlayerStats(measureType: MeasureType.RegularBase, statDuration: StatDuration.CurrentSeason)
         getPlayerStats(measureType: MeasureType.PostBase, statDuration: StatDuration.CurrentSeason)
+        getPlayerStats(statDuration: StatDuration.Career)
         
     }
     
@@ -118,6 +129,33 @@ class Player {
                 }
                 
             }
+        }
+        
+        
+    }
+    
+    func getPlayerStats(statDuration: StatDuration) {
+        
+        if statDuration == StatDuration.Career {
+            
+            WebService.instance.getPlayerCareerStats(playerID: self.playerID) { (regularSeasonStats, postSeasonStats) in
+                
+                if regularSeasonStats.count != 0 {
+                    self._careerRegularSeasonTradStats = PlayerTradStats(statType: MeasureType.RegularBase, statDuration: StatDuration.Career, dict: regularSeasonStats)
+                    print("CareerRegFG \(self._careerRegularSeasonTradStats.fieldGoalPercent)")
+                } else {
+                    print("No Career Regular Season Stats available")
+                }
+                
+                if postSeasonStats.count != 0 {
+                    self._careerPostSeasonTradStats = PlayerTradStats(statType: MeasureType.PostBase, statDuration: StatDuration.Career, dict: postSeasonStats)
+                    print("CareerPostFG \(self._careerPostSeasonTradStats.fieldGoalPercent)")
+                } else {
+                    print("No Career Post Season Stats available")
+                }
+                
+            }
+            
         }
         
     }
