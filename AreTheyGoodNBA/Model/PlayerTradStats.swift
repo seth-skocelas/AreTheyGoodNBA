@@ -34,11 +34,82 @@ class PlayerTradStats {
         return _gamesPlayed
     }
     
+    var minutesPlayed: Float {
+        if _minutesPlayed == nil {
+            return -1
+        }
+        return _minutesPlayed
+    }
+    
+    var threePointPercent: Float {
+        if _threePointPercent == nil {
+            return -1
+        }
+        return _threePointPercent
+    }
+    
+    var threePointPerMin: Float {
+        if _threePointPerMin == nil {
+            return -1
+        }
+        return _threePointPerMin
+    }
+    
+    var threePointAttempts: Float {
+        if _threePointAttempts == nil {
+            return -1
+        }
+        return _threePointAttempts
+    }
+    
     var fieldGoalPercent: Float {
         if _fieldGoalPercent == nil {
             return -1
         }
         return _fieldGoalPercent
+    }
+    
+    var fieldGoalPerMin: Float {
+        if _fieldGoalPerMin == nil {
+            return -1
+        }
+        return _fieldGoalPercent
+    }
+    
+    var fieldGoalAttempts: Float {
+        if _fieldGoalAttempts == nil {
+            return -1
+        }
+        return _fieldGoalAttempts
+    }
+    
+    var rebounds: Float {
+        if _rebounds == nil {
+            return -1
+        }
+        return _rebounds
+    }
+    
+    var assists: Float {
+        if _assists == nil {
+            return -1
+        }
+        return _assists
+    }
+    
+    var turnovers: Float {
+        if _turnovers == nil {
+            return -1
+        }
+        return _turnovers
+    }
+    
+    var plusMinus: Float {
+        if _plusMinus == nil {
+            //-1 could be a legitimate value for plusminus, so I increased it to -100000, which wouldn't be
+            return -100000
+        }
+        return _plusMinus
     }
     
     
