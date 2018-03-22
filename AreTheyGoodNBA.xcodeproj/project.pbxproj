@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		972E167D206468FE001B27EE /* PlayerAdvStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E167C206468FE001B27EE /* PlayerAdvStats.swift */; };
 		9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370D2050ACB6008BE29A /* AppDelegate.swift */; };
 		974437102050ACB6008BE29A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370F2050ACB6008BE29A /* MainVC.swift */; };
 		974437132050ACB6008BE29A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974437112050ACB6008BE29A /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		868531CF5E24C016E5C0A889 /* Pods-AreTheyGoodNBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.release.xcconfig"; sourceTree = "<group>"; };
+		972E167C206468FE001B27EE /* PlayerAdvStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAdvStats.swift; sourceTree = "<group>"; };
 		9744370A2050ACB6008BE29A /* AreTheyGoodNBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AreTheyGoodNBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9744370D2050ACB6008BE29A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9744370F2050ACB6008BE29A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				97A6B7AE205B7DCB00EA31E7 /* Player.swift */,
 				97A6B7B0205B7DEE00EA31E7 /* Team.swift */,
 				97A6B7B2205C7B6E00EA31E7 /* PlayerTradStats.swift */,
+				972E167C206468FE001B27EE /* PlayerAdvStats.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */,
 				974437272054E930008BE29A /* WebService.swift in Sources */,
 				97A6B7AF205B7DCB00EA31E7 /* Player.swift in Sources */,
+				972E167D206468FE001B27EE /* PlayerAdvStats.swift in Sources */,
 				974437242054A9B1008BE29A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

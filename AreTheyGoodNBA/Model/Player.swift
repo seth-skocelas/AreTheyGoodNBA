@@ -25,6 +25,11 @@ class Player {
     private var _careerRegularSeasonTradStats: PlayerTradStats!
     private var _careerPostSeasonTradStats: PlayerTradStats!
     
+    private var _currentRegularSeasonAdvStats: PlayerAdvStats!
+    private var _currentPostSeasonAdvStats: PlayerAdvStats!
+    private var _careerRegularSeasonAdvStats: PlayerAdvStats!
+    private var _careerPostSeasonAdvStats: PlayerAdvStats!
+    
     var name: String {
         return _name
     }
@@ -111,7 +116,7 @@ class Player {
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: MeasureType.RegularBase) { (currentSeason, allSeasons) in
                 
                 self._currentRegularSeasonTradStats = PlayerTradStats(statType: MeasureType.RegularBase, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
-                print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
+                //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
                 
                 
             }
@@ -123,7 +128,7 @@ class Player {
                 
                 if currentSeason.count != 0 {
                     self._currentPostSeasonTradStats = PlayerTradStats(statType: MeasureType.PostBase, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
-                    print("Test: \(self.currentPostSeasonTradStats.gamesPlayed), \(self.currentPostSeasonTradStats.fieldGoalPercent)")
+                    //print("Test: \(self.currentPostSeasonTradStats.gamesPlayed), \(self.currentPostSeasonTradStats.fieldGoalPercent)")
                 } else {
                     print("The playoffs haven't started yet")
                 }
@@ -142,14 +147,14 @@ class Player {
                 
                 if regularSeasonStats.count != 0 {
                     self._careerRegularSeasonTradStats = PlayerTradStats(statType: MeasureType.RegularBase, statDuration: StatDuration.Career, dict: regularSeasonStats)
-                    print("CareerRegFG \(self._careerRegularSeasonTradStats.fieldGoalPercent)")
+                    //print("CareerRegFG \(self._careerRegularSeasonTradStats.fieldGoalPercent)")
                 } else {
                     print("No Career Regular Season Stats available")
                 }
                 
                 if postSeasonStats.count != 0 {
                     self._careerPostSeasonTradStats = PlayerTradStats(statType: MeasureType.PostBase, statDuration: StatDuration.Career, dict: postSeasonStats)
-                    print("CareerPostFG \(self._careerPostSeasonTradStats.fieldGoalPercent)")
+                    //print("CareerPostFG \(self._careerPostSeasonTradStats.fieldGoalPercent)")
                 } else {
                     print("No Career Post Season Stats available")
                 }
