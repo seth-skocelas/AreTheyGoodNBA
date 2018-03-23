@@ -14,6 +14,9 @@ class MainVC: UIViewController {
         
         super.viewDidLoad()
         
+        //2544 = Lebron
+        //1628372 = DSJ
+        
         WebService.instance.getCommonPlayerInfo(playerID: 2544) { (commonPlayerInfoDict) in
 
             var testPlayer = Player(commonPlayerInfo: commonPlayerInfoDict)

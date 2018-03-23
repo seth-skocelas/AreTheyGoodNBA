@@ -183,11 +183,11 @@ class Player {
                     print("The playoffs haven't started yet")
                 }
                 
-                let allSeasonsDict = self.getAdvanceStatAverages(dictArray: allSeasons)
                 
-                if allSeasonsDict.count != 0 {
-                    self._careerRegularSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.Career, dict: allSeasonsDict)
-                } else {
+                if (allSeasons.count != 0) {
+                    self._careerPostSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.Career, dict: self.getAdvanceStatAverages(dictArray: allSeasons))
+                }
+                 else {
                     print("\(self.name) has never made the playoffs")
                 }
                 
@@ -225,7 +225,44 @@ class Player {
     
     func getAdvanceStatAverages(dictArray: [AnyObject]) -> Dictionary<String, AnyObject> {
         
-        return Dictionary<String, AnyObject>()
+        var offRating: Float = 0
+        var defRating: Float = 0
+        var netRating: Float = 0
+        var effectiveFG: Float = 0
+        var trueShooting: Float = 0
+        var usage: Float = 0
+        var pace: Float = 0
+        var PIE: Float = 0
+        
+        let count = Float(dictArray.count)
+        
+        for statsForYear in dictArray {
+            
+            offRating += statsForYear["OFF_RATING"] as! Float
+            defRating += statsForYear["DEF_RATING"] as! Float
+            netRating += statsForYear["NET_RATING"] as! Float
+            effectiveFG += statsForYear["EFG_PCT"] as! Float
+            trueShooting += statsForYear["TS_PCT"] as! Float
+            usage += statsForYear["USG_PCT"] as! Float
+            pace += statsForYear["PACE"] as! Float
+            PIE += statsForYear["PIE"] as! Float
+            
+        }
+        
+        var careerAdvanceStats = Dictionary<String, AnyObject>()
+        
+        careerAdvanceStats.updateValue(offRating/count as AnyObject, forKey: "OFF_RATING")
+        careerAdvanceStats.updateValue(defRating/count as AnyObject, forKey: "DEF_RATING")
+        careerAdvanceStats.updateValue(netRating/count as AnyObject, forKey: "NET_RATING")
+        careerAdvanceStats.updateValue(effectiveFG/count as AnyObject, forKey: "EFG_PCT")
+        careerAdvanceStats.updateValue(trueShooting/count as AnyObject, forKey: "TS_PCT")
+        careerAdvanceStats.updateValue(usage/count as AnyObject, forKey: "USG_PCT")
+        careerAdvanceStats.updateValue(pace/count as AnyObject, forKey: "PACE")
+        careerAdvanceStats.updateValue(PIE/count as AnyObject, forKey: "PIE")
+        
+        print(careerAdvanceStats)
+        
+        return careerAdvanceStats
         
     }
     
