@@ -31,17 +31,17 @@ class WebService {
                 let commonPlayerInfo = resultSets[0]
                 
                 let headers = commonPlayerInfo["headers"] as! [AnyObject]
-                print(headers[0])
+                //print(headers[0])
                 
                 let rowSet = commonPlayerInfo["rowSet"] as! [AnyObject]
                 let rowSetValues = rowSet[0] as! [AnyObject]
-                print(rowSetValues[0])
+                //print(rowSetValues[0])
                 
                 for i in 0 ..< headers.count {
                     commonPlayerInfoDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
                 }
                 
-                print(commonPlayerInfoDict)
+                //print(commonPlayerInfoDict)
                 
             }
             
@@ -85,7 +85,7 @@ class WebService {
                     
                 }
                 
-                print(commonTeamRosterArray)
+                //print(commonTeamRosterArray)
                 
             }
             
@@ -129,7 +129,7 @@ class WebService {
                     
                 }
                 
-                print(franchiseHistoryArray)
+                //print(franchiseHistoryArray)
                 
             }
             
@@ -239,11 +239,11 @@ class WebService {
                 let overallTeamDashboard = resultSets[0]
                 
                 let headers = overallTeamDashboard["headers"] as! [AnyObject]
-                print(headers[0])
+                //print(headers[0])
                 
                 let rowSet = overallTeamDashboard["rowSet"] as! [AnyObject]
                 let rowSetValues = rowSet[0] as! [AnyObject]
-                print(rowSetValues[0])
+                //print(rowSetValues[0])
                 
                 var overallTeamDashboardDict = Dictionary<String, AnyObject>()
                 
@@ -251,7 +251,7 @@ class WebService {
                     overallTeamDashboardDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
                 }
                 
-                print(overallTeamDashboardDict)
+                //print(overallTeamDashboardDict)
                 
             }
             
@@ -343,7 +343,7 @@ class WebService {
                         
                         }
                     
-                    print(playerYearStatsArray)
+                    //print(playerYearStatsArray)
             
                 }
                 

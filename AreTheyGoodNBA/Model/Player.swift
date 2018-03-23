@@ -89,6 +89,22 @@ class Player {
         return _careerPostSeasonTradStats
     }
     
+    var currentRegularSeasonAdvStats: PlayerAdvStats {
+        return _currentRegularSeasonAdvStats
+    }
+    
+    var currentPostSeasonAdvStats: PlayerAdvStats {
+        return _currentPostSeasonAdvStats
+    }
+    
+    var careerRegularSeasonAdvStats: PlayerAdvStats {
+        return _careerRegularSeasonAdvStats
+    }
+    
+    var careerPostSeasonAdvStats: PlayerAdvStats {
+        return _careerPostSeasonAdvStats
+    }
+    
     
     //Get data from nba.com API dictionary
     init(commonPlayerInfo: Dictionary<String, AnyObject>) {
@@ -107,15 +123,18 @@ class Player {
         getPlayerStats(measureType: MeasureType.PostBase, statDuration: StatDuration.CurrentSeason)
         getPlayerStats(statDuration: StatDuration.Career)
         
+        getPlayerStats(measureType: MeasureType.RegularAdvanced, statDuration: StatDuration.CurrentSeason)
+        getPlayerStats(measureType: MeasureType.PostAdvanced, statDuration: StatDuration.CurrentSeason)
+        
     }
     
     func getPlayerStats(measureType: MeasureType, statDuration: StatDuration) {
         
         if (measureType == MeasureType.RegularBase && statDuration == StatDuration.CurrentSeason) {
             
-            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: MeasureType.RegularBase) { (currentSeason, allSeasons) in
+            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
-                self._currentRegularSeasonTradStats = PlayerTradStats(statType: MeasureType.RegularBase, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
+                self._currentRegularSeasonTradStats = PlayerTradStats(statType: measureType, statDuration: statDuration, dict: currentSeason)
                 //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
                 
                 
@@ -124,13 +143,52 @@ class Player {
         
         else if (measureType == MeasureType.PostBase && statDuration == StatDuration.CurrentSeason) {
             
-            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: MeasureType.PostBase) { (currentSeason, allSeasons) in
+            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 if currentSeason.count != 0 {
-                    self._currentPostSeasonTradStats = PlayerTradStats(statType: MeasureType.PostBase, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
+                    self._currentPostSeasonTradStats = PlayerTradStats(statType: measureType, statDuration: statDuration, dict: currentSeason)
                     //print("Test: \(self.currentPostSeasonTradStats.gamesPlayed), \(self.currentPostSeasonTradStats.fieldGoalPercent)")
                 } else {
                     print("The playoffs haven't started yet")
+                }
+                
+            }
+        }
+        
+        else if (measureType == MeasureType.RegularAdvanced) {
+            
+            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
+                
+                self._currentRegularSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
+                print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
+                
+                let allSeasonsDict = self.getAdvanceStatAverages(dictArray: allSeasons)
+                
+                if allSeasonsDict.count != 0 {
+                    self._careerRegularSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.Career, dict: allSeasonsDict)
+                } else {
+                    print("Stats not available")
+                }
+            }
+        }
+        
+        else if (measureType == MeasureType.PostAdvanced) {
+            
+            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
+                
+                if currentSeason.count != 0 {
+                    self._currentPostSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
+                    print("Test: \(self.currentPostSeasonAdvStats.pace), \(self.currentPostSeasonAdvStats.trueShooting)")
+                } else {
+                    print("The playoffs haven't started yet")
+                }
+                
+                let allSeasonsDict = self.getAdvanceStatAverages(dictArray: allSeasons)
+                
+                if allSeasonsDict.count != 0 {
+                    self._careerRegularSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.Career, dict: allSeasonsDict)
+                } else {
+                    print("\(self.name) has never made the playoffs")
                 }
                 
             }
@@ -162,6 +220,12 @@ class Player {
             }
             
         }
+        
+    }
+    
+    func getAdvanceStatAverages(dictArray: [AnyObject]) -> Dictionary<String, AnyObject> {
+        
+        return Dictionary<String, AnyObject>()
         
     }
     
