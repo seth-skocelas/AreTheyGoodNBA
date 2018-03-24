@@ -11,8 +11,12 @@ import Foundation
 
 class League {
     
-    private var name: String = "NBA"
-    private var teams = [Team]()
+    let name: String = "NBA"
+    private var _teams = [Team]()
+    
+    var teams: [Team] {
+        return _teams
+    }
     
     init() {
         
@@ -28,7 +32,7 @@ class League {
                 
                 tempTeam = Team(teamDict: team)
                 print(tempTeam.teamName + " has won \(tempTeam.leagueTitles) titles.")
-                self.teams.append(tempTeam)
+                self._teams.append(tempTeam)
                 
             }
             

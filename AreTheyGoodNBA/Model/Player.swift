@@ -119,6 +119,23 @@ class Player {
         _currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
         _startingYear = commonPlayerInfo["DRAFT_YEAR"] as! String
         
+    }
+    
+    //Creating a player from CommonTeamRoster is different from CommonPlayerInfo. I should probably combine into one init using the bool to check
+    
+    init(commonPlayerInfo: Dictionary<String, AnyObject>, fromTeamRoster: Bool) {
+        
+        _name = commonPlayerInfo["PLAYER"] as! String
+        _playerID = commonPlayerInfo["PLAYER_ID"] as! Int
+        _height = commonPlayerInfo["HEIGHT"] as! String
+        _weight = commonPlayerInfo["WEIGHT"] as! String
+        _jerseyNumber = commonPlayerInfo["NUM"] as! String
+        _position = commonPlayerInfo["POSITION"] as! String
+        
+    }
+    
+    func getAllStats() {
+        
         getPlayerStats(measureType: MeasureType.RegularBase, statDuration: StatDuration.CurrentSeason)
         getPlayerStats(measureType: MeasureType.PostBase, statDuration: StatDuration.CurrentSeason)
         getPlayerStats(statDuration: StatDuration.Career)

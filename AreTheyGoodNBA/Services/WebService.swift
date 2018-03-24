@@ -50,11 +50,13 @@ class WebService {
         
     }
     
-    func getCommonTeamRoster(teamID: Int, completed: @escaping DownloadComplete) {
+    func getCommonTeamRoster(teamID: Int, completed: @escaping (_ teamArray: [Dictionary<String, AnyObject>]) -> ()) {
         
         let urlString = "\(BASE_URL)\(TEAM_ROSTER)\(CURRENT_SEASON)\(TEAM_ID)\(teamID)"
         //print(urlString)
         let queryURL = URL(string: urlString)!
+        
+        var commonTeamRosterArray = [Dictionary<String, AnyObject>]()
         
         Alamofire.request(queryURL).responseJSON { response in
             
@@ -69,9 +71,6 @@ class WebService {
                 
                 let rowSet = commonTeamRoster["rowSet"] as! [AnyObject]
                 
-                
-                var commonTeamRosterArray = [AnyObject]()
-                
                 for i in 0 ..< rowSet.count {
                     
                     let rowSetValues = rowSet[i] as! [AnyObject]
@@ -81,7 +80,7 @@ class WebService {
                         teamPlayerDict.updateValue(rowSetValues[j], forKey: headers[j] as! String)
                     }
                     
-                    commonTeamRosterArray.append(teamPlayerDict as AnyObject)
+                    commonTeamRosterArray.append(teamPlayerDict)
                     
                 }
                 
@@ -89,7 +88,7 @@ class WebService {
                 
             }
             
-            completed()
+            completed(commonTeamRosterArray)
         }
         
     }

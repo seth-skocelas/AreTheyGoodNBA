@@ -44,6 +44,8 @@ class Team {
     private var _conferenceTitles: Int!
     private var _leagueTitles: Int!
     
+    private var _teamRoster = [Player]()
+    
     var teamName: String {
         if _teamName == nil {
             return ""
@@ -128,6 +130,10 @@ class Team {
         return _leagueTitles
     }
     
+    var teamRoster: [Player] {
+        return _teamRoster
+    }
+    
     
     
     init(teamDict: Dictionary<String, AnyObject>) {
@@ -144,6 +150,28 @@ class Team {
         _divisionTitles = teamDict["DIV_TITLES"] as! Int
         _conferenceTitles = teamDict["CONF_TITLES"] as! Int
         _leagueTitles = teamDict["LEAGUE_TITLES"] as! Int
+        
+        if (_teamName == "Dallas Mavericks") {
+            getTeamRoster()
+        }
+        
+    }
+    
+    func getTeamRoster() {
+        
+        WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in
+            
+            for player in teamArray {
+                
+                self._teamRoster.append(Player(commonPlayerInfo: player, fromTeamRoster: true))
+                
+            }
+            
+            for player in self.teamRoster {
+                print(player.name)
+            }
+            
+        }
         
     }
     

@@ -14,17 +14,19 @@ class MainVC: UIViewController {
         
         super.viewDidLoad()
         
+        let league = League()
+
+        
         //2544 = Lebron
         //1628372 = DSJ
         
-        WebService.instance.getCommonPlayerInfo(playerID: 2544) { (commonPlayerInfoDict) in
+        //WebService.instance.getCommonPlayerInfo(playerID: 2544) { (commonPlayerInfoDict) in
 
             //var testPlayer = Player(commonPlayerInfo: commonPlayerInfoDict)
             //print("\(testPlayer.name) with id of \(testPlayer.playerID) on the \(testPlayer.currentTeam)" )
             //print("CareerFGReg: \(testPlayer.careerRegularSeasonTradStats.fieldGoalPercent), CareerFGPost: \(testPlayer.careerPostSeasonTradStats.fieldGoalPercent)")
-            var league = League()
 
-        }
+        //}
         //WebService.instance.getCommonTeamRoster(teamID: 1610612745) {}
         //WebService.instance.getFranchiseHistory() {}
         //WebService.instance.getPlayerCareerStats(playerID: 201935)
