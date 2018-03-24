@@ -19,10 +19,10 @@ class MainVC: UIViewController {
         
         WebService.instance.getCommonPlayerInfo(playerID: 2544) { (commonPlayerInfoDict) in
 
-            var testPlayer = Player(commonPlayerInfo: commonPlayerInfoDict)
-            print("\(testPlayer.name) with id of \(testPlayer.playerID) on the \(testPlayer.currentTeam)" )
+            //var testPlayer = Player(commonPlayerInfo: commonPlayerInfoDict)
+            //print("\(testPlayer.name) with id of \(testPlayer.playerID) on the \(testPlayer.currentTeam)" )
             //print("CareerFGReg: \(testPlayer.careerRegularSeasonTradStats.fieldGoalPercent), CareerFGPost: \(testPlayer.careerPostSeasonTradStats.fieldGoalPercent)")
-
+            var league = League()
 
         }
         //WebService.instance.getCommonTeamRoster(teamID: 1610612745) {}
