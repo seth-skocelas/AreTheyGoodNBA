@@ -1,5 +1,5 @@
 //
-//  PlayerTradStats.swift
+//  TradStats.swift
 //  AreTheyGoodNBA
 //
 //  Created by Seth Skocelas on 3/16/18.
@@ -8,8 +8,9 @@
 
 import Foundation
 
-class PlayerTradStats {
+class TradStats {
     
+    private var classType: ClassType!
     private var _statType: MeasureType!
     private var _statDuration: StatDuration!
     
@@ -113,7 +114,7 @@ class PlayerTradStats {
     }
     
     
-    init(statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
+    init(classType: ClassType, statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
         
         self._statType = statType
         self._statDuration = statDuration

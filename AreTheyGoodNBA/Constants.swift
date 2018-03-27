@@ -74,6 +74,13 @@ enum StatDuration {
     
 }
 
+enum ClassType {
+    
+    case Player
+    case Team
+    
+}
+
 
 
 

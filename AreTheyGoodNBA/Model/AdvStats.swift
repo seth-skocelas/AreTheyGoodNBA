@@ -1,5 +1,5 @@
 //
-//  PlayerAdvStats.swift
+//  AdvStats.swift
 //  AreTheyGoodNBA
 //
 //  Created by Seth Skocelas on 3/22/18.
@@ -9,8 +9,9 @@
 import Foundation
 
 
-class PlayerAdvStats {
+class AdvStats {
     
+    private var classType: ClassType!
     private var _statType: MeasureType!
     private var _statDuration: StatDuration!
     
@@ -80,7 +81,7 @@ class PlayerAdvStats {
     }
     
     
-    init(statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
+    init(classType: ClassType, statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
         
         self._statType = statType
         self._statDuration = statDuration
@@ -90,9 +91,12 @@ class PlayerAdvStats {
         self._netRating = dict["NET_RATING"] as! Float
         self._effectiveFG = dict["EFG_PCT"] as! Float
         self._trueShooting = dict["TS_PCT"] as! Float
-        self._usage = dict["USG_PCT"] as! Float
         self._pace = dict["PACE"] as! Float
         self._PIE = dict["PIE"] as! Float
+        
+        if classType == ClassType.Player {
+            self._usage = dict["USG_PCT"] as! Float
+        }
         
     }
     

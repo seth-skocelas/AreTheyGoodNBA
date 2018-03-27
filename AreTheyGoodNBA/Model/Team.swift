@@ -9,26 +9,6 @@
 import Foundation
 
 
-/*
- 
- "LEAGUE_ID",
- "TEAM_ID",
- "TEAM_CITY",
- "TEAM_NAME",
- "START_YEAR",
- "END_YEAR",
- "YEARS",
- "GAMES",
- "WINS",
- "LOSSES",
- "WIN_PCT",
- "PO_APPEARANCES",
- "DIV_TITLES",
- "CONF_TITLES",
- "LEAGUE_TITLES"
- 
- */
-
 class Team {
     
     private var _teamID: Int!
@@ -43,6 +23,12 @@ class Team {
     private var _divisionTitles: Int!
     private var _conferenceTitles: Int!
     private var _leagueTitles: Int!
+    
+    private var _currentRegularSeasonTradStats: TradStats!
+    private var _currentPostSeasonTradStats: TradStats!
+    
+    private var _currentRegularSeasonAdvStats: AdvStats!
+    private var _currentPostSeasonAdvStats: AdvStats!
     
     private var _teamRoster = [Player]()
     
@@ -134,6 +120,22 @@ class Team {
         return _teamRoster
     }
     
+    var currentRegularSeasonTradStats: TradStats {
+        return _currentRegularSeasonTradStats
+    }
+    
+    var currentPostSeasonTradStats: TradStats {
+        return _currentPostSeasonTradStats
+    }
+    
+    var currentRegularSeasonAdvStats: AdvStats {
+        return _currentRegularSeasonAdvStats
+    }
+    
+    var currentPostSeasonAdvStats: AdvStats {
+        return _currentPostSeasonAdvStats
+    }
+    
     
     
     init(teamDict: Dictionary<String, AnyObject>) {
@@ -152,7 +154,8 @@ class Team {
         _leagueTitles = teamDict["LEAGUE_TITLES"] as! Int
         
         if (_teamName == "Dallas Mavericks") {
-            getTeamRoster()
+            //getTeamRoster()
+            getAllStats()
         }
         
     }
@@ -171,6 +174,69 @@ class Team {
                 print(player.name)
             }
             
+        }
+        
+    }
+    
+    func getAllStats() {
+        
+        getTeamStats(measureType: MeasureType.RegularBase)
+        getTeamStats(measureType: MeasureType.PostBase)
+        
+        getTeamStats(measureType: MeasureType.RegularAdvanced)
+        getTeamStats(measureType: MeasureType.PostAdvanced)
+
+    }
+    
+    func getTeamStats(measureType: MeasureType) {
+        
+        if (measureType == MeasureType.RegularBase) {
+            
+            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+                
+                self._currentRegularSeasonTradStats = TradStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
+                //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
+                
+                
+            }
+        }
+            
+        else if (measureType == MeasureType.PostBase) {
+            
+            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+                
+                if teamStats.count != 0 {
+                    self._currentPostSeasonTradStats = TradStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
+                    //print("Test: \(self.currentPostSeasonTradStats.gamesPlayed), \(self.currentPostSeasonTradStats.fieldGoalPercent)")
+                } else {
+                    print("The playoffs haven't started yet")
+                }
+                
+            }
+        }
+        
+        else if (measureType == MeasureType.RegularAdvanced) {
+            
+            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+                
+                self._currentRegularSeasonAdvStats = AdvStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
+                print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
+                
+            }
+        }
+            
+        else if (measureType == MeasureType.PostAdvanced) {
+            
+            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+                
+                if teamStats.count != 0 {
+                    self._currentPostSeasonAdvStats = AdvStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
+                    print("Test: \(self.currentPostSeasonAdvStats.pace), \(self.currentPostSeasonAdvStats.trueShooting)")
+                } else {
+                    print("The playoffs haven't started yet")
+                }
+                
+            }
         }
         
     }

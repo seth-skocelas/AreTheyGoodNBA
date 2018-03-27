@@ -20,15 +20,15 @@ class Player {
     private var _currentTeam: String!
     private var _startingYear: String!
     
-    private var _currentRegularSeasonTradStats: PlayerTradStats!
-    private var _currentPostSeasonTradStats: PlayerTradStats!
-    private var _careerRegularSeasonTradStats: PlayerTradStats!
-    private var _careerPostSeasonTradStats: PlayerTradStats!
+    private var _currentRegularSeasonTradStats: TradStats!
+    private var _currentPostSeasonTradStats: TradStats!
+    private var _careerRegularSeasonTradStats: TradStats!
+    private var _careerPostSeasonTradStats: TradStats!
     
-    private var _currentRegularSeasonAdvStats: PlayerAdvStats!
-    private var _currentPostSeasonAdvStats: PlayerAdvStats!
-    private var _careerRegularSeasonAdvStats: PlayerAdvStats!
-    private var _careerPostSeasonAdvStats: PlayerAdvStats!
+    private var _currentRegularSeasonAdvStats: AdvStats!
+    private var _currentPostSeasonAdvStats: AdvStats!
+    private var _careerRegularSeasonAdvStats: AdvStats!
+    private var _careerPostSeasonAdvStats: AdvStats!
     
     var name: String {
         return _name
@@ -73,35 +73,35 @@ class Player {
         return _startingYear
     }
     
-    var currentRegularSeasonTradStats: PlayerTradStats {
+    var currentRegularSeasonTradStats: TradStats {
         return _currentRegularSeasonTradStats
     }
     
-    var currentPostSeasonTradStats: PlayerTradStats {
+    var currentPostSeasonTradStats: TradStats {
         return _currentPostSeasonTradStats
     }
     
-    var careerRegularSeasonTradStats: PlayerTradStats {
+    var careerRegularSeasonTradStats: TradStats {
         return _careerRegularSeasonTradStats
     }
     
-    var careerPostSeasonTradStats: PlayerTradStats {
+    var careerPostSeasonTradStats: TradStats {
         return _careerPostSeasonTradStats
     }
     
-    var currentRegularSeasonAdvStats: PlayerAdvStats {
+    var currentRegularSeasonAdvStats: AdvStats {
         return _currentRegularSeasonAdvStats
     }
     
-    var currentPostSeasonAdvStats: PlayerAdvStats {
+    var currentPostSeasonAdvStats: AdvStats {
         return _currentPostSeasonAdvStats
     }
     
-    var careerRegularSeasonAdvStats: PlayerAdvStats {
+    var careerRegularSeasonAdvStats: AdvStats {
         return _careerRegularSeasonAdvStats
     }
     
-    var careerPostSeasonAdvStats: PlayerAdvStats {
+    var careerPostSeasonAdvStats: AdvStats {
         return _careerPostSeasonAdvStats
     }
     
@@ -151,7 +151,7 @@ class Player {
             
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
-                self._currentRegularSeasonTradStats = PlayerTradStats(statType: measureType, statDuration: statDuration, dict: currentSeason)
+                self._currentRegularSeasonTradStats = TradStats(classType: ClassType.Player, statType: measureType, statDuration: statDuration, dict: currentSeason)
                 //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
                 
                 
@@ -163,7 +163,7 @@ class Player {
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 if currentSeason.count != 0 {
-                    self._currentPostSeasonTradStats = PlayerTradStats(statType: measureType, statDuration: statDuration, dict: currentSeason)
+                    self._currentPostSeasonTradStats = TradStats(classType: ClassType.Player, statType: measureType, statDuration: statDuration, dict: currentSeason)
                     //print("Test: \(self.currentPostSeasonTradStats.gamesPlayed), \(self.currentPostSeasonTradStats.fieldGoalPercent)")
                 } else {
                     print("The playoffs haven't started yet")
@@ -176,13 +176,13 @@ class Player {
             
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
-                self._currentRegularSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
+                self._currentRegularSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
                 print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
                 
                 let allSeasonsDict = self.getAdvanceStatAverages(dictArray: allSeasons)
                 
                 if allSeasonsDict.count != 0 {
-                    self._careerRegularSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.Career, dict: allSeasonsDict)
+                    self._careerRegularSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.Career, dict: allSeasonsDict)
                 } else {
                     print("Stats not available")
                 }
@@ -194,7 +194,7 @@ class Player {
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 if currentSeason.count != 0 {
-                    self._currentPostSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
+                    self._currentPostSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
                     print("Test: \(self.currentPostSeasonAdvStats.pace), \(self.currentPostSeasonAdvStats.trueShooting)")
                 } else {
                     print("The playoffs haven't started yet")
@@ -202,7 +202,7 @@ class Player {
                 
                 
                 if (allSeasons.count != 0) {
-                    self._careerPostSeasonAdvStats = PlayerAdvStats(statType: measureType, statDuration: StatDuration.Career, dict: self.getAdvanceStatAverages(dictArray: allSeasons))
+                    self._careerPostSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.Career, dict: self.getAdvanceStatAverages(dictArray: allSeasons))
                 }
                  else {
                     print("\(self.name) has never made the playoffs")
@@ -221,14 +221,14 @@ class Player {
             WebService.instance.getPlayerCareerStats(playerID: self.playerID) { (regularSeasonStats, postSeasonStats) in
                 
                 if regularSeasonStats.count != 0 {
-                    self._careerRegularSeasonTradStats = PlayerTradStats(statType: MeasureType.RegularBase, statDuration: StatDuration.Career, dict: regularSeasonStats)
+                    self._careerRegularSeasonTradStats = TradStats(classType: ClassType.Player, statType: MeasureType.RegularBase, statDuration: StatDuration.Career, dict: regularSeasonStats)
                     //print("CareerRegFG \(self._careerRegularSeasonTradStats.fieldGoalPercent)")
                 } else {
                     print("No Career Regular Season Stats available")
                 }
                 
                 if postSeasonStats.count != 0 {
-                    self._careerPostSeasonTradStats = PlayerTradStats(statType: MeasureType.PostBase, statDuration: StatDuration.Career, dict: postSeasonStats)
+                    self._careerPostSeasonTradStats = TradStats(classType: ClassType.Player, statType: MeasureType.PostBase, statDuration: StatDuration.Career, dict: postSeasonStats)
                     //print("CareerPostFG \(self._careerPostSeasonTradStats.fieldGoalPercent)")
                 } else {
                     print("No Career Post Season Stats available")

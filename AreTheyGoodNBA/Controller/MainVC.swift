@@ -33,7 +33,7 @@ class MainVC: UIViewController {
         //WebService.instance.getTeamSeasonStats(teamID: 1610612745, measureType: MeasureType.RegularAdvanced) {}
 //        WebService.instance.getPlayerSeasonStats(playerID: 201935, measureType: MeasureType.RegularBase) { (currentSeason, allSeasons) in
 //
-//            var testPlayerSeasonStats = PlayerTradStats(statType: MeasureType.RegularBase, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
+//            var testPlayerSeasonStats = TradStats(statType: MeasureType.RegularBase, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
 //            print("Test: \(testPlayerSeasonStats.gamesPlayed), \(testPlayerSeasonStats.fieldGoalPercent)")
 //
 //        }

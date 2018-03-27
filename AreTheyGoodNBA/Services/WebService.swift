@@ -222,10 +222,11 @@ class WebService {
         
     }
     
-    func getTeamSeasonStats(teamID: Int, measureType: MeasureType, completed: @escaping DownloadComplete) {
+    func getTeamSeasonStats(teamID: Int, measureType: MeasureType, completed: @escaping (_ teamStats: Dictionary<String, AnyObject>) -> ()) {
         
         let urlString = getTeamSeasonStatsURL(teamID: teamID, measureType: measureType)
         let queryURL = URL(string: urlString)!
+        var overallTeamDashboardDict = Dictionary<String, AnyObject>()
         
         Alamofire.request(queryURL).responseJSON { response in
             
@@ -240,20 +241,23 @@ class WebService {
                 //print(headers[0])
                 
                 let rowSet = overallTeamDashboard["rowSet"] as! [AnyObject]
-                let rowSetValues = rowSet[0] as! [AnyObject]
-                //print(rowSetValues[0])
                 
-                var overallTeamDashboardDict = Dictionary<String, AnyObject>()
+                if rowSet.isEmpty == false {
                 
-                for i in 0 ..< headers.count {
-                    overallTeamDashboardDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                    let rowSetValues = rowSet[0] as! [AnyObject]
+                    //print(rowSetValues[0])
+                
+                    for i in 0 ..< headers.count {
+                        overallTeamDashboardDict.updateValue(rowSetValues[i], forKey: headers[i] as! String)
+                    }
+                
+                    //print(overallTeamDashboardDict)
+                    
                 }
-                
-                //print(overallTeamDashboardDict)
                 
             }
             
-            completed()
+            completed(overallTeamDashboardDict)
         }
         
     }
