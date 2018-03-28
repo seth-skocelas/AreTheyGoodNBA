@@ -149,17 +149,20 @@ class Player {
         
         if (measureType == MeasureType.RegularBase && statDuration == StatDuration.CurrentSeason) {
             
+            WebService.instance.playerGroup.enter()
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 self._currentRegularSeasonTradStats = TradStats(classType: ClassType.Player, statType: measureType, statDuration: statDuration, dict: currentSeason)
                 //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
                 
-                
+                WebService.instance.playerGroup.leave()
             }
+            
         }
         
         else if (measureType == MeasureType.PostBase && statDuration == StatDuration.CurrentSeason) {
             
+            WebService.instance.playerGroup.enter()
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 if currentSeason.count != 0 {
@@ -168,16 +171,17 @@ class Player {
                 } else {
                     print("The playoffs haven't started yet")
                 }
-                
+                WebService.instance.playerGroup.leave()
             }
         }
         
         else if (measureType == MeasureType.RegularAdvanced) {
             
+            WebService.instance.playerGroup.enter()
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 self._currentRegularSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
-                print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
+                //print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
                 
                 let allSeasonsDict = self.getAdvanceStatAverages(dictArray: allSeasons)
                 
@@ -186,16 +190,18 @@ class Player {
                 } else {
                     print("Stats not available")
                 }
+                WebService.instance.playerGroup.leave()
             }
         }
         
         else if (measureType == MeasureType.PostAdvanced) {
             
+            WebService.instance.playerGroup.enter()
             WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 if currentSeason.count != 0 {
                     self._currentPostSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
-                    print("Test: \(self.currentPostSeasonAdvStats.pace), \(self.currentPostSeasonAdvStats.trueShooting)")
+                    //print("Test: \(self.currentPostSeasonAdvStats.pace), \(self.currentPostSeasonAdvStats.trueShooting)")
                 } else {
                     print("The playoffs haven't started yet")
                 }
@@ -207,7 +213,7 @@ class Player {
                  else {
                     print("\(self.name) has never made the playoffs")
                 }
-                
+                WebService.instance.playerGroup.leave()
             }
         }
         
@@ -218,6 +224,7 @@ class Player {
         
         if statDuration == StatDuration.Career {
             
+            WebService.instance.playerGroup.enter()
             WebService.instance.getPlayerCareerStats(playerID: self.playerID) { (regularSeasonStats, postSeasonStats) in
                 
                 if regularSeasonStats.count != 0 {
@@ -233,7 +240,7 @@ class Player {
                 } else {
                     print("No Career Post Season Stats available")
                 }
-                
+                WebService.instance.playerGroup.leave()
             }
             
         }
@@ -276,8 +283,6 @@ class Player {
         careerAdvanceStats.updateValue(usage/count as AnyObject, forKey: "USG_PCT")
         careerAdvanceStats.updateValue(pace/count as AnyObject, forKey: "PACE")
         careerAdvanceStats.updateValue(PIE/count as AnyObject, forKey: "PIE")
-        
-        print(careerAdvanceStats)
         
         return careerAdvanceStats
         

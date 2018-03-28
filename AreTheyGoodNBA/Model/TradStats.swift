@@ -22,6 +22,7 @@ class TradStats {
     private var _fieldGoalPercent: Float!
     private var _fieldGoalPerMin: Float!
     private var _fieldGoalAttempts: Float!
+    private var _points: Float!
     private var _rebounds: Float!
     private var _assists: Float!
     private var _turnovers: Float!
@@ -84,6 +85,13 @@ class TradStats {
         return _fieldGoalAttempts
     }
     
+    var points: Float {
+        if _points == nil {
+            return -1
+        }
+        return _points
+    }
+    
     var rebounds: Float {
         if _rebounds == nil {
             return -1
@@ -127,6 +135,7 @@ class TradStats {
         self._fieldGoalPercent = dict["FG_PCT"] as! Float
         self._fieldGoalPerMin = dict["FGM"] as! Float
         self._fieldGoalAttempts = dict["FGA"] as! Float
+        self._points = dict["PTS"] as! Float
         self._rebounds = dict["REB"] as! Float
         self._assists = dict["AST"] as! Float
         self._turnovers = dict["TOV"] as! Float

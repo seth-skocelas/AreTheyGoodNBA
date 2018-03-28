@@ -13,6 +13,10 @@ class WebService {
     
     static let instance = WebService()
     
+    let leagueGroup = DispatchGroup()
+    let teamGroup = DispatchGroup()
+    let playerGroup = DispatchGroup()
+    
     func getCommonPlayerInfo(playerID: Int, completed: @escaping (_ commonPlayerInfoDict: Dictionary<String, AnyObject>) -> ()) {
         
         let urlString = "\(BASE_URL)\(PLAYER_INFO)\(PLAYER_ID)\(playerID)"

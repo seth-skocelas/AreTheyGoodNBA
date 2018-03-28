@@ -153,15 +153,16 @@ class Team {
         _conferenceTitles = teamDict["CONF_TITLES"] as! Int
         _leagueTitles = teamDict["LEAGUE_TITLES"] as! Int
         
-        if (_teamName == "Dallas Mavericks") {
-            //getTeamRoster()
-            getAllStats()
-        }
+//        if (_teamName == "Dallas Mavericks") {
+//            //getTeamRoster()
+//            getAllStats()
+//        }
         
     }
     
     func getTeamRoster() {
         
+        WebService.instance.teamGroup.enter()
         WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in
             
             for player in teamArray {
@@ -170,10 +171,10 @@ class Team {
                 
             }
             
-            for player in self.teamRoster {
-                print(player.name)
-            }
-            
+//            for player in self.teamRoster {
+//                print(player.name)
+//            }
+            WebService.instance.teamGroup.leave()
         }
         
     }
@@ -192,17 +193,20 @@ class Team {
         
         if (measureType == MeasureType.RegularBase) {
             
+            WebService.instance.teamGroup.enter()
             WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
                 
                 self._currentRegularSeasonTradStats = TradStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
                 //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
                 
+                WebService.instance.teamGroup.leave()
                 
             }
         }
             
         else if (measureType == MeasureType.PostBase) {
             
+            WebService.instance.teamGroup.enter()
             WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
                 
                 if teamStats.count != 0 {
@@ -211,31 +215,34 @@ class Team {
                 } else {
                     print("The playoffs haven't started yet")
                 }
-                
+                WebService.instance.teamGroup.leave()
             }
         }
         
         else if (measureType == MeasureType.RegularAdvanced) {
             
+            WebService.instance.teamGroup.enter()
             WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
                 
                 self._currentRegularSeasonAdvStats = AdvStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
-                print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
+                //print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
                 
             }
+            WebService.instance.teamGroup.leave()
         }
             
         else if (measureType == MeasureType.PostAdvanced) {
             
+            WebService.instance.teamGroup.enter()
             WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
                 
                 if teamStats.count != 0 {
                     self._currentPostSeasonAdvStats = AdvStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
-                    print("Test: \(self.currentPostSeasonAdvStats.pace), \(self.currentPostSeasonAdvStats.trueShooting)")
+                    //print("Test: \(self.currentPostSeasonAdvStats.pace), \(self.currentPostSeasonAdvStats.trueShooting)")
                 } else {
                     print("The playoffs haven't started yet")
                 }
-                
+                WebService.instance.teamGroup.leave()
             }
         }
         

@@ -21,7 +21,7 @@ class League {
     init() {
         
         
-        
+        WebService.instance.leagueGroup.enter()
         WebService.instance.getFranchiseHistory { (teamsArray) in
             
             var tempTeam: Team
@@ -31,12 +31,12 @@ class League {
             for team in finalTeamsArray {
                 
                 tempTeam = Team(teamDict: team)
-                print(tempTeam.teamName + " has won \(tempTeam.leagueTitles) titles.")
+                //print(tempTeam.teamName + " has won \(tempTeam.leagueTitles) titles.")
                 self._teams.append(tempTeam)
                 
             }
             
-            //print(self.teams)
+            WebService.instance.leagueGroup.leave()
             
         }
         
