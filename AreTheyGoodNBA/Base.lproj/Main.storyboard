@@ -87,6 +87,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="playerPicker" destination="v7z-ug-EG9" id="YB2-GD-mb0"/>
+                        <outlet property="teamPicker" destination="2xV-CK-5Xj" id="nw6-E3-5rs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

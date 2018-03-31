@@ -9,10 +9,18 @@
 import UIKit
 
 class MainVC: UIViewController {
-
+    
+    var league: League!
+    
+    @IBOutlet weak var teamPicker: UIPickerView!
+    @IBOutlet weak var playerPicker: UIPickerView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        teamPicker.delegate = self
+        teamPicker.dataSource = self
         
         asyncTestFunc()
         
@@ -23,30 +31,55 @@ class MainVC: UIViewController {
     
     func asyncTestFunc() {
         
-        let league = League()
+        league = League()
         
         WebService.instance.leagueGroup.notify(queue: .main) {
             
-            print("\(league.teams[0].teamName)")
-            league.teams[0].getTeamRoster()
+            self.teamPicker.reloadAllComponents()
+            
+            print("\(self.league.teams[0].teamName)")
+            self.league.teams[0].getTeamRoster()
             
             WebService.instance.teamGroup.notify(queue: .main, execute: {
                 
-                print("\(league.teams[0].teamRoster[0].name): \(league.teams[0].teamRoster[0].playerID)")
-                league.teams[0].teamRoster[0].getAllStats()
+                print("\(self.league.teams[0].teamRoster[0].name): \(self.league.teams[0].teamRoster[0].playerID)")
+                self.league.teams[0].teamRoster[0].getAllStats()
                 
                 WebService.instance.playerGroup.notify(queue: .main, execute: {
                     
-                    print("Regular Season TS%: \(league.teams[0].teamRoster[0].currentRegularSeasonAdvStats.trueShooting)")
-                    print("Career PTS: \(league.teams[0].teamRoster[0].careerRegularSeasonTradStats.points)")
+                    print("Regular Season TS%: \(self.league.teams[0].teamRoster[0].currentRegularSeasonAdvStats.trueShooting)")
+                    print("Career PTS: \(self.league.teams[0].teamRoster[0].careerRegularSeasonTradStats.points)")
                     
                 })
             })
         }
     }
 
-
-
-
 }
+
+extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let team = league.teams[row]
+        let attributedString = NSAttributedString(string: team.teamName, attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
+        return attributedString
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return league.teams.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+}
+
+    
+
 
