@@ -162,19 +162,26 @@ class Team {
     
     func getTeamRoster() {
         
-        WebService.instance.teamGroup.enter()
-        WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in
+        if teamRoster.count == 0 {
+        
+            print("here")
             
-            for player in teamArray {
+            WebService.instance.teamGroup.enter()
+            WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in
+            
+                for player in teamArray {
                 
-                self._teamRoster.append(Player(commonPlayerInfo: player, fromTeamRoster: true))
+                    self._teamRoster.append(Player(commonPlayerInfo: player, fromTeamRoster: true))
+                
+                }
+            
+//              for player in self.teamRoster {
+//                  print(player.name)
+//              }
+                WebService.instance.teamGroup.leave()
                 
             }
             
-//            for player in self.teamRoster {
-//                print(player.name)
-//            }
-            WebService.instance.teamGroup.leave()
         }
         
     }
