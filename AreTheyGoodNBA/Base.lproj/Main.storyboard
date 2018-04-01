@@ -77,6 +77,9 @@
                                                 <state key="normal" title="  Analyze Team  ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="analyzeTeamPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BLS-Sy-xCn"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iO7-9S-s8I">
                                                 <rect key="frame" x="161" y="0.0" width="116" height="30"/>
@@ -87,6 +90,9 @@
                                                 <state key="normal" title="  Analyze Player  ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="analyzePlayerPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ECc-Kx-9RH"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -105,11 +111,91 @@
                     <connections>
                         <outlet property="playerPicker" destination="v7z-ug-EG9" id="YB2-GD-mb0"/>
                         <outlet property="teamPicker" destination="2xV-CK-5Xj" id="nw6-E3-5rs"/>
+                        <segue destination="EMy-Up-gy0" kind="show" identifier="toPlayerStats" id="nzq-z2-tmq"/>
+                        <segue destination="Bp4-4x-YTM" kind="show" identifier="toTeamStats" id="eeu-mS-Ig1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="116" y="117.39130434782609"/>
+        </scene>
+        <!--Team StatsVC-->
+        <scene sceneID="eSa-o2-6Xl">
+            <objects>
+                <viewController id="Bp4-4x-YTM" customClass="TeamStatsVC" customModule="AreTheyGoodNBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XnW-c1-kOe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rs0-nh-ZzL">
+                                <rect key="frame" x="139" y="274" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbo-lR-iUc">
+                                <rect key="frame" x="16" y="20" width="41" height="30"/>
+                                <state key="normal" title="Home"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="Bp4-4x-YTM" eventType="touchUpInside" id="IAY-C7-3oP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rs0-nh-ZzL" firstAttribute="centerX" secondItem="XnW-c1-kOe" secondAttribute="centerX" id="Y6d-Hl-QkX"/>
+                            <constraint firstItem="vbo-lR-iUc" firstAttribute="leading" secondItem="OMn-0g-Qio" secondAttribute="leading" constant="16" id="eSG-aC-3H0"/>
+                            <constraint firstItem="vbo-lR-iUc" firstAttribute="top" secondItem="OMn-0g-Qio" secondAttribute="top" id="pGm-EX-39q"/>
+                            <constraint firstItem="rs0-nh-ZzL" firstAttribute="centerY" secondItem="XnW-c1-kOe" secondAttribute="centerY" id="snF-8P-5fP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OMn-0g-Qio"/>
+                    </view>
+                    <connections>
+                        <outlet property="testLabel" destination="rs0-nh-ZzL" id="wux-UQ-Bvo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KFe-NH-9Wi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1624" y="504"/>
+        </scene>
+        <!--Player StatsVC-->
+        <scene sceneID="TcI-ar-gD1">
+            <objects>
+                <viewController id="EMy-Up-gy0" customClass="PlayerStatsVC" customModule="AreTheyGoodNBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xsU-EQ-Ppe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eif-SK-T0w">
+                                <rect key="frame" x="136.5" y="274" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8l-Mc-xxq">
+                                <rect key="frame" x="16" y="20" width="41" height="30"/>
+                                <state key="normal" title="Home"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="EMy-Up-gy0" eventType="touchUpInside" id="OxO-Vx-h1s"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Eif-SK-T0w" firstAttribute="centerY" secondItem="xsU-EQ-Ppe" secondAttribute="centerY" id="CbP-1s-F2R"/>
+                            <constraint firstItem="Eif-SK-T0w" firstAttribute="centerX" secondItem="xsU-EQ-Ppe" secondAttribute="centerX" id="DPr-rl-oN7"/>
+                            <constraint firstItem="b8l-Mc-xxq" firstAttribute="leading" secondItem="Ung-bO-Cmh" secondAttribute="leading" constant="16" id="a2V-c8-mYC"/>
+                            <constraint firstItem="b8l-Mc-xxq" firstAttribute="top" secondItem="Ung-bO-Cmh" secondAttribute="top" id="cwV-O6-l60"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ung-bO-Cmh"/>
+                    </view>
+                    <connections>
+                        <outlet property="testLabel" destination="Eif-SK-T0w" id="hlK-mT-5VQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qq5-aX-6EG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1624" y="-499"/>
         </scene>
     </scenes>
 </document>

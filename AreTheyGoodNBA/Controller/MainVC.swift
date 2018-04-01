@@ -12,6 +12,8 @@ class MainVC: UIViewController {
     
     var league: League!
     var selectedTeam: Team!
+    var selectedPlayer: Player!
+    var currentPlayerIndex = 0
     
     @IBOutlet weak var teamPicker: UIPickerView!
     @IBOutlet weak var playerPicker: UIPickerView!
@@ -49,6 +51,7 @@ class MainVC: UIViewController {
             WebService.instance.teamGroup.notify(queue: .main) {
                 
                 self.playerPicker.reloadAllComponents()
+                self.selectedPlayer = self.selectedTeam.teamRoster[0]
                 
                 print("\(self.league.teams[0].teamRoster[0].name): \(self.league.teams[0].teamRoster[0].playerID)")
                 self.league.teams[0].teamRoster[0].getAllStats()
@@ -62,6 +65,54 @@ class MainVC: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toTeamStats" {
+            
+            if let destination = segue.destination as? TeamStatsVC {
+                
+                if let team = sender as? Team {
+                    
+                    destination.currentTeam = team
+                }
+                
+            }
+            
+        }
+        
+        if segue.identifier == "toPlayerStats" {
+            
+            if let destination = segue.destination as? PlayerStatsVC {
+                
+                if let player = sender as? Player {
+                    
+                    destination.currentPlayer = player
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func analyzeTeamPressed(_ sender: Any) {
+        
+        WebService.instance.teamGroup.notify(queue: .main) {
+            self.performSegue(withIdentifier: "toTeamStats", sender: self.selectedTeam)
+        }
+        
+    }
+    
+
+    @IBAction func analyzePlayerPressed(_ sender: Any) {
+        
+        WebService.instance.playerGroup.notify(queue: .main) {
+            self.performSegue(withIdentifier: "toPlayerStats", sender: self.selectedPlayer)
+        }
+        
+    }
+    
 
 }
 
@@ -90,7 +141,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         
         if pickerView.tag == 1 {
             return league.teams.count
-        } else if pickerView.tag == 2 {
+        }
+        
+        else if pickerView.tag == 2 {
             
             if selectedTeam == nil {
                 return 0
@@ -112,8 +165,19 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
             selectedTeam.getTeamRoster()
             
             WebService.instance.teamGroup.notify(queue: .main) {
+                
+                self.selectedPlayer = self.selectedTeam.teamRoster[0]
                 self.playerPicker.reloadAllComponents()
+                self.playerPicker.selectRow(0, inComponent: 0, animated: true)
+                
             }
+            
+        }
+        
+        if pickerView.tag == 2 {
+            
+            currentPlayerIndex = row
+            selectedPlayer = selectedTeam.teamRoster[row]
             
         }
         

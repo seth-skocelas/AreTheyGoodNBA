@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97261E0620716DAD00316F52 /* PlayerStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97261E0520716DAD00316F52 /* PlayerStatsVC.swift */; };
+		97261E0820716E9C00316F52 /* TeamStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97261E0720716E9C00316F52 /* TeamStatsVC.swift */; };
 		972E167D206468FE001B27EE /* AdvStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E167C206468FE001B27EE /* AdvStats.swift */; };
 		9731443F2066E2E400D357AE /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9731443E2066E2E400D357AE /* League.swift */; };
 		9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370D2050ACB6008BE29A /* AppDelegate.swift */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		868531CF5E24C016E5C0A889 /* Pods-AreTheyGoodNBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.release.xcconfig"; sourceTree = "<group>"; };
+		97261E0520716DAD00316F52 /* PlayerStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsVC.swift; sourceTree = "<group>"; };
+		97261E0720716E9C00316F52 /* TeamStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsVC.swift; sourceTree = "<group>"; };
 		972E167C206468FE001B27EE /* AdvStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvStats.swift; sourceTree = "<group>"; };
 		9731443E2066E2E400D357AE /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
 		9744370A2050ACB6008BE29A /* AreTheyGoodNBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AreTheyGoodNBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				9744370F2050ACB6008BE29A /* MainVC.swift */,
+				97261E0520716DAD00316F52 /* PlayerStatsVC.swift */,
+				97261E0720716E9C00316F52 /* TeamStatsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -278,7 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97261E0820716E9C00316F52 /* TeamStatsVC.swift in Sources */,
 				97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */,
+				97261E0620716DAD00316F52 /* PlayerStatsVC.swift in Sources */,
 				9731443F2066E2E400D357AE /* League.swift in Sources */,
 				97A6B7B3205C7B6E00EA31E7 /* TradStats.swift in Sources */,
 				974437102050ACB6008BE29A /* MainVC.swift in Sources */,
