@@ -11,17 +11,48 @@ import UIKit
 class PlayerStatsVC: UIViewController {
     
     var currentPlayer: Player?
-    @IBOutlet var testLabel: UILabel!
+    
+    @IBOutlet var playerName: UILabel!
+    @IBOutlet weak var startYear: UILabel!
+    @IBOutlet weak var yearsPlayed: UILabel!
+    @IBOutlet weak var jerseyNumber: UILabel!
+    @IBOutlet weak var position: UILabel!
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        if let text =  currentPlayer?.name {
-            testLabel.text = text
+        currentPlayer?.getAllStats()
+        WebService.instance.playerGroup.notify(queue: .main) {
+            self.setPlayerInfo()
         }
-
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    func setPlayerInfo() {
+        
+        if let text =  currentPlayer?.name {
+            playerName.text = text
+        }
+        
+        if let text =  currentPlayer?.startingYear {
+            startYear.text = text
+        }
+        
+        if let number =  currentPlayer?.yearsExperience {
+            yearsPlayed.text = "\(number)"
+        }
+        
+        if let text =  currentPlayer?.jerseyNumber {
+            jerseyNumber.text = text
+        }
+        
+        if let text =  currentPlayer?.position {
+            position.text = text
+        }
+        
+        
     }
 
     @IBAction func backButtonPressed(_ sender: Any) {
