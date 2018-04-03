@@ -147,7 +147,7 @@ class Team {
         _gamesPlayed = teamDict["GAMES"] as! Int
         _wins = teamDict["WINS"] as! Int
         _losses = teamDict["LOSSES"] as! Int
-        _winPercentage = teamDict["WIN_PCT"] as! Float
+        _winPercentage = teamDict["WIN_PCT"]?.floatValue as! Float
         _playoffApperances = teamDict["PO_APPEARANCES"] as! Int
         _divisionTitles = teamDict["DIV_TITLES"] as! Int
         _conferenceTitles = teamDict["CONF_TITLES"] as! Int

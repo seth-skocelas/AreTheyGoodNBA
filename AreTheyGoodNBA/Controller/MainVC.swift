@@ -17,6 +17,8 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var teamPicker: UIPickerView!
     @IBOutlet weak var playerPicker: UIPickerView!
+    @IBOutlet weak var playerButton: UIButton!
+    
     
     override func viewDidLoad() {
         
@@ -88,6 +90,7 @@ class MainVC: UIViewController {
                 if let player = sender as? Player {
                     
                     destination.currentPlayer = player
+                    
                 }
                 
             }
@@ -98,6 +101,7 @@ class MainVC: UIViewController {
     
     @IBAction func analyzeTeamPressed(_ sender: Any) {
         
+
         WebService.instance.teamGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "toTeamStats", sender: self.selectedTeam)
         }
@@ -107,8 +111,11 @@ class MainVC: UIViewController {
 
     @IBAction func analyzePlayerPressed(_ sender: Any) {
         
+        playerButton.isEnabled = false
+        selectedPlayer.getAllStats()
         WebService.instance.playerGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "toPlayerStats", sender: self.selectedPlayer)
+            self.playerButton.isEnabled = true
         }
         
     }

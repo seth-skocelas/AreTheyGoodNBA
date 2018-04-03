@@ -262,14 +262,14 @@ class Player {
         
         for statsForYear in dictArray {
             
-            offRating += statsForYear["OFF_RATING"] as! Float
-            defRating += statsForYear["DEF_RATING"] as! Float
-            netRating += statsForYear["NET_RATING"] as! Float
-            effectiveFG += statsForYear["EFG_PCT"] as! Float
-            trueShooting += statsForYear["TS_PCT"] as! Float
-            usage += statsForYear["USG_PCT"] as! Float
-            pace += statsForYear["PACE"] as! Float
-            PIE += statsForYear["PIE"] as! Float
+            offRating += Float(truncating: statsForYear["OFF_RATING"] as! NSNumber)
+            defRating += Float(truncating: statsForYear["DEF_RATING"] as! NSNumber)
+            netRating += Float(truncating: statsForYear["NET_RATING"] as! NSNumber)
+            effectiveFG += Float(truncating: statsForYear["EFG_PCT"] as! NSNumber)
+            trueShooting += Float(truncating: statsForYear["TS_PCT"] as! NSNumber)
+            usage += Float(truncating: statsForYear["USG_PCT"] as! NSNumber)
+            pace += Float(truncating: statsForYear["PACE"] as! NSNumber)
+            PIE += Float(truncating: statsForYear["PIE"] as! NSNumber)
             
         }
         

@@ -23,7 +23,7 @@ class PlayerStatsVC: UIViewController {
         
         super.viewDidLoad()
         
-        currentPlayer?.getAllStats()
+        
         WebService.instance.playerGroup.notify(queue: .main) {
             self.setPlayerInfo()
         }
