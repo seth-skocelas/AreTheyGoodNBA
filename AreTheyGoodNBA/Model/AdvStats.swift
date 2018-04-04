@@ -11,6 +11,8 @@ import Foundation
 
 class AdvStats {
     
+    private var _isEmpty = true
+    
     private var classType: ClassType!
     private var _statType: MeasureType!
     private var _statDuration: StatDuration!
@@ -23,6 +25,10 @@ class AdvStats {
     private var _usage: Float!
     private var _pace: Float!
     private var _PIE: Float!
+    
+    var isEmpty: Bool {
+        return _isEmpty
+    }
     
     var offRating: Float {
         if _offRating == nil {
@@ -80,8 +86,11 @@ class AdvStats {
         return _PIE
     }
     
+    init() {}
     
     init(classType: ClassType, statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
+        
+        self._isEmpty = false
         
         self._statType = statType
         self._statDuration = statDuration

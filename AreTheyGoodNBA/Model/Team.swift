@@ -121,18 +121,30 @@ class Team {
     }
     
     var currentRegularSeasonTradStats: TradStats {
+        if _currentRegularSeasonTradStats == nil {
+            return TradStats()
+        }
         return _currentRegularSeasonTradStats
     }
     
     var currentPostSeasonTradStats: TradStats {
+        if _currentPostSeasonTradStats == nil {
+            return TradStats()
+        }
         return _currentPostSeasonTradStats
     }
     
     var currentRegularSeasonAdvStats: AdvStats {
+        if _currentRegularSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _currentRegularSeasonAdvStats
     }
     
     var currentPostSeasonAdvStats: AdvStats {
+        if _currentPostSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _currentPostSeasonAdvStats
     }
     

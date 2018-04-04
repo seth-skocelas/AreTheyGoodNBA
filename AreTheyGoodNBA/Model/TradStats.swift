@@ -10,6 +10,8 @@ import Foundation
 
 class TradStats {
     
+    var _isEmpty = true
+    
     private var classType: ClassType!
     private var _statType: MeasureType!
     private var _statDuration: StatDuration!
@@ -28,6 +30,10 @@ class TradStats {
     private var _turnovers: Float!
     private var _plusMinus: Float!
     // PlusMinus only available for current season (might be able to pull this if I pull year by year and average)
+    
+    var isEmpty: Bool {
+        return _isEmpty
+    }
     
     var gamesPlayed: Int {
         if _gamesPlayed == nil {
@@ -121,8 +127,11 @@ class TradStats {
         return _plusMinus
     }
     
+    init() {}
     
     init(classType: ClassType, statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
+        
+        self._isEmpty = false
         
         self._statType = statType
         self._statDuration = statDuration

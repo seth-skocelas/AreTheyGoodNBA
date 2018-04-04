@@ -9,6 +9,8 @@
 import Foundation
 
 let BASE_URL = "https://stats.nba.com/stats/"
+let BASE_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/"
+let PICTURE_INFO_URL = "/2017/260x190/"
 
 typealias DownloadComplete = () -> ()
 
