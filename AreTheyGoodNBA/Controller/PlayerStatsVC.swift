@@ -11,11 +11,14 @@ import UIKit
 class PlayerStatsVC: UIViewController {
     
     var currentPlayer: Player?
+    var playerStatsTuple: PlayerStatsTuple?
+    var statDuration: StatDuration?
     
-    @IBOutlet weak var statDurationSegement: UISegmentedControl!
+    @IBOutlet weak var measureTypeSegment: UISegmentedControl!
     @IBOutlet weak var statsStackView: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var playerImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet var playerName: UILabel!
     @IBOutlet weak var startYear: UILabel!
@@ -36,6 +39,7 @@ class PlayerStatsVC: UIViewController {
     @IBOutlet weak var assists: UILabel!
     @IBOutlet weak var turnovers: UILabel!
     @IBOutlet weak var plusMinus: UILabel!
+    @IBOutlet weak var plusMinusLabel: UILabel!
     
     @IBOutlet weak var offRating: UILabel!
     @IBOutlet weak var defRating: UILabel!
@@ -50,6 +54,15 @@ class PlayerStatsVC: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        currentPlayer = playerStatsTuple?.player
+        statDuration = playerStatsTuple?.statDuration
+        
+        if statDuration == StatDuration.CurrentSeason {
+            titleLabel.text = "Current Season Stats"
+        } else if statDuration == StatDuration.Career {
+            titleLabel.text = "Career Stats"
+        }
         
         WebService.instance.playerGroup.notify(queue: .main) {
             self.setPlayerInfo()
@@ -91,15 +104,33 @@ class PlayerStatsVC: UIViewController {
         var tradStats: TradStats!
         var advStats: AdvStats!
         
-        if statDurationSegement.selectedSegmentIndex == 0 {
+        if statDuration == StatDuration.CurrentSeason {
+        
+            if measureTypeSegment.selectedSegmentIndex == 0 {
+                
+                tradStats = (currentPlayer?.currentRegularSeasonTradStats)!
+                advStats = (currentPlayer?.currentRegularSeasonAdvStats)!
+                
+            } else if measureTypeSegment.selectedSegmentIndex == 1 {
+                
+                tradStats = (currentPlayer?.currentPostSeasonTradStats)!
+                advStats = (currentPlayer?.currentPostSeasonAdvStats)!
+                
+            }
             
-            tradStats = (currentPlayer?.currentRegularSeasonTradStats)!
-            advStats = (currentPlayer?.currentRegularSeasonAdvStats)!
+        } else if statDuration == StatDuration.Career {
             
-        } else if statDurationSegement.selectedSegmentIndex == 1 {
-            
-            tradStats = (currentPlayer?.currentPostSeasonTradStats)!
-            advStats = (currentPlayer?.currentPostSeasonAdvStats)!
+            if measureTypeSegment.selectedSegmentIndex == 0 {
+                
+                tradStats = (currentPlayer?.careerRegularSeasonTradStats)!
+                advStats = (currentPlayer?.careerRegularSeasonAdvStats)!
+                
+            } else if measureTypeSegment.selectedSegmentIndex == 1 {
+                
+                tradStats = (currentPlayer?.careerPostSeasonTradStats)!
+                advStats = (currentPlayer?.careerPostSeasonAdvStats)!
+                
+            }
             
         }
         
@@ -119,8 +150,16 @@ class PlayerStatsVC: UIViewController {
             rebounds.text = "\(tradStats.rebounds)"
             assists.text = "\(tradStats.assists)"
             turnovers.text = "\(tradStats.turnovers)"
-            plusMinus.text = "\(tradStats.plusMinus)"
-        
+            
+            if statDuration == StatDuration.CurrentSeason {
+                plusMinus.isHidden = false
+                plusMinusLabel.isHidden = false
+                plusMinus.text = "\(tradStats.plusMinus)"
+            } else {
+                plusMinus.isHidden = true
+                plusMinusLabel.isHidden = true
+            }
+            
             offRating.text = "\(advStats.offRating)"
             defRating.text = "\(advStats.defRating)"
             netRating.text = "\(advStats.netRating)"

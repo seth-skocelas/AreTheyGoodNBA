@@ -70,9 +70,9 @@ class MainVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "toTeamStats" {
+        if segue.identifier == "toTeamModel" {
             
-            if let destination = segue.destination as? TeamStatsVC {
+            if let destination = segue.destination as? TeamModelVC {
                 
                 if let team = sender as? Team {
                     
@@ -83,9 +83,9 @@ class MainVC: UIViewController {
             
         }
         
-        if segue.identifier == "toPlayerStats" {
+        if segue.identifier == "toPlayerModel" {
             
-            if let destination = segue.destination as? PlayerStatsVC {
+            if let destination = segue.destination as? PlayerModelVC {
                 
                 if let player = sender as? Player {
                     
@@ -103,7 +103,7 @@ class MainVC: UIViewController {
         
 
         WebService.instance.teamGroup.notify(queue: .main) {
-            self.performSegue(withIdentifier: "toTeamStats", sender: self.selectedTeam)
+            self.performSegue(withIdentifier: "toTeamModel", sender: self.selectedTeam)
         }
         
     }
@@ -114,7 +114,7 @@ class MainVC: UIViewController {
         playerButton.isEnabled = false
         selectedPlayer.getAllStats()
         WebService.instance.playerGroup.notify(queue: .main) {
-            self.performSegue(withIdentifier: "toPlayerStats", sender: self.selectedPlayer)
+            self.performSegue(withIdentifier: "toPlayerModel", sender: self.selectedPlayer)
             self.playerButton.isEnabled = true
         }
         

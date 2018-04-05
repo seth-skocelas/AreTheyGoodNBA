@@ -142,11 +142,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbo-lR-iUc">
-                                <rect key="frame" x="16" y="20" width="41" height="30"/>
+                                <rect key="frame" x="16" y="20" width="43" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Dwb-nd-irC"/>
                                 </constraints>
-                                <state key="normal" title="Home"/>
+                                <state key="normal" title="Model"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="Bp4-4x-YTM" eventType="touchUpInside" id="IAY-C7-3oP"/>
                                 </connections>
@@ -254,6 +254,7 @@
                                         <state key="normal" title="Home"/>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="EMy-Up-gy0" eventType="touchUpInside" id="orp-MA-hig"/>
+                                            <action selector="homeButtonPressed:" destination="JIg-1S-Brz" eventType="touchUpInside" id="JVz-ha-NSL"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1N-iP-CPt">
@@ -376,7 +377,7 @@
                                                     <segment title="Career"/>
                                                 </segments>
                                                 <connections>
-                                                    <action selector="segmentChanged:" destination="EMy-Up-gy0" eventType="valueChanged" id="A2L-mp-vzY"/>
+                                                    <action selector="segmentChanged:" destination="JIg-1S-Brz" eventType="valueChanged" id="6J6-MS-Kib"/>
                                                 </connections>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FA0-bS-ZPf">
@@ -414,6 +415,9 @@
                                                                 <state key="normal" title=" Check Stats ">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="checkStatsPressed:" destination="JIg-1S-Brz" eventType="touchUpInside" id="suS-fW-flW"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -455,6 +459,13 @@
                         <viewLayoutGuide key="safeArea" id="944-mf-jSl"/>
                     </view>
                     <connections>
+                        <outlet property="jerseyNumber" destination="juk-Uy-KXV" id="kdu-Jb-yHZ"/>
+                        <outlet property="playerImage" destination="WFW-zH-ei1" id="Cms-ur-3lh"/>
+                        <outlet property="playerName" destination="jJA-zq-l68" id="jX6-vO-xMI"/>
+                        <outlet property="position" destination="yiT-zx-tao" id="bcO-JK-jYm"/>
+                        <outlet property="segment" destination="hY1-Gi-gVG" id="9Qu-qV-c3y"/>
+                        <outlet property="startYear" destination="x0D-Y5-1Vv" id="TEw-Gf-vMa"/>
+                        <outlet property="yearsPlayed" destination="ekG-fp-8fb" id="LxI-Pe-xUd"/>
                         <segue destination="EMy-Up-gy0" kind="show" identifier="toPlayerStats" id="IzC-67-kHM"/>
                     </connections>
                 </viewController>
@@ -471,11 +482,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8l-Mc-xxq">
-                                <rect key="frame" x="16" y="20" width="41" height="30"/>
+                                <rect key="frame" x="16" y="20" width="43" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GgL-uV-Cyb"/>
                                 </constraints>
-                                <state key="normal" title="Home"/>
+                                <state key="normal" title="Model"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="EMy-Up-gy0" eventType="touchUpInside" id="OxO-Vx-h1s"/>
                                 </connections>
@@ -1120,6 +1131,7 @@
                         <outlet property="fieldGoalsMade" destination="1Nj-cq-d7W" id="EZF-Od-ZVo"/>
                         <outlet property="gamesPlayed" destination="6dH-5z-MmQ" id="7sE-fe-k16"/>
                         <outlet property="jerseyNumber" destination="E6V-nL-upp" id="egA-cW-v5r"/>
+                        <outlet property="measureTypeSegment" destination="2e3-fB-e6X" id="poR-QQ-AQa"/>
                         <outlet property="minutesPlayed" destination="kyc-bX-UsV" id="jQ8-vf-FGr"/>
                         <outlet property="netRating" destination="ep0-Ok-HdE" id="Jec-fb-aKF"/>
                         <outlet property="offRating" destination="o6Q-qa-5jT" id="OaQ-mh-rGe"/>
@@ -1128,15 +1140,16 @@
                         <outlet property="playerImage" destination="nvO-SE-eHm" id="ecW-yO-3NS"/>
                         <outlet property="playerName" destination="Eif-SK-T0w" id="fLn-UE-UK9"/>
                         <outlet property="plusMinus" destination="vs9-RK-xrP" id="qw4-rp-fPd"/>
+                        <outlet property="plusMinusLabel" destination="pzC-Zr-8Iq" id="lPU-Qx-d7K"/>
                         <outlet property="points" destination="XEI-7m-Sod" id="sbl-zM-9Va"/>
                         <outlet property="position" destination="uox-yx-yw6" id="xpc-sM-NJI"/>
                         <outlet property="rebounds" destination="Xcy-Th-Y2P" id="aYu-O5-fIP"/>
                         <outlet property="startYear" destination="AvP-QN-5MZ" id="aaP-nn-4vG"/>
-                        <outlet property="statDurationSegement" destination="2e3-fB-e6X" id="37T-bQ-Lpa"/>
                         <outlet property="statsStackView" destination="dIn-G5-T2n" id="0Rg-cn-IxI"/>
                         <outlet property="threePointAttempts" destination="td2-yb-uir" id="Cxj-Tq-I02"/>
                         <outlet property="threePointPercent" destination="QN4-mE-MZ0" id="nFp-Md-1ID"/>
                         <outlet property="threePointsMade" destination="V3k-AT-2rb" id="T90-UP-dNi"/>
+                        <outlet property="titleLabel" destination="fwD-Us-WNF" id="RZF-sP-Pss"/>
                         <outlet property="trueShooting" destination="nrQ-Tv-HFy" id="VzB-XJ-ReB"/>
                         <outlet property="turnovers" destination="KBz-zO-DGb" id="f1R-PI-XE2"/>
                         <outlet property="usage" destination="flN-9H-dER" id="9D8-g4-ChF"/>

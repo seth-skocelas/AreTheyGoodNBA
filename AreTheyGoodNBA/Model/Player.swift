@@ -137,10 +137,10 @@ class Player {
     }
     
     var careerPostSeasonAdvStats: AdvStats {
-        if _currentPostSeasonAdvStats == nil {
+        if _careerPostSeasonAdvStats == nil {
             return AdvStats()
         }
-        return _currentPostSeasonAdvStats
+        return _careerPostSeasonAdvStats
     }
     
     init() {}

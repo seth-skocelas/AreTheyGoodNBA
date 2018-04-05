@@ -13,6 +13,7 @@ let BASE_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headsho
 let PICTURE_INFO_URL = "/2017/260x190/"
 
 typealias DownloadComplete = () -> ()
+typealias PlayerStatsTuple = (player: Player, statDuration: StatDuration)
 
 //Endpoints
 

@@ -9,6 +9,8 @@
 import UIKit
 
 class TeamModelVC: UIViewController {
+    
+    var currentTeam: Team?
 
     override func viewDidLoad() {
         super.viewDidLoad()
