@@ -131,25 +131,29 @@ class TradStats {
     
     init(classType: ClassType, statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
         
-        self._isEmpty = false
+        if dict.count != 0 {
         
-        self._statType = statType
-        self._statDuration = statDuration
-        
-        self._gamesPlayed = dict["GP"] as! Int
-        self._minutesPlayed = dict["MIN"]?.floatValue as! Float
-        self._threePointPercent = dict["FG3_PCT"]?.floatValue as! Float
-        self._threePointPerMin = dict["FG3M"]?.floatValue as! Float
-        self._threePointAttempts = dict["FG3A"]?.floatValue as! Float
-        self._fieldGoalPercent = dict["FG_PCT"]?.floatValue as! Float
-        self._fieldGoalPerMin = dict["FGM"]?.floatValue as! Float
-        self._fieldGoalAttempts = dict["FGA"]?.floatValue as! Float
-        self._points = dict["PTS"]?.floatValue as! Float
-        self._rebounds = dict["REB"]?.floatValue as! Float
-        self._assists = dict["AST"]?.floatValue as! Float
-        self._turnovers = dict["TOV"]?.floatValue as! Float
-        if statDuration == StatDuration.CurrentSeason {
-            self._plusMinus = dict["PLUS_MINUS"]?.floatValue as! Float
+            self._isEmpty = false
+            
+            self._statType = statType
+            self._statDuration = statDuration
+            
+            self._gamesPlayed = dict["GP"] as! Int
+            self._minutesPlayed = dict["MIN"]?.floatValue as! Float
+            self._threePointPercent = dict["FG3_PCT"]?.floatValue as! Float
+            self._threePointPerMin = dict["FG3M"]?.floatValue as! Float
+            self._threePointAttempts = dict["FG3A"]?.floatValue as! Float
+            self._fieldGoalPercent = dict["FG_PCT"]?.floatValue as! Float
+            self._fieldGoalPerMin = dict["FGM"]?.floatValue as! Float
+            self._fieldGoalAttempts = dict["FGA"]?.floatValue as! Float
+            self._points = dict["PTS"]?.floatValue as! Float
+            self._rebounds = dict["REB"]?.floatValue as! Float
+            self._assists = dict["AST"]?.floatValue as! Float
+            self._turnovers = dict["TOV"]?.floatValue as! Float
+            if statDuration == StatDuration.CurrentSeason {
+                self._plusMinus = dict["PLUS_MINUS"]?.floatValue as! Float
+            }
+            
         }
         
     }

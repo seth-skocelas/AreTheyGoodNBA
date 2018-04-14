@@ -200,7 +200,6 @@ class TeamStatsVC: UIViewController {
             urlString = "\(BASE_LOGO_URL)\(team.teamAbbreviation)\(LOGO_INFO_URL)"
         }
         
-        print(urlString)
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {

@@ -73,7 +73,7 @@ class PlayerModelVC: UIViewController {
             }
         }
         
-        print(urlString)
+
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {

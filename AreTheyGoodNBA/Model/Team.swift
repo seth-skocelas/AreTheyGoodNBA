@@ -157,27 +157,27 @@ class Team {
     }
     
     
+    init() {}
     
     init(teamDict: Dictionary<String, AnyObject>, index: Int) {
         
-        _teamID = teamDict["TEAM_ID"] as! Int
-        _teamName = "\(teamDict["TEAM_CITY"] ?? "Not" as AnyObject) \(teamDict["TEAM_NAME"] ?? "Available" as AnyObject)"
-        _teamAbbreviation = teamAbbrevaiationArray[index]
-        _startYear = teamDict["START_YEAR"] as! String
-        _years = teamDict["YEARS"] as! Int
-        _gamesPlayed = teamDict["GAMES"] as! Int
-        _wins = teamDict["WINS"] as! Int
-        _losses = teamDict["LOSSES"] as! Int
-        _winPercentage = teamDict["WIN_PCT"]?.floatValue as! Float
-        _playoffApperances = teamDict["PO_APPEARANCES"] as! Int
-        _divisionTitles = teamDict["DIV_TITLES"] as! Int
-        _conferenceTitles = teamDict["CONF_TITLES"] as! Int
-        _leagueTitles = teamDict["LEAGUE_TITLES"] as! Int
+        if teamDict.count != 0 {
         
-//        if (_teamName == "Dallas Mavericks") {
-//            //getTeamRoster()
-//            getAllStats()
-//        }
+            _teamID = teamDict["TEAM_ID"] as! Int
+            _teamName = "\(teamDict["TEAM_CITY"] ?? "Not" as AnyObject) \(teamDict["TEAM_NAME"] ?? "Available" as AnyObject)"
+            _teamAbbreviation = teamAbbrevaiationArray[index]
+            _startYear = teamDict["START_YEAR"] as! String
+            _years = teamDict["YEARS"] as! Int
+            _gamesPlayed = teamDict["GAMES"] as! Int
+            _wins = teamDict["WINS"] as! Int
+            _losses = teamDict["LOSSES"] as! Int
+            _winPercentage = teamDict["WIN_PCT"]?.floatValue as! Float
+            _playoffApperances = teamDict["PO_APPEARANCES"] as! Int
+            _divisionTitles = teamDict["DIV_TITLES"] as! Int
+            _conferenceTitles = teamDict["CONF_TITLES"] as! Int
+            _leagueTitles = teamDict["LEAGUE_TITLES"] as! Int
+            
+        }
         
     }
     
@@ -196,9 +196,6 @@ class Team {
                 
                 }
             
-//              for player in self.teamRoster {
-//                  print(player.name)
-//              }
                 WebService.instance.teamGroup.leave()
                 
             }
@@ -222,7 +219,7 @@ class Team {
         if (measureType == MeasureType.RegularBase) {
             
             WebService.instance.teamGroup.enter()
-            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+            WebService.instance.getTeamSeasonStats(teamID: self.teamID, measureType: measureType) { (teamStats) in
                 
                 self._currentRegularSeasonTradStats = TradStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
                 //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
@@ -235,7 +232,7 @@ class Team {
         else if (measureType == MeasureType.PostBase) {
             
             WebService.instance.teamGroup.enter()
-            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+            WebService.instance.getTeamSeasonStats(teamID: self.teamID, measureType: measureType) { (teamStats) in
                 
                 if teamStats.count != 0 {
                     self._currentPostSeasonTradStats = TradStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
@@ -250,7 +247,7 @@ class Team {
         else if (measureType == MeasureType.RegularAdvanced) {
             
             WebService.instance.teamGroup.enter()
-            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+            WebService.instance.getTeamSeasonStats(teamID: self.teamID, measureType: measureType) { (teamStats) in
                 
                 self._currentRegularSeasonAdvStats = AdvStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
                 //print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
@@ -262,7 +259,7 @@ class Team {
         else if (measureType == MeasureType.PostAdvanced) {
             
             WebService.instance.teamGroup.enter()
-            WebService.instance.getTeamSeasonStats(teamID: self._teamID, measureType: measureType) { (teamStats) in
+            WebService.instance.getTeamSeasonStats(teamID: self.teamID, measureType: measureType) { (teamStats) in
                 
                 if teamStats.count != 0 {
                     self._currentPostSeasonAdvStats = AdvStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
