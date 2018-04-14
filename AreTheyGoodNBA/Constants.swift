@@ -14,6 +14,7 @@ let PICTURE_INFO_URL = "/2017/260x190/"
 
 typealias DownloadComplete = () -> ()
 typealias PlayerStatsTuple = (player: Player, statDuration: StatDuration)
+typealias TeamStatsTuple = (team: Team, statDuration: StatDuration)
 
 //Endpoints
 

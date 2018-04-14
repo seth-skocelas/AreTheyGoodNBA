@@ -18,6 +18,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var teamPicker: UIPickerView!
     @IBOutlet weak var playerPicker: UIPickerView!
     @IBOutlet weak var playerButton: UIButton!
+    @IBOutlet weak var teamButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -101,9 +102,13 @@ class MainVC: UIViewController {
     
     @IBAction func analyzeTeamPressed(_ sender: Any) {
         
-
+        teamButton.isEnabled = false
+        playerButton.isEnabled = false
+        selectedTeam.getAllStats()
         WebService.instance.teamGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "toTeamModel", sender: self.selectedTeam)
+            self.teamButton.isEnabled = true
+            self.playerButton.isEnabled = true
         }
         
     }
@@ -116,6 +121,7 @@ class MainVC: UIViewController {
         WebService.instance.playerGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "toPlayerModel", sender: self.selectedPlayer)
             self.playerButton.isEnabled = true
+            self.teamButton.isEnabled = true
         }
         
     }
