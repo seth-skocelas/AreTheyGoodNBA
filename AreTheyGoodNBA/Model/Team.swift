@@ -12,6 +12,7 @@ import Foundation
 class Team {
     
     private var _teamID: Int!
+    private var _teamAbbreviation: String!
     private var _teamName: String!
     private var _startYear: String!
     private var _years: Int!
@@ -37,6 +38,13 @@ class Team {
             return ""
         }
         return _teamName
+    }
+    
+    var teamAbbreviation: String {
+        if _teamAbbreviation == nil {
+            return "N/A"
+        }
+        return _teamAbbreviation
     }
     
     var teamID: Int {
@@ -121,33 +129,46 @@ class Team {
     }
     
     var currentRegularSeasonTradStats: TradStats {
+        if _currentRegularSeasonTradStats == nil {
+            return TradStats()
+        }
         return _currentRegularSeasonTradStats
     }
     
     var currentPostSeasonTradStats: TradStats {
+        if _currentPostSeasonTradStats == nil {
+            return TradStats()
+        }
         return _currentPostSeasonTradStats
     }
     
     var currentRegularSeasonAdvStats: AdvStats {
+        if _currentRegularSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _currentRegularSeasonAdvStats
     }
     
     var currentPostSeasonAdvStats: AdvStats {
+        if _currentPostSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _currentPostSeasonAdvStats
     }
     
     
     
-    init(teamDict: Dictionary<String, AnyObject>) {
+    init(teamDict: Dictionary<String, AnyObject>, index: Int) {
         
         _teamID = teamDict["TEAM_ID"] as! Int
         _teamName = "\(teamDict["TEAM_CITY"] ?? "Not" as AnyObject) \(teamDict["TEAM_NAME"] ?? "Available" as AnyObject)"
+        _teamAbbreviation = teamAbbrevaiationArray[index]
         _startYear = teamDict["START_YEAR"] as! String
         _years = teamDict["YEARS"] as! Int
         _gamesPlayed = teamDict["GAMES"] as! Int
         _wins = teamDict["WINS"] as! Int
         _losses = teamDict["LOSSES"] as! Int
-        _winPercentage = teamDict["WIN_PCT"] as! Float
+        _winPercentage = teamDict["WIN_PCT"]?.floatValue as! Float
         _playoffApperances = teamDict["PO_APPEARANCES"] as! Int
         _divisionTitles = teamDict["DIV_TITLES"] as! Int
         _conferenceTitles = teamDict["CONF_TITLES"] as! Int
@@ -162,19 +183,26 @@ class Team {
     
     func getTeamRoster() {
         
-        WebService.instance.teamGroup.enter()
-        WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in
+        if teamRoster.count == 0 {
+        
+            print("here")
             
-            for player in teamArray {
+            WebService.instance.teamGroup.enter()
+            WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in
+            
+                for player in teamArray {
                 
-                self._teamRoster.append(Player(commonPlayerInfo: player, fromTeamRoster: true))
+                    self._teamRoster.append(Player(commonPlayerInfo: player, fromTeamRoster: true))
+                
+                }
+            
+//              for player in self.teamRoster {
+//                  print(player.name)
+//              }
+                WebService.instance.teamGroup.leave()
                 
             }
             
-//            for player in self.teamRoster {
-//                print(player.name)
-//            }
-            WebService.instance.teamGroup.leave()
         }
         
     }

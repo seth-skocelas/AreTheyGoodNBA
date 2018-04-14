@@ -12,6 +12,7 @@ class Player {
     
     private var _name: String!
     private var _playerID: Int!  //nba.com ID
+    private var _teamID: Int!
     private var _height: String!
     private var _weight: String!
     private var _yearsExperience: Int!
@@ -31,11 +32,24 @@ class Player {
     private var _careerPostSeasonAdvStats: AdvStats!
     
     var name: String {
+        if _name == nil {
+            return ""
+        }
         return _name
     }
     
     var playerID: Int {
+        if _playerID == nil {
+            return -1
+        }
         return _playerID
+    }
+    
+    var teamID: Int {
+        if _teamID == nil {
+            return -1
+        }
+        return _teamID
     }
     
     var yearsExperience: Int {
@@ -74,36 +88,62 @@ class Player {
     }
     
     var currentRegularSeasonTradStats: TradStats {
+        if _currentRegularSeasonTradStats == nil {
+            return TradStats()
+        }
         return _currentRegularSeasonTradStats
     }
     
     var currentPostSeasonTradStats: TradStats {
+        if _currentPostSeasonTradStats == nil {
+            return TradStats()
+        }
         return _currentPostSeasonTradStats
     }
     
     var careerRegularSeasonTradStats: TradStats {
+        if _careerRegularSeasonTradStats == nil {
+            return TradStats()
+        }
         return _careerRegularSeasonTradStats
     }
     
     var careerPostSeasonTradStats: TradStats {
+        if _careerPostSeasonTradStats == nil {
+            return TradStats()
+        }
         return _careerPostSeasonTradStats
     }
     
     var currentRegularSeasonAdvStats: AdvStats {
+        if _currentRegularSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _currentRegularSeasonAdvStats
     }
     
     var currentPostSeasonAdvStats: AdvStats {
+        if _currentPostSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _currentPostSeasonAdvStats
     }
     
     var careerRegularSeasonAdvStats: AdvStats {
+        if _careerRegularSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _careerRegularSeasonAdvStats
     }
     
     var careerPostSeasonAdvStats: AdvStats {
+        if _careerPostSeasonAdvStats == nil {
+            return AdvStats()
+        }
         return _careerPostSeasonAdvStats
     }
+    
+    init() {}
     
     
     //Get data from nba.com API dictionary
@@ -111,6 +151,7 @@ class Player {
         
         _name = commonPlayerInfo["DISPLAY_FIRST_LAST"] as! String
         _playerID = commonPlayerInfo["PERSON_ID"] as! Int
+        _teamID = commonPlayerInfo["TEAM_ID"] as! Int
         _height = commonPlayerInfo["HEIGHT"] as! String
         _weight = commonPlayerInfo["WEIGHT"] as! String
         _yearsExperience = commonPlayerInfo["SEASON_EXP"] as! Int
@@ -126,6 +167,7 @@ class Player {
     init(commonPlayerInfo: Dictionary<String, AnyObject>, fromTeamRoster: Bool) {
         
         _name = commonPlayerInfo["PLAYER"] as! String
+        _teamID = commonPlayerInfo["TeamID"] as! Int
         _playerID = commonPlayerInfo["PLAYER_ID"] as! Int
         _height = commonPlayerInfo["HEIGHT"] as! String
         _weight = commonPlayerInfo["WEIGHT"] as! String
@@ -136,6 +178,7 @@ class Player {
     
     func getAllStats() {
         
+        getCommonPlayerInfo()
         getPlayerStats(measureType: MeasureType.RegularBase, statDuration: StatDuration.CurrentSeason)
         getPlayerStats(measureType: MeasureType.PostBase, statDuration: StatDuration.CurrentSeason)
         getPlayerStats(statDuration: StatDuration.Career)
@@ -262,14 +305,14 @@ class Player {
         
         for statsForYear in dictArray {
             
-            offRating += statsForYear["OFF_RATING"] as! Float
-            defRating += statsForYear["DEF_RATING"] as! Float
-            netRating += statsForYear["NET_RATING"] as! Float
-            effectiveFG += statsForYear["EFG_PCT"] as! Float
-            trueShooting += statsForYear["TS_PCT"] as! Float
-            usage += statsForYear["USG_PCT"] as! Float
-            pace += statsForYear["PACE"] as! Float
-            PIE += statsForYear["PIE"] as! Float
+            offRating += Float(truncating: statsForYear["OFF_RATING"] as! NSNumber)
+            defRating += Float(truncating: statsForYear["DEF_RATING"] as! NSNumber)
+            netRating += Float(truncating: statsForYear["NET_RATING"] as! NSNumber)
+            effectiveFG += Float(truncating: statsForYear["EFG_PCT"] as! NSNumber)
+            trueShooting += Float(truncating: statsForYear["TS_PCT"] as! NSNumber)
+            usage += Float(truncating: statsForYear["USG_PCT"] as! NSNumber)
+            pace += Float(truncating: statsForYear["PACE"] as! NSNumber)
+            PIE += Float(truncating: statsForYear["PIE"] as! NSNumber)
             
         }
         
@@ -285,6 +328,20 @@ class Player {
         careerAdvanceStats.updateValue(PIE/count as AnyObject, forKey: "PIE")
         
         return careerAdvanceStats
+        
+    }
+    
+    func getCommonPlayerInfo() {
+        
+        WebService.instance.playerGroup.enter()
+        WebService.instance.getCommonPlayerInfo(playerID: self.playerID) { (commonPlayerInfo) in
+            
+            self._yearsExperience = commonPlayerInfo["SEASON_EXP"] as! Int
+            self._currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
+            self._startingYear = commonPlayerInfo["DRAFT_YEAR"] as! String
+            
+            WebService.instance.playerGroup.leave()
+        }
         
     }
     

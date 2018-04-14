@@ -10,6 +10,8 @@ import Foundation
 
 class TradStats {
     
+    var _isEmpty = true
+    
     private var classType: ClassType!
     private var _statType: MeasureType!
     private var _statDuration: StatDuration!
@@ -28,6 +30,10 @@ class TradStats {
     private var _turnovers: Float!
     private var _plusMinus: Float!
     // PlusMinus only available for current season (might be able to pull this if I pull year by year and average)
+    
+    var isEmpty: Bool {
+        return _isEmpty
+    }
     
     var gamesPlayed: Int {
         if _gamesPlayed == nil {
@@ -121,26 +127,29 @@ class TradStats {
         return _plusMinus
     }
     
+    init() {}
     
     init(classType: ClassType, statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
+        
+        self._isEmpty = false
         
         self._statType = statType
         self._statDuration = statDuration
         
         self._gamesPlayed = dict["GP"] as! Int
-        self._minutesPlayed = dict["MIN"] as! Float
-        self._threePointPercent = dict["FG3_PCT"] as! Float
-        self._threePointPerMin = dict["FG3M"] as! Float
-        self._threePointAttempts = dict["FG3A"] as! Float
-        self._fieldGoalPercent = dict["FG_PCT"] as! Float
-        self._fieldGoalPerMin = dict["FGM"] as! Float
-        self._fieldGoalAttempts = dict["FGA"] as! Float
-        self._points = dict["PTS"] as! Float
-        self._rebounds = dict["REB"] as! Float
-        self._assists = dict["AST"] as! Float
-        self._turnovers = dict["TOV"] as! Float
+        self._minutesPlayed = dict["MIN"]?.floatValue as! Float
+        self._threePointPercent = dict["FG3_PCT"]?.floatValue as! Float
+        self._threePointPerMin = dict["FG3M"]?.floatValue as! Float
+        self._threePointAttempts = dict["FG3A"]?.floatValue as! Float
+        self._fieldGoalPercent = dict["FG_PCT"]?.floatValue as! Float
+        self._fieldGoalPerMin = dict["FGM"]?.floatValue as! Float
+        self._fieldGoalAttempts = dict["FGA"]?.floatValue as! Float
+        self._points = dict["PTS"]?.floatValue as! Float
+        self._rebounds = dict["REB"]?.floatValue as! Float
+        self._assists = dict["AST"]?.floatValue as! Float
+        self._turnovers = dict["TOV"]?.floatValue as! Float
         if statDuration == StatDuration.CurrentSeason {
-            self._plusMinus = dict["PLUS_MINUS"] as! Float
+            self._plusMinus = dict["PLUS_MINUS"]?.floatValue as! Float
         }
         
     }

@@ -28,9 +28,9 @@ class League {
             
             let finalTeamsArray = self.removeDefunctTeamsFromArray(teamsArray: teamsArray as! [Dictionary<String, AnyObject>])
             
-            for team in finalTeamsArray {
+            for (index,team) in finalTeamsArray.enumerated() {
                 
-                tempTeam = Team(teamDict: team)
+                tempTeam = Team(teamDict: team, index: index)
                 //print(tempTeam.teamName + " has won \(tempTeam.leagueTitles) titles.")
                 self._teams.append(tempTeam)
                 
