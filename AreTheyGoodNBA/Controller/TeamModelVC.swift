@@ -11,6 +11,7 @@ import UIKit
 class TeamModelVC: UIViewController {
     
     var currentTeam: Team?
+    var statDuration = StatDuration.CurrentSeason
 
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var startYear: UILabel!
@@ -27,10 +28,28 @@ class TeamModelVC: UIViewController {
             self.setTeamInfo()
             
         }
-
-        // Do any additional setup after loading the view.
+        
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toTeamStats" {
+            
+            if let destination = segue.destination as? TeamStatsVC {
+                
+                if let tuple = sender as? TeamStatsTuple {
+                    
+                    destination.teamStatsTuple = tuple
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -51,5 +70,22 @@ class TeamModelVC: UIViewController {
         
     }
     
+    @IBAction func checkStatsPressed(_ sender: Any) {
+        
+        WebService.instance.teamGroup.notify(queue: .main) {
+            self.performSegue(withIdentifier: "toTeamStats", sender: TeamStatsTuple(team: self.currentTeam!,statDuration: self.statDuration))
+        }
+        
+    }
+    
+    @IBAction func segmentChanged(_ sender: Any) {
+        
+        if segment.selectedSegmentIndex == 0 {
+            statDuration = StatDuration.CurrentSeason
+        } else if segment.selectedSegmentIndex == 1 {
+            statDuration = StatDuration.Career
+        }
+        
+    }
     
 }

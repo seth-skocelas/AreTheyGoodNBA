@@ -202,10 +202,10 @@
                                         </constraints>
                                         <segments>
                                             <segment title="Current Season"/>
-                                            <segment title="Career"/>
+                                            <segment title="Overall"/>
                                         </segments>
                                         <connections>
-                                            <action selector="segmentChanged:" destination="JIg-1S-Brz" eventType="valueChanged" id="vfr-TP-4GR"/>
+                                            <action selector="segmentChanged:" destination="B3e-PZ-YOz" eventType="valueChanged" id="1VK-BP-sIn"/>
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRW-Ac-qoF">
@@ -244,6 +244,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
+                                                            <action selector="checkStatsPressed:" destination="B3e-PZ-YOz" eventType="touchUpInside" id="Udx-TP-Xyi"/>
                                                             <action selector="checkStatsPressed:" destination="JIg-1S-Brz" eventType="touchUpInside" id="ond-Wx-rEf"/>
                                                         </connections>
                                                     </button>
@@ -374,17 +375,17 @@
                                             <segment title="Playoffs"/>
                                         </segments>
                                         <connections>
-                                            <action selector="segmentChanged:" destination="EMy-Up-gy0" eventType="valueChanged" id="qcd-QU-ZNa"/>
+                                            <action selector="segmentChanged:" destination="Bp4-4x-YTM" eventType="valueChanged" id="x7l-kY-kZQ"/>
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcA-KE-4Jt">
                                         <rect key="frame" x="0.0" y="148" width="288" height="354"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="55" translatesAutoresizingMaskIntoConstraints="NO" id="IEl-YE-JXw">
-                                                <rect key="frame" x="0.5" y="22.5" width="287.5" height="309.5"/>
+                                                <rect key="frame" x="0.5" y="32.5" width="287.5" height="290"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mW5-Ez-xbY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="287.5" height="154.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="287.5" height="135"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditional Stats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rD-W1-8Mq">
                                                                 <rect key="frame" x="88.5" y="0.0" width="111" height="18"/>
@@ -392,50 +393,8 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wCc-G7-ohB">
-                                                                <rect key="frame" x="8" y="23" width="272" height="14.5"/>
-                                                                <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pE5-pw-e1H">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="126" height="14.5"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Games Played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8q-G1-VO2">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="84" height="14.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1900" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEK-wH-aPX">
-                                                                                <rect key="frame" x="97.5" y="0.0" width="28.5" height="14.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <viewLayoutGuide key="safeArea" id="Yke-ml-UOY"/>
-                                                                    </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="o5T-pj-C0J">
-                                                                        <rect key="frame" x="146" y="0.0" width="126" height="14.5"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes Played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAu-ou-u4Q">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="14.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1900" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWf-iJ-apb">
-                                                                                <rect key="frame" x="97.5" y="0.0" width="28.5" height="14.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <viewLayoutGuide key="safeArea" id="JFR-Z4-WoU"/>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <viewLayoutGuide key="safeArea" id="7BL-Eu-fwL"/>
-                                                            </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4lU-yB-0h0">
-                                                                <rect key="frame" x="61" y="42.5" width="166" height="14.5"/>
+                                                                <rect key="frame" x="61" y="23" width="166" height="14.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OaV-vv-Sgq">
                                                                         <rect key="frame" x="0.0" y="0.0" width="73" height="14.5"/>
@@ -477,7 +436,7 @@
                                                                 <viewLayoutGuide key="safeArea" id="h5Y-Qk-RaR"/>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DdH-Bd-pY3">
-                                                                <rect key="frame" x="60.5" y="62" width="167" height="14.5"/>
+                                                                <rect key="frame" x="60.5" y="42.5" width="167" height="14.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N1g-XO-Nvi">
                                                                         <rect key="frame" x="0.0" y="0.0" width="73.5" height="14.5"/>
@@ -519,7 +478,7 @@
                                                                 <viewLayoutGuide key="safeArea" id="wFn-Gs-juo"/>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aE0-fq-bRh">
-                                                                <rect key="frame" x="64" y="81.5" width="160" height="14.5"/>
+                                                                <rect key="frame" x="64" y="62" width="160" height="14.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wSW-oP-F95">
                                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="14.5"/>
@@ -560,7 +519,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xOu-nf-pNX">
-                                                                <rect key="frame" x="37" y="101" width="214" height="14.5"/>
+                                                                <rect key="frame" x="37" y="81.5" width="214" height="14.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jWD-MN-69M">
                                                                         <rect key="frame" x="0.0" y="0.0" width="97" height="14.5"/>
@@ -602,7 +561,7 @@
                                                                 <viewLayoutGuide key="safeArea" id="9jU-oo-z5H"/>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4Ld-P7-Vah">
-                                                                <rect key="frame" x="37.5" y="120.5" width="213" height="14.5"/>
+                                                                <rect key="frame" x="37.5" y="101" width="213" height="14.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5MF-uR-d30">
                                                                         <rect key="frame" x="0.0" y="0.0" width="96.5" height="14.5"/>
@@ -644,7 +603,7 @@
                                                                 <viewLayoutGuide key="safeArea" id="Iz3-wn-ToO"/>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fqR-CK-5lw">
-                                                                <rect key="frame" x="93" y="140" width="102" height="14.5"/>
+                                                                <rect key="frame" x="93" y="120.5" width="102" height="14.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ba2-YE-cYd">
                                                                         <rect key="frame" x="0.0" y="0.0" width="102" height="14.5"/>
@@ -670,7 +629,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="xvi-9u-7PX">
-                                                        <rect key="frame" x="0.0" y="209.5" width="287.5" height="100"/>
+                                                        <rect key="frame" x="0.0" y="190" width="287.5" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced Stats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W88-aE-yJM">
                                                                 <rect key="frame" x="90" y="0.0" width="107.5" height="18"/>
@@ -1026,11 +985,9 @@
                         <outlet property="fieldGoalsMade" destination="h4D-yx-KEZ" id="eJs-3I-c4E"/>
                         <outlet property="franchiseStackView" destination="xv3-dM-gKZ" id="Nmr-K0-r6c"/>
                         <outlet property="gamesPlayed" destination="oCf-l1-dvI" id="bkp-fF-rBk"/>
-                        <outlet property="gamesPlayedStatPage" destination="dEK-wH-aPX" id="H0i-om-cUr"/>
                         <outlet property="leagueTitles" destination="gmf-aM-YR2" id="FiF-f8-grN"/>
                         <outlet property="losses" destination="Tv1-Hp-f3g" id="muh-nl-dfb"/>
                         <outlet property="measureTypeSegment" destination="pp1-SW-ao9" id="hFN-hy-Vqy"/>
-                        <outlet property="minutesPlayed" destination="hWf-iJ-apb" id="N8e-pT-hxS"/>
                         <outlet property="netRating" destination="GYk-Zd-RaE" id="jsS-EW-bMc"/>
                         <outlet property="offRating" destination="qdP-uX-nSm" id="85H-2e-Px4"/>
                         <outlet property="pace" destination="H9H-AA-egW" id="6N6-4F-cc9"/>

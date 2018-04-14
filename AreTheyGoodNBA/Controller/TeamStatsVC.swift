@@ -25,8 +25,6 @@ class TeamStatsVC: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var franchiseStackView: UIStackView!
     
-    @IBOutlet weak var gamesPlayedStatPage: UILabel!
-    @IBOutlet weak var minutesPlayed: UILabel!
     @IBOutlet weak var fieldGoalPercent: UILabel!
     @IBOutlet weak var threePointPercent: UILabel!
     @IBOutlet weak var fieldGoalsMade: UILabel!
@@ -62,10 +60,26 @@ class TeamStatsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setTeamInfo()
         
-        // Do any additional setup after loading the view.
+        currentTeam = teamStatsTuple?.team
+        statDuration = teamStatsTuple?.statDuration
+
+        WebService.instance.teamGroup.notify(queue: .main) {
+            
+            self.setTeamInfo()
+            
+            if self.statDuration == StatDuration.CurrentSeason {
+                
+                self.setTeamSeasonStats()
+                
+            } else if self.statDuration == StatDuration.Career {
+                
+                self.setTeamCareerStats()
+                
+            }
+            
+        }
+        
     }
 
 
@@ -73,6 +87,9 @@ class TeamStatsVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func segmentChanged(_ sender: Any) {
+        setTeamSeasonStats()
+    }
     
     func setTeamInfo() {
         
@@ -86,6 +103,88 @@ class TeamStatsVC: UIViewController {
         
         if let year = currentTeam?.gamesPlayed {
             gamesPlayed.text = "\(year)"
+        }
+        
+    }
+    
+    func setTeamSeasonStats() {
+        
+        self.franchiseStackView.isHidden = true
+        self.measureTypeSegment.isHidden = false
+        self.regularSeasonStackView.isHidden = false
+        
+        var tradStats: TradStats!
+        var advStats: AdvStats!
+        
+        if measureTypeSegment.selectedSegmentIndex == 0 {
+            
+            tradStats = (currentTeam?.currentRegularSeasonTradStats)!
+            advStats = (currentTeam?.currentRegularSeasonAdvStats)!
+            
+        } else if measureTypeSegment.selectedSegmentIndex == 1 {
+            
+            tradStats = (currentTeam?.currentPostSeasonTradStats)!
+            advStats = (currentTeam?.currentPostSeasonAdvStats)!
+            
+        }
+        
+        if !(tradStats.isEmpty) || !(advStats.isEmpty)  {
+            
+            errorLabel.isHidden = true
+            
+            threePointPercent.text = "\(tradStats.threePointPercent)"
+            fieldGoalPercent.text = "\(tradStats.fieldGoalPercent)"
+            fieldGoalsMade.text = "\(tradStats.fieldGoalPerMin)"
+            threePointsMade.text = "\(tradStats.threePointPerMin)"
+            fieldGoalAttempts.text = "\(tradStats.fieldGoalAttempts)"
+            threePointAttempts.text = "\(tradStats.threePointAttempts)"
+            points.text = "\(tradStats.points)"
+            rebounds.text = "\(tradStats.rebounds)"
+            assists.text = "\(tradStats.assists)"
+            turnovers.text = "\(tradStats.turnovers)"
+            
+            if statDuration == StatDuration.CurrentSeason {
+                plusMinus.isHidden = false
+                plusMinusLabel.isHidden = false
+                plusMinus.text = "\(tradStats.plusMinus)"
+            } else {
+                plusMinus.isHidden = true
+                plusMinusLabel.isHidden = true
+            }
+            
+            offRating.text = "\(advStats.offRating)"
+            defRating.text = "\(advStats.defRating)"
+            netRating.text = "\(advStats.netRating)"
+            usage.text = "\(advStats.usage)"
+            effectiveFG.text = "\(advStats.effectiveFG)"
+            trueShooting.text = "\(advStats.trueShooting)"
+            pace.text = "\(advStats.pace)"
+            pie.text = "\(advStats.PIE)"
+            
+            regularSeasonStackView.isHidden = false
+            
+        } else {
+            regularSeasonStackView.isHidden = true
+            errorLabel.isHidden = false
+        }
+    }
+    
+    func setTeamCareerStats() {
+        
+        self.measureTypeSegment.isHidden = true
+        self.regularSeasonStackView.isHidden = true
+        self.franchiseStackView.isHidden = false
+        
+        if let team = currentTeam {
+        
+            wins.text = "\(team.wins)"
+            losses.text = "\(team.losses)"
+            winPercentage.text = "\(team.winPercentage)"
+            playoffApperances.text = "\(team.playoffApperances)"
+            divisionTitles.text = "\(team.divisionTitles)"
+            conferenceTitles.text = "\(team.conferenceTitles)"
+            leagueTitles.text = "\(team.leagueTitles)"
+            
         }
         
     }
