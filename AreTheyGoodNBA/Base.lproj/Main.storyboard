@@ -278,6 +278,7 @@
                         <outlet property="gamesPlayed" destination="shF-EZ-pTO" id="fLu-iy-WCK"/>
                         <outlet property="segment" destination="qPl-oQ-aFH" id="8qI-65-iCf"/>
                         <outlet property="startYear" destination="AXU-oD-w7j" id="Yx9-LL-4cW"/>
+                        <outlet property="teamLogo" destination="dJg-J8-Nng" id="Ifs-eY-uFM"/>
                         <outlet property="teamName" destination="suy-jf-6dL" id="RKQ-8j-tlU"/>
                         <segue destination="Bp4-4x-YTM" kind="show" identifier="toTeamStats" id="LEt-fo-QEW"/>
                     </connections>
@@ -999,7 +1000,7 @@
                         <outlet property="rebounds" destination="o7Q-vh-QZ5" id="3ja-1w-HWA"/>
                         <outlet property="regularSeasonStackView" destination="IEl-YE-JXw" id="03o-pZ-nMK"/>
                         <outlet property="startYear" destination="XuV-qD-xh6" id="gd5-1q-sk8"/>
-                        <outlet property="teamImage" destination="x5o-KY-sHa" id="h1K-yq-bq2"/>
+                        <outlet property="teamLogo" destination="x5o-KY-sHa" id="9AP-A5-81X"/>
                         <outlet property="teamName" destination="rs0-nh-ZzL" id="vRl-ub-5FN"/>
                         <outlet property="threePointAttempts" destination="8JW-rz-hk9" id="xM6-ej-LYy"/>
                         <outlet property="threePointPercent" destination="uhS-tu-gcq" id="v3O-EY-Mlk"/>
@@ -1049,7 +1050,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chx-tA-11Q">
                                                 <rect key="frame" x="0.0" y="0.0" width="288" height="125"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WFW-zH-ei1">
+                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WFW-zH-ei1">
                                                         <rect key="frame" x="8" y="15" width="130" height="95"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="130" id="SUI-9y-2ws"/>
@@ -1103,13 +1104,13 @@
                                                                 <rect key="frame" x="0.0" y="72.5" width="134" height="14.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Position:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQh-XP-Vpg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="14.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="14.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Power Forward" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiT-zx-tao">
-                                                                        <rect key="frame" x="49.5" y="0.0" width="84.5" height="14.5"/>
+                                                                        <rect key="frame" x="57" y="0.0" width="77" height="14.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1277,7 +1278,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2E9-9P-Lfl">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="125"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvO-SE-eHm">
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvO-SE-eHm">
                                                 <rect key="frame" x="8" y="15" width="130" height="95"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="130" id="n7L-nW-aLY"/>

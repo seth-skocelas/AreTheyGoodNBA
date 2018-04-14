@@ -12,6 +12,7 @@ import Foundation
 class Team {
     
     private var _teamID: Int!
+    private var _teamAbbreviation: String!
     private var _teamName: String!
     private var _startYear: String!
     private var _years: Int!
@@ -37,6 +38,13 @@ class Team {
             return ""
         }
         return _teamName
+    }
+    
+    var teamAbbreviation: String {
+        if _teamAbbreviation == nil {
+            return "N/A"
+        }
+        return _teamAbbreviation
     }
     
     var teamID: Int {
@@ -150,10 +158,11 @@ class Team {
     
     
     
-    init(teamDict: Dictionary<String, AnyObject>) {
+    init(teamDict: Dictionary<String, AnyObject>, index: Int) {
         
         _teamID = teamDict["TEAM_ID"] as! Int
         _teamName = "\(teamDict["TEAM_CITY"] ?? "Not" as AnyObject) \(teamDict["TEAM_NAME"] ?? "Available" as AnyObject)"
+        _teamAbbreviation = teamAbbrevaiationArray[index]
         _startYear = teamDict["START_YEAR"] as! String
         _years = teamDict["YEARS"] as! Int
         _gamesPlayed = teamDict["GAMES"] as! Int

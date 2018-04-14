@@ -88,6 +88,7 @@ class PlayerModelVC: UIViewController {
             
             DispatchQueue.main.async {
                 self.playerImage.image = UIImage(data: data!)
+                self.playerImage.isHidden = false
             }
             }.resume()
         

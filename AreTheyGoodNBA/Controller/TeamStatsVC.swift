@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVGKit
 
 class TeamStatsVC: UIViewController {
     
@@ -14,7 +15,7 @@ class TeamStatsVC: UIViewController {
     var statDuration: StatDuration?
     var teamStatsTuple: TeamStatsTuple?
     
-    @IBOutlet weak var teamImage: UIImageView!
+    @IBOutlet weak var teamLogo: UIImageView!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var startYear: UILabel!
     @IBOutlet weak var gamesPlayed: UILabel!
@@ -67,6 +68,7 @@ class TeamStatsVC: UIViewController {
         WebService.instance.teamGroup.notify(queue: .main) {
             
             self.setTeamInfo()
+            self.setTeamImage()
             
             if self.statDuration == StatDuration.CurrentSeason {
                 
@@ -186,6 +188,38 @@ class TeamStatsVC: UIViewController {
             leagueTitles.text = "\(team.leagueTitles)"
             
         }
+        
+    }
+    
+    
+    func setTeamImage() {
+        
+        var urlString = ""
+        
+        if let team = currentTeam {
+            urlString = "\(BASE_LOGO_URL)\(team.teamAbbreviation)\(LOGO_INFO_URL)"
+        }
+        
+        print(urlString)
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print("Failed fetching image:", error!)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print("Not a proper HTTPURLResponse or statusCode")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let svgImage = SVGKImage(data: data!)
+                self.teamLogo.image = svgImage?.uiImage
+                self.teamLogo.isHidden = false
+            }
+            }.resume()
+        
         
     }
     

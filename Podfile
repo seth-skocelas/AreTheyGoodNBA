@@ -6,5 +6,6 @@ target 'AreTheyGoodNBA' do
   use_frameworks!
 
   pod 'Alamofire', '~> 4.5'
+  pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '2.x'
 
 end

@@ -11,6 +11,8 @@ import Foundation
 let BASE_URL = "https://stats.nba.com/stats/"
 let BASE_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/"
 let PICTURE_INFO_URL = "/2017/260x190/"
+let BASE_LOGO_URL = "http://stats.nba.com/media/img/teams/logos/"
+let LOGO_INFO_URL = "_logo.svg"
 
 typealias DownloadComplete = () -> ()
 typealias PlayerStatsTuple = (player: Player, statDuration: StatDuration)
@@ -84,6 +86,41 @@ enum ClassType {
     case Team
     
 }
+
+//Team Abbreviation Array
+
+let teamAbbrevaiationArray = [
+    "ATL",
+    "BOS",
+    "BKN",
+    "CHA",
+    "CHI",
+    "CLE",
+    "DAL",
+    "DEN",
+    "DET",
+    "GSW",
+    "HOU",
+    "IND",
+    "LAC",
+    "LAL",
+    "MEM",
+    "MIA",
+    "MIL",
+    "MIN",
+    "NOP",
+    "NYK",
+    "OKC",
+    "ORL",
+    "PHI",
+    "PHX",
+    "POR",
+    "SAC",
+    "SAS",
+    "TOR",
+    "UTA",
+    "WAS"
+]
 
 
 
