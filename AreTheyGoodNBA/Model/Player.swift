@@ -193,7 +193,7 @@ class Player {
         if (measureType == MeasureType.RegularBase && statDuration == StatDuration.CurrentSeason) {
             
             WebService.instance.playerGroup.enter()
-            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
+            WebService.instance.getPlayerSeasonStats(playerID: self.playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 self._currentRegularSeasonTradStats = TradStats(classType: ClassType.Player, statType: measureType, statDuration: statDuration, dict: currentSeason)
                 //print("Test: \(self.currentRegularSeasonTradStats.gamesPlayed), \(self.currentRegularSeasonTradStats.fieldGoalPercent)")
@@ -206,7 +206,7 @@ class Player {
         else if (measureType == MeasureType.PostBase && statDuration == StatDuration.CurrentSeason) {
             
             WebService.instance.playerGroup.enter()
-            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
+            WebService.instance.getPlayerSeasonStats(playerID: self.playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 if currentSeason.count != 0 {
                     self._currentPostSeasonTradStats = TradStats(classType: ClassType.Player, statType: measureType, statDuration: statDuration, dict: currentSeason)
@@ -221,7 +221,7 @@ class Player {
         else if (measureType == MeasureType.RegularAdvanced) {
             
             WebService.instance.playerGroup.enter()
-            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
+            WebService.instance.getPlayerSeasonStats(playerID: self.playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 self._currentRegularSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
                 //print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
@@ -240,7 +240,7 @@ class Player {
         else if (measureType == MeasureType.PostAdvanced) {
             
             WebService.instance.playerGroup.enter()
-            WebService.instance.getPlayerSeasonStats(playerID: self._playerID, measureType: measureType) { (currentSeason, allSeasons) in
+            WebService.instance.getPlayerSeasonStats(playerID: self.playerID, measureType: measureType) { (currentSeason, allSeasons) in
                 
                 if currentSeason.count != 0 {
                     self._currentPostSeasonAdvStats = AdvStats(classType: ClassType.Player, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: currentSeason)
@@ -336,9 +336,13 @@ class Player {
         WebService.instance.playerGroup.enter()
         WebService.instance.getCommonPlayerInfo(playerID: self.playerID) { (commonPlayerInfo) in
             
-            self._yearsExperience = commonPlayerInfo["SEASON_EXP"] as! Int
-            self._currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
-            self._startingYear = commonPlayerInfo["DRAFT_YEAR"] as! String
+            if commonPlayerInfo.count != 0 {
+            
+                self._yearsExperience = commonPlayerInfo["SEASON_EXP"] as! Int
+                self._currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
+                self._startingYear = commonPlayerInfo["DRAFT_YEAR"] as! String
+                
+            }
             
             WebService.instance.playerGroup.leave()
         }

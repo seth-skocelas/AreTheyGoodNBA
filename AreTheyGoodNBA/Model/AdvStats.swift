@@ -90,21 +90,25 @@ class AdvStats {
     
     init(classType: ClassType, statType: MeasureType, statDuration: StatDuration, dict: Dictionary<String, AnyObject>) {
         
-        self._isEmpty = false
+        if dict.count != 0 {
         
-        self._statType = statType
-        self._statDuration = statDuration
-        
-        self._offRating = dict["OFF_RATING"]?.floatValue as! Float
-        self._defRating = dict["DEF_RATING"]?.floatValue as! Float
-        self._netRating = dict["NET_RATING"]?.floatValue as! Float
-        self._effectiveFG = dict["EFG_PCT"]?.floatValue as! Float
-        self._trueShooting = dict["TS_PCT"]?.floatValue as! Float
-        self._pace = dict["PACE"]?.floatValue as! Float
-        self._PIE = dict["PIE"]?.floatValue as! Float
-        
-        if classType == ClassType.Player {
-            self._usage = dict["USG_PCT"]?.floatValue as! Float
+            self._isEmpty = false
+            
+            self._statType = statType
+            self._statDuration = statDuration
+            
+            self._offRating = dict["OFF_RATING"]?.floatValue as! Float
+            self._defRating = dict["DEF_RATING"]?.floatValue as! Float
+            self._netRating = dict["NET_RATING"]?.floatValue as! Float
+            self._effectiveFG = dict["EFG_PCT"]?.floatValue as! Float
+            self._trueShooting = dict["TS_PCT"]?.floatValue as! Float
+            self._pace = dict["PACE"]?.floatValue as! Float
+            self._PIE = dict["PIE"]?.floatValue as! Float
+            
+            if classType == ClassType.Player {
+                self._usage = dict["USG_PCT"]?.floatValue as! Float
+            }
+            
         }
         
     }

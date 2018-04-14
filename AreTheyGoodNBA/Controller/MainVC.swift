@@ -11,8 +11,8 @@ import UIKit
 class MainVC: UIViewController {
     
     var league: League!
-    var selectedTeam: Team!
-    var selectedPlayer: Player!
+    var selectedTeam = Team()
+    var selectedPlayer = Player()
     var currentPlayerIndex = 0
     
     @IBOutlet weak var teamPicker: UIPickerView!
@@ -31,40 +31,56 @@ class MainVC: UIViewController {
         playerPicker.delegate = self
         playerPicker.dataSource = self
         
-        asyncTestFunc()
+        createLeague()
         
         //2544 = Lebron
         //1628372 = DSJ
     
     }
     
-    func asyncTestFunc() {
+    func createLeague() {
         
         league = League()
         
         WebService.instance.leagueGroup.notify(queue: .main) {
             
-            self.teamPicker.reloadAllComponents()
-            
-            print("\(self.league.teams[0].teamName)")
-            
-            self.selectedTeam = self.league.teams[0]
-            self.league.teams[0].getTeamRoster()
-            
-            WebService.instance.teamGroup.notify(queue: .main) {
+            if self.league.teams.count != 0 {
                 
-                self.playerPicker.reloadAllComponents()
-                self.selectedPlayer = self.selectedTeam.teamRoster[0]
+                self.teamPicker.reloadAllComponents()
                 
-                print("\(self.league.teams[0].teamRoster[0].name): \(self.league.teams[0].teamRoster[0].playerID)")
-                self.league.teams[0].teamRoster[0].getAllStats()
+                self.selectedTeam = self.league.teams[0]
+                self.league.teams[0].getTeamRoster()
+                self.teamButton.isEnabled = true
+            
+                WebService.instance.teamGroup.notify(queue: .main) {
                 
-                WebService.instance.playerGroup.notify(queue: .main) {
-                    
-                    print("Regular Season TS%: \(self.league.teams[0].teamRoster[0].currentRegularSeasonAdvStats.trueShooting)")
-                    print("Career PTS: \(self.league.teams[0].teamRoster[0].careerRegularSeasonTradStats.points)")
-                    
+                    if self.selectedTeam.teamRoster.count != 0 {
+                        
+                        self.playerPicker.reloadAllComponents()
+                        self.playerButton.isEnabled = true
+                        
+                        self.selectedPlayer = self.selectedTeam.teamRoster[0]
+                        
+                    } else {
+                        
+                        let alert = UIAlertController(title: "Unable to Load Players", message: "Unable to proceed. Please verify that you are connected to the internet.", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        
+                        self.present(alert, animated: true)
+                        
+                    }
+            
                 }
+                
+            } else {
+                
+                let alert = UIAlertController(title: "Unable to Load Teams", message: "Unable to proceed. Please verify that you are connected to the internet.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                
+                self.present(alert, animated: true)
+                
             }
         }
     }
@@ -157,13 +173,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         
         else if pickerView.tag == 2 {
-            
-            if selectedTeam == nil {
-                return 0
-            } else {
-                return selectedTeam.teamRoster.count
-            }
-            
+
+            return selectedTeam.teamRoster.count
+
         }
         
         return 0
@@ -179,9 +191,13 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
             
             WebService.instance.teamGroup.notify(queue: .main) {
                 
-                self.selectedPlayer = self.selectedTeam.teamRoster[0]
-                self.playerPicker.reloadAllComponents()
-                self.playerPicker.selectRow(0, inComponent: 0, animated: true)
+                if self.selectedTeam.teamRoster.count != 0 {
+                    
+                    self.selectedPlayer = self.selectedTeam.teamRoster[0]
+                    self.playerPicker.reloadAllComponents()
+                    self.playerPicker.selectRow(0, inComponent: 0, animated: true)
+                    
+                }
                 
             }
             
@@ -190,7 +206,10 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         if pickerView.tag == 2 {
             
             currentPlayerIndex = row
-            selectedPlayer = selectedTeam.teamRoster[row]
+            
+            if selectedTeam.teamRoster.count != 0 {
+                selectedPlayer = selectedTeam.teamRoster[row]
+            }
             
         }
         
