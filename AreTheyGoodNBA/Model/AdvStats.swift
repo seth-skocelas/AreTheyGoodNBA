@@ -17,69 +17,69 @@ class AdvStats {
     private var _statType: MeasureType!
     private var _statDuration: StatDuration!
     
-    private var _offRating: Float!
-    private var _defRating: Float!
-    private var _netRating: Float!
-    private var _effectiveFG: Float!
-    private var _trueShooting: Float!
-    private var _usage: Float!
-    private var _pace: Float!
-    private var _PIE: Float!
+    private var _offRating: Double!
+    private var _defRating: Double!
+    private var _netRating: Double!
+    private var _effectiveFG: Double!
+    private var _trueShooting: Double!
+    private var _usage: Double!
+    private var _pace: Double!
+    private var _PIE: Double!
     
     var isEmpty: Bool {
         return _isEmpty
     }
     
-    var offRating: Float {
+    var offRating: Double {
         if _offRating == nil {
             return -1000
         }
         return _offRating
     }
     
-    var defRating: Float {
+    var defRating: Double {
         if _defRating == nil {
             return -1000
         }
         return _defRating
     }
     
-    var netRating: Float {
+    var netRating: Double {
         if _netRating == nil {
             return -1000
         }
         return _netRating
     }
     
-    var effectiveFG: Float {
+    var effectiveFG: Double {
         if _effectiveFG == nil {
             return -1000
         }
         return _effectiveFG
     }
     
-    var trueShooting: Float {
+    var trueShooting: Double {
         if _trueShooting == nil {
             return -1000
         }
         return _trueShooting
     }
     
-    var usage: Float {
+    var usage: Double {
         if _usage == nil {
             return -1000
         }
         return _usage
     }
     
-    var pace: Float {
+    var pace: Double {
         if _pace == nil {
             return -1000
         }
         return _pace
     }
     
-    var PIE: Float {
+    var PIE: Double {
         if _PIE == nil {
             return -1000
         }
@@ -97,16 +97,16 @@ class AdvStats {
             self._statType = statType
             self._statDuration = statDuration
             
-            self._offRating = dict["OFF_RATING"]?.floatValue as! Float
-            self._defRating = dict["DEF_RATING"]?.floatValue as! Float
-            self._netRating = dict["NET_RATING"]?.floatValue as! Float
-            self._effectiveFG = dict["EFG_PCT"]?.floatValue as! Float
-            self._trueShooting = dict["TS_PCT"]?.floatValue as! Float
-            self._pace = dict["PACE"]?.floatValue as! Float
-            self._PIE = dict["PIE"]?.floatValue as! Float
+            self._offRating = dict["OFF_RATING"]?.doubleValue as! Double
+            self._defRating = dict["DEF_RATING"]?.doubleValue as! Double
+            self._netRating = dict["NET_RATING"]?.doubleValue as! Double
+            self._effectiveFG = dict["EFG_PCT"]?.doubleValue as! Double
+            self._trueShooting = dict["TS_PCT"]?.doubleValue as! Double
+            self._pace = dict["PACE"]?.doubleValue as! Double
+            self._PIE = dict["PIE"]?.doubleValue as! Double
             
             if classType == ClassType.Player {
-                self._usage = dict["USG_PCT"]?.floatValue as! Float
+                self._usage = dict["USG_PCT"]?.doubleValue as! Double
             }
             
         }

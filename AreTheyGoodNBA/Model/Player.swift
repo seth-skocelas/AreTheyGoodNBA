@@ -292,27 +292,27 @@ class Player {
     
     func getAdvanceStatAverages(dictArray: [AnyObject]) -> Dictionary<String, AnyObject> {
         
-        var offRating: Float = 0
-        var defRating: Float = 0
-        var netRating: Float = 0
-        var effectiveFG: Float = 0
-        var trueShooting: Float = 0
-        var usage: Float = 0
-        var pace: Float = 0
-        var PIE: Float = 0
+        var offRating: Double = 0
+        var defRating: Double = 0
+        var netRating: Double = 0
+        var effectiveFG: Double = 0
+        var trueShooting: Double = 0
+        var usage: Double = 0
+        var pace: Double = 0
+        var PIE: Double = 0
         
-        let count = Float(dictArray.count)
+        let count = Double(dictArray.count)
         
         for statsForYear in dictArray {
             
-            offRating += Float(truncating: statsForYear["OFF_RATING"] as! NSNumber)
-            defRating += Float(truncating: statsForYear["DEF_RATING"] as! NSNumber)
-            netRating += Float(truncating: statsForYear["NET_RATING"] as! NSNumber)
-            effectiveFG += Float(truncating: statsForYear["EFG_PCT"] as! NSNumber)
-            trueShooting += Float(truncating: statsForYear["TS_PCT"] as! NSNumber)
-            usage += Float(truncating: statsForYear["USG_PCT"] as! NSNumber)
-            pace += Float(truncating: statsForYear["PACE"] as! NSNumber)
-            PIE += Float(truncating: statsForYear["PIE"] as! NSNumber)
+            offRating += Double(truncating: statsForYear["OFF_RATING"] as! NSNumber)
+            defRating += Double(truncating: statsForYear["DEF_RATING"] as! NSNumber)
+            netRating += Double(truncating: statsForYear["NET_RATING"] as! NSNumber)
+            effectiveFG += Double(truncating: statsForYear["EFG_PCT"] as! NSNumber)
+            trueShooting += Double(truncating: statsForYear["TS_PCT"] as! NSNumber)
+            usage += Double(truncating: statsForYear["USG_PCT"] as! NSNumber)
+            pace += Double(truncating: statsForYear["PACE"] as! NSNumber)
+            PIE += Double(truncating: statsForYear["PIE"] as! NSNumber)
             
         }
         

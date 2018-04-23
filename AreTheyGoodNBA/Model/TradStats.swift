@@ -17,18 +17,18 @@ class TradStats {
     private var _statDuration: StatDuration!
     
     private var _gamesPlayed: Int!
-    private var _minutesPlayed: Float!
-    private var _threePointPercent: Float!
-    private var _threePointPerMin: Float!
-    private var _threePointAttempts: Float!
-    private var _fieldGoalPercent: Float!
-    private var _fieldGoalPerMin: Float!
-    private var _fieldGoalAttempts: Float!
-    private var _points: Float!
-    private var _rebounds: Float!
-    private var _assists: Float!
-    private var _turnovers: Float!
-    private var _plusMinus: Float!
+    private var _minutesPlayed: Double!
+    private var _threePointPercent: Double!
+    private var _threePointPerMin: Double!
+    private var _threePointAttempts: Double!
+    private var _fieldGoalPercent: Double!
+    private var _fieldGoalPerMin: Double!
+    private var _fieldGoalAttempts: Double!
+    private var _points: Double!
+    private var _rebounds: Double!
+    private var _assists: Double!
+    private var _turnovers: Double!
+    private var _plusMinus: Double!
     // PlusMinus only available for current season (might be able to pull this if I pull year by year and average)
     
     var isEmpty: Bool {
@@ -42,84 +42,84 @@ class TradStats {
         return _gamesPlayed
     }
     
-    var minutesPlayed: Float {
+    var minutesPlayed: Double {
         if _minutesPlayed == nil {
             return -1
         }
         return _minutesPlayed
     }
     
-    var threePointPercent: Float {
+    var threePointPercent: Double {
         if _threePointPercent == nil {
             return -1
         }
         return _threePointPercent
     }
     
-    var threePointPerMin: Float {
+    var threePointPerMin: Double {
         if _threePointPerMin == nil {
             return -1
         }
         return _threePointPerMin
     }
     
-    var threePointAttempts: Float {
+    var threePointAttempts: Double {
         if _threePointAttempts == nil {
             return -1
         }
         return _threePointAttempts
     }
     
-    var fieldGoalPercent: Float {
+    var fieldGoalPercent: Double {
         if _fieldGoalPercent == nil {
             return -1
         }
         return _fieldGoalPercent
     }
     
-    var fieldGoalPerMin: Float {
+    var fieldGoalPerMin: Double {
         if _fieldGoalPerMin == nil {
             return -1
         }
         return _fieldGoalPercent
     }
     
-    var fieldGoalAttempts: Float {
+    var fieldGoalAttempts: Double {
         if _fieldGoalAttempts == nil {
             return -1
         }
         return _fieldGoalAttempts
     }
     
-    var points: Float {
+    var points: Double {
         if _points == nil {
             return -1
         }
         return _points
     }
     
-    var rebounds: Float {
+    var rebounds: Double {
         if _rebounds == nil {
             return -1
         }
         return _rebounds
     }
     
-    var assists: Float {
+    var assists: Double {
         if _assists == nil {
             return -1
         }
         return _assists
     }
     
-    var turnovers: Float {
+    var turnovers: Double {
         if _turnovers == nil {
             return -1
         }
         return _turnovers
     }
     
-    var plusMinus: Float {
+    var plusMinus: Double {
         if _plusMinus == nil {
             //-1 could be a legitimate value for plusminus, so I increased it to -100000, which wouldn't be
             return -100000
@@ -139,19 +139,19 @@ class TradStats {
             self._statDuration = statDuration
             
             self._gamesPlayed = dict["GP"] as! Int
-            self._minutesPlayed = dict["MIN"]?.floatValue as! Float
-            self._threePointPercent = dict["FG3_PCT"]?.floatValue as! Float
-            self._threePointPerMin = dict["FG3M"]?.floatValue as! Float
-            self._threePointAttempts = dict["FG3A"]?.floatValue as! Float
-            self._fieldGoalPercent = dict["FG_PCT"]?.floatValue as! Float
-            self._fieldGoalPerMin = dict["FGM"]?.floatValue as! Float
-            self._fieldGoalAttempts = dict["FGA"]?.floatValue as! Float
-            self._points = dict["PTS"]?.floatValue as! Float
-            self._rebounds = dict["REB"]?.floatValue as! Float
-            self._assists = dict["AST"]?.floatValue as! Float
-            self._turnovers = dict["TOV"]?.floatValue as! Float
+            self._minutesPlayed = dict["MIN"]?.doubleValue as! Double
+            self._threePointPercent = dict["FG3_PCT"]?.doubleValue as! Double
+            self._threePointPerMin = dict["FG3M"]?.doubleValue as! Double
+            self._threePointAttempts = dict["FG3A"]?.doubleValue as! Double
+            self._fieldGoalPercent = dict["FG_PCT"]?.doubleValue as! Double
+            self._fieldGoalPerMin = dict["FGM"]?.doubleValue as! Double
+            self._fieldGoalAttempts = dict["FGA"]?.doubleValue as! Double
+            self._points = dict["PTS"]?.doubleValue as! Double
+            self._rebounds = dict["REB"]?.doubleValue as! Double
+            self._assists = dict["AST"]?.doubleValue as! Double
+            self._turnovers = dict["TOV"]?.doubleValue as! Double
             if statDuration == StatDuration.CurrentSeason {
-                self._plusMinus = dict["PLUS_MINUS"]?.floatValue as! Float
+                self._plusMinus = dict["PLUS_MINUS"]?.doubleValue as! Double
             }
             
         }

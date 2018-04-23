@@ -19,7 +19,7 @@ class Team {
     private var _gamesPlayed: Int!
     private var _wins: Int!
     private var _losses: Int!
-    private var _winPercentage: Float!
+    private var _winPercentage: Double!
     private var _playoffApperances: Int!
     private var _divisionTitles: Int!
     private var _conferenceTitles: Int!
@@ -89,7 +89,7 @@ class Team {
         return _losses
     }
     
-    var winPercentage: Float {
+    var winPercentage: Double {
         if _winPercentage == nil {
             return -1
         }
@@ -171,7 +171,7 @@ class Team {
             _gamesPlayed = teamDict["GAMES"] as! Int
             _wins = teamDict["WINS"] as! Int
             _losses = teamDict["LOSSES"] as! Int
-            _winPercentage = teamDict["WIN_PCT"]?.floatValue as! Float
+            _winPercentage = teamDict["WIN_PCT"]?.doubleValue as! Double
             _playoffApperances = teamDict["PO_APPEARANCES"] as! Int
             _divisionTitles = teamDict["DIV_TITLES"] as! Int
             _conferenceTitles = teamDict["CONF_TITLES"] as! Int
