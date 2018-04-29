@@ -12,6 +12,7 @@ class PlayerModelVC: UIViewController {
     
     var currentPlayer: Player?
     var statDuration = StatDuration.CurrentSeason
+    var model: PlayerModel!
 
     @IBOutlet weak var playerImage: UIImageView!
     @IBOutlet weak var playerName: UILabel!
@@ -32,6 +33,10 @@ class PlayerModelVC: UIViewController {
             
             self.setPlayerInfo()
             self.setPlayerImage()
+            //test code below
+            self.model = GuardModel(player: (self.currentPlayer)!, statDuration: self.statDuration)
+            
+            
             
         }
 
