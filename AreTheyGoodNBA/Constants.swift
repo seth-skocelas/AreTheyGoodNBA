@@ -87,6 +87,17 @@ enum ClassType {
     
 }
 
+enum Position {
+    
+    case Guard
+    case GuardForward
+    case Forward
+    case ForwardCenter
+    case Center
+    case None
+    
+}
+
 //Team Abbreviation Array
 
 let teamAbbrevaiationArray = [

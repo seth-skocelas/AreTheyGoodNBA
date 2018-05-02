@@ -11,7 +11,7 @@ import Foundation
 
 class PlayerModel {
     
-    var statsScore = 0
+    var statsScore = 0.0
 
     var testStatDuration: StatDuration = StatDuration.CurrentSeason
     

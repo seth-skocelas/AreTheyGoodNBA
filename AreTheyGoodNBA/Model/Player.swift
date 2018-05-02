@@ -31,6 +31,8 @@ class Player {
     private var _careerRegularSeasonAdvStats: AdvStats!
     private var _careerPostSeasonAdvStats: AdvStats!
     
+    private var _modelPosition: Position!
+    
     var name: String {
         if _name == nil {
             return ""
@@ -143,6 +145,13 @@ class Player {
         return _careerPostSeasonAdvStats
     }
     
+    var modelPosition: Position {
+        if _modelPosition == nil {
+            return Position.None
+        }
+        return _modelPosition
+    }
+    
     init() {}
     
     
@@ -160,6 +169,8 @@ class Player {
         _currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
         _startingYear = commonPlayerInfo["DRAFT_YEAR"] as! String
         
+        determineModelPosition()
+        
     }
     
     //Creating a player from CommonTeamRoster is different from CommonPlayerInfo. I should probably combine into one init using the bool to check
@@ -173,6 +184,8 @@ class Player {
         _weight = commonPlayerInfo["WEIGHT"] as! String
         _jerseyNumber = commonPlayerInfo["NUM"] as! String
         _position = commonPlayerInfo["POSITION"] as! String
+        
+        determineModelPosition()
         
     }
     
@@ -345,6 +358,24 @@ class Player {
             }
             
             WebService.instance.playerGroup.leave()
+        }
+        
+    }
+    
+    func determineModelPosition() {
+        
+        if position == "G" {
+            _modelPosition = Position.Guard
+        } else if position == "G-F" || position == "F-G" {
+            _modelPosition = Position.GuardForward
+        } else if position == "F" {
+            _modelPosition = Position.Forward
+        } else if position == "F-C" || position == "C-F" {
+            _modelPosition = Position.ForwardCenter
+        } else if position == "C" {
+            _modelPosition = Position.Center
+        } else {
+            _modelPosition = Position.None
         }
         
     }

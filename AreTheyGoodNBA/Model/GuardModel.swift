@@ -44,12 +44,22 @@ class GuardModel: PlayerModel {
 */
     
     //reverse TOV
-    
+/*
     let TOVMin = 0.13075
     let TOVFirst = 0.07645
     let TOVMed = 0.05805
     let TOVThird = 0.04723
     let TOVMax = 0.02086
+    */
+    
+    //TOV based on usage
+    
+    let TOVMin = 0.5240
+    let TOVFirst = 0.3500
+    let TOVMed = 0.2937
+    let TOVThird = 0.2448
+    let TOVMax = 0.1081
+    
     
     let ORTGMin = 89.0
     let ORTGFirst = 101.0
@@ -82,7 +92,6 @@ class GuardModel: PlayerModel {
     
     func calculateScore() {
         
-        var score = 0.0
         let tsScore = calculateHighStatScore(stat: playerRegularAdvStats.trueShooting, first: TSFirst, median: TSMed, third: TSThird)
         print("Player Stat: \(playerRegularAdvStats.trueShooting) - Player Score: \(tsScore)")
         
@@ -102,16 +111,16 @@ class GuardModel: PlayerModel {
         let trbScore = calculateHighStatScore(stat: trbMin, first: TRBFirst, median: TRBMed, third: TRBThird)
         print("Player Stat: \(trbMin) - Player Score: \(trbScore)")
         
-        let tovMin = playerRegularTradStats.turnovers/playerRegularTradStats.minutesPlayed
+        let tovMin = (playerRegularTradStats.turnovers/playerRegularTradStats.minutesPlayed)/playerRegularAdvStats.usage
         
         let tovScore = calculateLowStatScore(stat: tovMin, first: TOVFirst, median: TOVMed, third: TOVThird)
         print("Player Stat: \(tovMin) - Player Score: \(tovScore)")
         
-        let partOne = Double(tsScore) * 0.35
-        let partTwo = Double((ortgScore + drtgScore)/2) * 0.35
+        let partOne = Double(tsScore) * 0.4
+        let partTwo = Double((ortgScore + drtgScore)/2) * 0.3
         let partThree = Double((astScore + trbScore + tovScore)/3) * 0.3
-        score = (partOne + partTwo + partThree)/3
-        print ("Total score: \(score)")
+        statsScore = (partOne + partTwo + partThree)/3
+        print ("Total score: \(statsScore)")
 
         
     }

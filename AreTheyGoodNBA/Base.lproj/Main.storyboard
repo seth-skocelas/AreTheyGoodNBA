@@ -1104,13 +1104,13 @@
                                                                 <rect key="frame" x="0.0" y="72.5" width="134" height="14.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Position:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQh-XP-Vpg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="14.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="14.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Power Forward" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiT-zx-tao">
-                                                                        <rect key="frame" x="49.5" y="0.0" width="84.5" height="14.5"/>
+                                                                        <rect key="frame" x="57" y="0.0" width="77" height="14.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1240,6 +1240,7 @@
                         <viewLayoutGuide key="safeArea" id="944-mf-jSl"/>
                     </view>
                     <connections>
+                        <outlet property="answerLabel" destination="Goz-9j-qA7" id="PD5-GB-Smf"/>
                         <outlet property="jerseyNumber" destination="juk-Uy-KXV" id="kdu-Jb-yHZ"/>
                         <outlet property="playerImage" destination="WFW-zH-ei1" id="Cms-ur-3lh"/>
                         <outlet property="playerName" destination="jJA-zq-l68" id="jX6-vO-xMI"/>

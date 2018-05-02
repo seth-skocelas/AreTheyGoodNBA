@@ -23,6 +23,7 @@ class PlayerModelVC: UIViewController {
     
     @IBOutlet weak var segment: UISegmentedControl!
     
+    @IBOutlet weak var answerLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -34,9 +35,23 @@ class PlayerModelVC: UIViewController {
             self.setPlayerInfo()
             self.setPlayerImage()
             //test code below
-            self.model = GuardModel(player: (self.currentPlayer)!, statDuration: self.statDuration)
             
+            if let player = self.currentPlayer {
+                
+                if player.modelPosition == Position.Guard {
+                    self.model = GuardModel(player: player, statDuration: self.statDuration)
+                }
+            }
             
+            if let completedModel = self.model {
+                
+                if completedModel.statsScore >= 0.5 {
+                    self.answerLabel.text = "Yes"
+                } else {
+                    self.answerLabel.text = "No"
+                }
+                
+            }
             
         }
 
