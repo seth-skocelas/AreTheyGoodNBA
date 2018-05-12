@@ -37,28 +37,8 @@ class PlayerModelVC: UIViewController {
             //test code below
             
             if let player = self.currentPlayer {
-                
-                if player.modelPosition == Position.Guard {
-                    self.model = GuardModel(player: player, statDuration: self.statDuration)
-                } else if player.modelPosition == Position.GuardForward {
-                    self.model = GuardForwardModel(player: player, statDuration: self.statDuration)
-                } else if player.modelPosition == Position.Forward {
-                    self.model = ForwardModel(player: player, statDuration: self.statDuration)
-                } else if player.modelPosition == Position.ForwardCenter {
-                    self.model = ForwardCenterModel(player: player, statDuration: self.statDuration)
-                } else if player.modelPosition == Position.Center {
-                    self.model = CenterModel(player: player, statDuration: self.statDuration)
-                }
-            }
-            
-            if let completedModel = self.model {
-                
-                if completedModel.statsScore >= 0.5 {
-                    self.answerLabel.text = "Yes"
-                } else {
-                    self.answerLabel.text = "No"
-                }
-                
+                self.createModel(player: player)
+                self.displayModelResult()
             }
             
         }
@@ -149,6 +129,12 @@ class PlayerModelVC: UIViewController {
             statDuration = StatDuration.Career
         }
         
+        if let player = self.currentPlayer {
+            self.createModel(player: player)
+        }
+        
+        displayModelResult()
+        
     }
     
     @IBAction func checkStatsPressed(_ sender: Any) {
@@ -161,6 +147,35 @@ class PlayerModelVC: UIViewController {
     
     @IBAction func homeButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func createModel(player: Player) {
+        
+        if player.modelPosition == Position.Guard {
+            self.model = GuardModel(player: player, statDuration: self.statDuration)
+        } else if player.modelPosition == Position.GuardForward {
+            self.model = GuardForwardModel(player: player, statDuration: self.statDuration)
+        } else if player.modelPosition == Position.Forward {
+            self.model = ForwardModel(player: player, statDuration: self.statDuration)
+        } else if player.modelPosition == Position.ForwardCenter {
+            self.model = ForwardCenterModel(player: player, statDuration: self.statDuration)
+        } else if player.modelPosition == Position.Center {
+            self.model = CenterModel(player: player, statDuration: self.statDuration)
+        }
+    }
+    
+    func displayModelResult() {
+        
+        if let completedModel = self.model {
+            
+            if completedModel.statsScore >= 0.5 {
+                self.answerLabel.text = "Yes"
+            } else {
+                self.answerLabel.text = "No"
+            }
+            
+        }
+        
     }
     
 }
