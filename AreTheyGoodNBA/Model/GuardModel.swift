@@ -94,6 +94,8 @@ class GuardModel: PlayerModel {
         
         //update to match center model
         
+        var tovScore = 0
+        
         let tsScore = calculateHighStatScore(stat: playerRegularAdvStats.trueShooting, first: TSFirst, median: TSMed, third: TSThird)
         print("Player Stat: \(playerRegularAdvStats.trueShooting) - Player Score: \(tsScore)")
         
@@ -115,8 +117,13 @@ class GuardModel: PlayerModel {
         
         let tovMin = (playerRegularTradStats.turnovers/playerRegularTradStats.minutesPlayed)/playerRegularAdvStats.usage
         
-        let tovScore = calculateLowStatScore(stat: tovMin, first: TOVFirst, median: TOVMed, third: TOVThird)
-        print("Player Stat: \(tovMin) - Player Score: \(tovScore)")
+        if playerRegularAdvStats.usage >= USGThird {
+            tovScore = 3
+            print("High usage bonus")
+        } else {
+            tovScore = calculateLowStatScore(stat: tovMin, first: TOVFirst, median: TOVMed, third: TOVThird)
+            print("Player Stat: \(tovMin) - Player Score: \(tovScore)")
+        }
         
         let partOne = Double(tsScore) * 0.4
         let partTwo = Double((ortgScore + drtgScore)/2) * 0.3

@@ -30,6 +30,11 @@ class PlayerModel {
             playerRegularTradStats = self.testPlayer.currentRegularSeasonTradStats
             playerRegularAdvStats = self.testPlayer.currentRegularSeasonAdvStats
             
+        } else if statDuration == StatDuration.Career {
+            
+            playerRegularTradStats = self.testPlayer.careerRegularSeasonTradStats
+            playerRegularAdvStats = self.testPlayer.careerRegularSeasonAdvStats
+            
         }
         
     }
