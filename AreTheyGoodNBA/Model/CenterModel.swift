@@ -1,85 +1,85 @@
 //
-//  GuardModel.swift
+//  CenterModel.swift
 //  AreTheyGoodNBA
 //
-//  Created by Seth Skocelas on 4/18/18.
+//  Created by Seth Skocelas on 5/11/18.
 //  Copyright © 2018 Seth Skocelas. All rights reserved.
 //
 
 import Foundation
 
-class GuardModel: PlayerModel {
+class CenterModel: PlayerModel {
     
     //slight minutes discrepancy between data from nba.com and Basketball Reference
     
-    let TSMin = 0.4210
-    let TSFirst = 0.5030
-    let TSMed = 0.5356
-    let TSThird = 0.5633
-    let TSMax = 0.6750
+    let TSMin = 0.5020
+    let TSFirst = 0.5550
+    let TSMed = 0.5990
+    let TSThird = 0.6300
+    let TSMax = 0.6620
     
     //Assist per min
     
-    let ASTMin = 0.02959
-    let ASTFirst = 0.08371
-    let ASTMed = 0.12597
-    let ASTThird = 0.17657
-    let ASTMax = 0.31261
+    let ASTMin = 0.03343
+    let ASTFirst = 0.04629
+    let ASTMed = 0.05837
+    let ASTThird = 0.07262
+    let ASTMax = 0.12666
     
     //Total Rebounds per min
     
-    let TRBMin = 0.05989
-    let TRBFirst = 0.09875
-    let TRBMed = 0.11551
-    let TRBThird = 0.13272
-    let TRBMax = 0.27591
-
-/* Currently not getting steals, might add this later.
- 
-    let STLMin = 12.0
-    let STLFirst = 35.0
-    let STLMed = 57.0
-    let STLThird = 79.0
-    let STLMax = 177.0
-*/
+    let TRBMin = 0.1695
+    let TRBFirst = 0.2748
+    let TRBMed = 0.3302
+    let TRBThird = 0.3822
+    let TRBMax = 0.4831
+    
+    /* Currently not getting steals, might add this later.
+     
+     let STLMin = 12.0
+     let STLFirst = 35.0
+     let STLMed = 57.0
+     let STLThird = 79.0
+     let STLMax = 177.0
+     */
     
     //reverse TOV
-/*
-    let TOVMin = 0.13075
-    let TOVFirst = 0.07645
-    let TOVMed = 0.05805
-    let TOVThird = 0.04723
-    let TOVMax = 0.02086
-    */
+    /*
+     let TOVMin = 0.13075
+     let TOVFirst = 0.07645
+     let TOVMed = 0.05805
+     let TOVThird = 0.04723
+     let TOVMax = 0.02086
+     */
     
     //TOV based on usage
     
-    let TOVMin = 0.5240
-    let TOVFirst = 0.3500
-    let TOVMed = 0.2937
-    let TOVThird = 0.2448
-    let TOVMax = 0.1081
+    let TOVMin = 0.5598
+    let TOVFirst = 0.3594
+    let TOVMed = 0.3207
+    let TOVThird = 0.2731
+    let TOVMax = 0.2287
     
     
-    let ORTGMin = 89.0
-    let ORTGFirst = 101.0
-    let ORTGMed = 106.0
-    let ORTGThird = 111.0
+    let ORTGMin = 102.0
+    let ORTGFirst = 107.0
+    let ORTGMed = 113.0
+    let ORTGThird = 122.0
     let ORTGMax = 126.0
     
     //reverse DRTG
     
-    let DRTGMin = 117.0
-    let DRTGFirst = 112.0
-    let DRTGMed = 110.0
-    let DRTGThird = 109.0
-    let DRTGMax = 101.0
+    let DRTGMin = 114.0
+    let DRTGFirst = 108.0
+    let DRTGMed = 105.0
+    let DRTGThird = 101.0
+    let DRTGMax = 99.0
     
-    let USGMin = 0.1130
-    let USGFirst = 0.1218
-    let USGMed = 0.1960
-    let USGThird = 0.2455
-    let USGMax = 0.3610
+    let USGMin = 0.1480
+    let USGFirst = 0.167
+    let USGMed = 0.1920
+    let USGThird = 0.2350
+    let USGMax = 0.3340
     
     
     override init(player: Player, statDuration: StatDuration) {
@@ -91,8 +91,6 @@ class GuardModel: PlayerModel {
     }
     
     func calculateScore() {
-        
-        //update to match center model
         
         let tsScore = calculateHighStatScore(stat: playerRegularAdvStats.trueShooting, first: TSFirst, median: TSMed, third: TSThird)
         print("Player Stat: \(playerRegularAdvStats.trueShooting) - Player Score: \(tsScore)")
@@ -120,19 +118,13 @@ class GuardModel: PlayerModel {
         
         let partOne = Double(tsScore) * 0.4
         let partTwo = Double((ortgScore + drtgScore)/2) * 0.3
-        let partThree = Double((astScore + tovScore)/2) * 0.25
-        let partFour = Double(trbScore) * 0.05
+        let partThree = Double(trbScore) * 0.25
+        let partFour = Double((astScore + tovScore)/2) * 0.05
+        
         statsScore = (partOne + partTwo + partThree + partFour)/3
         print ("Total score: \(statsScore)")
-
+        
         
     }
-    
-
-
-    
-    
-    
-    
 
 }

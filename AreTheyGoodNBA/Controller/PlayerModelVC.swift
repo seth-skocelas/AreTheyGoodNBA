@@ -40,6 +40,14 @@ class PlayerModelVC: UIViewController {
                 
                 if player.modelPosition == Position.Guard {
                     self.model = GuardModel(player: player, statDuration: self.statDuration)
+                } else if player.modelPosition == Position.GuardForward {
+                    self.model = GuardForwardModel(player: player, statDuration: self.statDuration)
+                } else if player.modelPosition == Position.Forward {
+                    self.model = ForwardModel(player: player, statDuration: self.statDuration)
+                } else if player.modelPosition == Position.ForwardCenter {
+                    self.model = ForwardCenterModel(player: player, statDuration: self.statDuration)
+                } else if player.modelPosition == Position.Center {
+                    self.model = CenterModel(player: player, statDuration: self.statDuration)
                 }
             }
             
