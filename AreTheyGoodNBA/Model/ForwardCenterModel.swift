@@ -92,6 +92,7 @@ class ForwardCenterModel: PlayerModel {
     
     func calculateScore() {
         
+        
         var tovScore = 0
         
         let tsScore = calculateHighStatScore(stat: playerRegularAdvStats.trueShooting, first: TSFirst, median: TSMed, third: TSThird)

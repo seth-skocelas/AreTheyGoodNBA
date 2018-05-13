@@ -168,6 +168,10 @@ class PlayerModelVC: UIViewController {
         
         if let completedModel = self.model {
             
+            if statDuration == StatDuration.Career && completedModel.statsScore < 0.5 {
+                completedModel.careerLegendCheck()
+            }
+            
             if completedModel.statsScore >= 0.5 {
                 self.answerLabel.text = "Yes"
             } else {

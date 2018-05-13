@@ -69,4 +69,16 @@ class PlayerModel {
         return score
     }
     
+    func careerLegendCheck() {
+        
+        if testPlayer.yearsExperience >= 12 && testPlayer.careerRegularSeasonAdvStats.usage >= 0.23 {
+            self.statsScore += 1
+            print("Score boosted to \(self.statsScore) for being a high usage player for over 10 years")
+        } else if testPlayer.yearsExperience >= 5 && testPlayer.careerRegularSeasonTradStats.points >= 15 {
+            self.statsScore += 1
+            print("Score boosted to \(self.statsScore) for being a high scoring player for at least 5 years")
+        }
+        
+    }
+    
 }
