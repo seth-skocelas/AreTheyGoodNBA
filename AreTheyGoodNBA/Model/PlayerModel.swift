@@ -81,4 +81,18 @@ class PlayerModel {
         
     }
     
+    func inconclusiveData() -> Bool {
+        
+        let gamesPlayed = playerRegularTradStats.gamesPlayed
+        let minutesPlayed = playerRegularTradStats.minutesPlayed * Double(gamesPlayed)
+        let attempts = playerRegularTradStats.fieldGoalAttempts * Double(gamesPlayed)
+        
+        if gamesPlayed <= 10 || minutesPlayed <= 100 || attempts <= 50 {
+            return true
+        }
+        
+        return false
+        
+    }
+    
 }

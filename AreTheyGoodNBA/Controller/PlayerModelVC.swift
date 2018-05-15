@@ -171,13 +171,18 @@ class PlayerModelVC: UIViewController {
             if statDuration == StatDuration.Career && completedModel.statsScore < 0.5 {
                 completedModel.careerLegendCheck()
             }
+           
+            if self.model.inconclusiveData() == false {
+                
+                if completedModel.statsScore >= 0.5 {
+                    self.answerLabel.text = "Yes"
+                } else {
+                    self.answerLabel.text = "No"
+                }
             
-            if completedModel.statsScore >= 0.5 {
-                self.answerLabel.text = "Yes"
             } else {
-                self.answerLabel.text = "No"
+                self.answerLabel.text = "¯\\_(ツ)_/¯"
             }
-            
         }
         
     }
