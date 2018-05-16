@@ -13,6 +13,8 @@ class PlayerModelVC: UIViewController {
     var currentPlayer: Player?
     var statDuration = StatDuration.CurrentSeason
     var model: PlayerModel!
+    var optionalModel: PlayerModel!
+    var thirdModel: PlayerModel!
 
     @IBOutlet weak var playerImage: UIImageView!
     @IBOutlet weak var playerName: UILabel!
@@ -157,8 +159,9 @@ class PlayerModelVC: UIViewController {
             self.model = GuardForwardModel(player: player, statDuration: self.statDuration)
         } else if player.modelPosition == Position.Forward {
             self.model = ForwardModel(player: player, statDuration: self.statDuration)
+            self.optionalModel = ForwardCenterModel(player: player, statDuration: self.statDuration)
         } else if player.modelPosition == Position.ForwardCenter {
-            self.model = ForwardCenterModel(player: player, statDuration: self.statDuration)
+            forwardCenterAdjustment(player: player)
         } else if player.modelPosition == Position.Center {
             self.model = CenterModel(player: player, statDuration: self.statDuration)
         }
@@ -176,13 +179,51 @@ class PlayerModelVC: UIViewController {
                 
                 if completedModel.statsScore >= 0.5 {
                     self.answerLabel.text = "Yes"
+                    
+                } else if let secondaryModel = self.optionalModel {
+                    
+                    let combinedScore = (completedModel.statsScore + secondaryModel.statsScore)/2
+                    
+                    print("CombinedScore: \(combinedScore)")
+                    
+                    if combinedScore >= 0.5 {
+                        self.answerLabel.text = "Yes"
+                    } else {
+                        self.answerLabel.text = "No"
+                    }
+                    
                 } else {
                     self.answerLabel.text = "No"
                 }
-            
+                
             } else {
                 self.answerLabel.text = "¯\\_(ツ)_/¯"
             }
+        }
+        
+    }
+    
+    func forwardCenterAdjustment(player: Player) {
+        
+        self.model = ForwardCenterModel(player: player, statDuration: self.statDuration)
+        
+        if model.statsScore >= 0.50 {
+            
+            optionalModel = nil
+            thirdModel = nil
+            
+            print("No ForwardCenter Adjustment needed.\n")
+            
+        } else {
+            
+            self.optionalModel = ForwardModel(player: player, statDuration: self.statDuration)
+            self.thirdModel = CenterModel(player: player, statDuration: self.statDuration)
+            
+            if optionalModel.statsScore <  thirdModel.statsScore {
+                optionalModel = thirdModel
+                print("Averaging ForwardCenter and Center results.\n")
+            }
+            print("Averaging ForwardCenter and Forward results.\n")
         }
         
     }
