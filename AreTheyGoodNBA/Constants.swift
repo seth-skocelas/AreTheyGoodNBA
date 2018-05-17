@@ -98,6 +98,14 @@ enum Position {
     
 }
 
+enum Result {
+    
+    case Yes
+    case No
+    case Inconclusive
+    
+}
+
 //Team Abbreviation Array
 
 let teamAbbrevaiationArray = [

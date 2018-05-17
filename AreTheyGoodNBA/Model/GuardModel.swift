@@ -82,9 +82,9 @@ class GuardModel: PlayerModel {
     let USGMax = 0.3610
     
     
-    override init(player: Player, statDuration: StatDuration) {
+    override init(player: Player, statDuration: StatDuration, isSecondary: Bool) {
         
-        super.init(player: player, statDuration: statDuration)
+        super.init(player: player, statDuration: statDuration, isSecondary: isSecondary)
         
         calculateScore()
         
@@ -131,6 +131,7 @@ class GuardModel: PlayerModel {
         let partFour = Double(trbScore) * 0.05
         statsScore = (partOne + partTwo + partThree + partFour)/3
         print ("Total score: \(statsScore)")
+        calculateResult()
 
         
     }

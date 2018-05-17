@@ -40,7 +40,7 @@ class PlayerModelVC: UIViewController {
             
             if let player = self.currentPlayer {
                 self.createModel(player: player)
-                self.displayModelResult()
+                self.displayResult()
             }
             
         }
@@ -154,17 +154,28 @@ class PlayerModelVC: UIViewController {
     func createModel(player: Player) {
         
         if player.modelPosition == Position.Guard {
-            self.model = GuardModel(player: player, statDuration: self.statDuration)
+            self.model = GuardModel(player: player, statDuration: self.statDuration, isSecondary: false)
         } else if player.modelPosition == Position.GuardForward {
-            self.model = GuardForwardModel(player: player, statDuration: self.statDuration)
+            self.model = GuardForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
         } else if player.modelPosition == Position.Forward {
-            self.model = ForwardModel(player: player, statDuration: self.statDuration)
-            self.optionalModel = ForwardCenterModel(player: player, statDuration: self.statDuration)
+            self.model = ForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
         } else if player.modelPosition == Position.ForwardCenter {
-            forwardCenterAdjustment(player: player)
+            self.model = ForwardCenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
         } else if player.modelPosition == Position.Center {
-            self.model = CenterModel(player: player, statDuration: self.statDuration)
+            self.model = CenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
         }
+    }
+    
+    func displayResult() {
+        
+        if self.model.result == Result.Yes {
+            self.answerLabel.text = "Yes"
+        } else if self.model.result == Result.No {
+            self.answerLabel.text = "No"
+        } else {
+            self.answerLabel.text = "¯\\_(ツ)_/¯"
+        }
+        
     }
     
     func displayModelResult() {
@@ -203,29 +214,6 @@ class PlayerModelVC: UIViewController {
         
     }
     
-    func forwardCenterAdjustment(player: Player) {
-        
-        self.model = ForwardCenterModel(player: player, statDuration: self.statDuration)
-        
-        if model.statsScore >= 0.50 {
-            
-            optionalModel = nil
-            thirdModel = nil
-            
-            print("No ForwardCenter Adjustment needed.\n")
-            
-        } else {
-            
-            self.optionalModel = ForwardModel(player: player, statDuration: self.statDuration)
-            self.thirdModel = CenterModel(player: player, statDuration: self.statDuration)
-            
-            if optionalModel.statsScore <  thirdModel.statsScore {
-                optionalModel = thirdModel
-                print("Averaging ForwardCenter and Center results.\n")
-            }
-            print("Averaging ForwardCenter and Forward results.\n")
-        }
-        
-    }
+
     
 }

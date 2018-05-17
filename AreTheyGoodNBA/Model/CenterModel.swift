@@ -82,9 +82,9 @@ class CenterModel: PlayerModel {
     let USGMax = 0.3340
     
     
-    override init(player: Player, statDuration: StatDuration) {
+    override init(player: Player, statDuration: StatDuration, isSecondary: Bool) {
         
-        super.init(player: player, statDuration: statDuration)
+        super.init(player: player, statDuration: statDuration, isSecondary: isSecondary)
         
         calculateScore()
         
@@ -130,6 +130,7 @@ class CenterModel: PlayerModel {
         
         statsScore = (partOne + partTwo + partThree + partFour)/3
         print ("Total score: \(statsScore)")
+        calculateResult()
         
         
     }

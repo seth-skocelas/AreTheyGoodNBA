@@ -82,9 +82,9 @@ class ForwardCenterModel: PlayerModel {
     let USGMax = 0.3190
     
     
-    override init(player: Player, statDuration: StatDuration) {
+    override init(player: Player, statDuration: StatDuration, isSecondary: Bool) {
         
-        super.init(player: player, statDuration: statDuration)
+        super.init(player: player, statDuration: statDuration, isSecondary: isSecondary)
         
         calculateScore()
         
@@ -131,6 +131,15 @@ class ForwardCenterModel: PlayerModel {
         statsScore = (partOne + partTwo + partThree + partFour)/3
         print ("Total score: \(statsScore)")
         
+        if statsScore < goodCutoff && !isSecondary {
+        
+            let optionalModel: PlayerModel = ForwardModel(player: testPlayer, statDuration: testStatDuration, isSecondary: true)
+            let thirdModel: PlayerModel = CenterModel(player: testPlayer, statDuration: testStatDuration, isSecondary: true)
+            scoreAdjustment(optionalModel: optionalModel, thirdModel: thirdModel)
+            
+        }
+        
+        calculateResult()
         
     }
 

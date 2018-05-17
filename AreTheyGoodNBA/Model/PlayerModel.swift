@@ -11,19 +11,23 @@ import Foundation
 
 class PlayerModel {
     
-    var statsScore = 0.0
-
-    var testStatDuration: StatDuration = StatDuration.CurrentSeason
+    let goodCutoff = 0.5
     
+    var isSecondary = false
+    var statsScore = 0.0
+    var result = Result.Inconclusive
+    
+    var testStatDuration: StatDuration = StatDuration.CurrentSeason
     var testPlayer: Player
     
     var playerRegularTradStats: TradStats!
     var playerRegularAdvStats: AdvStats!
     
-    init(player: Player, statDuration: StatDuration) {
+    init(player: Player, statDuration: StatDuration, isSecondary: Bool) {
         
         self.testPlayer = player
         self.testStatDuration = statDuration
+        self.isSecondary = isSecondary
         
         if statDuration == StatDuration.CurrentSeason {
             
@@ -69,6 +73,27 @@ class PlayerModel {
         return score
     }
     
+    func calculateResult() {
+        
+        if testStatDuration == StatDuration.Career && statsScore < goodCutoff {
+            self.careerLegendCheck()
+        }
+            
+        if self.inconclusiveData() == false {
+                
+            if statsScore >= goodCutoff {
+                result = Result.Yes
+            } else {
+                result = Result.No
+            }
+            
+        } else {
+            result = Result.Inconclusive
+        }
+        
+    }
+            
+    
     func careerLegendCheck() {
         
         if testPlayer.yearsExperience >= 12 && testPlayer.careerRegularSeasonAdvStats.usage >= 0.23 {
@@ -94,5 +119,46 @@ class PlayerModel {
         return false
         
     }
+    
+    func scoreAdjustment(optionalModel: PlayerModel) {
+        
+        if isSecondary {
+            
+            print("No Adjustment because this is the secondary model.\n")
+            
+        } else {
+            
+            statsScore = (statsScore + optionalModel.statsScore)/2
+            print("Averaging Primary and Secondary results.\n")
+            
+        }
+        
+    }
+    
+    
+
+    
+    func scoreAdjustment(optionalModel: PlayerModel, thirdModel: PlayerModel) {
+        
+        if isSecondary {
+            
+            print("No Adjustment because this is the secondary model.\n")
+            
+        } else {
+            
+            var secondaryModel: PlayerModel = optionalModel
+            
+            if optionalModel.statsScore <  thirdModel.statsScore {
+                secondaryModel = thirdModel
+                print("Averaging Primary and Third results.\n")
+            }
+            print("Averaging Primary and Secondary results.\n")
+            
+            statsScore = (statsScore + secondaryModel.statsScore)/2
+            
+        }
+        
+    }
+
     
 }
