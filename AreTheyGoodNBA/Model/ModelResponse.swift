@@ -12,6 +12,14 @@ import Foundation
 class ModelResponse {
     
     var playerModel: PlayerModel!
+    var player: Player!
+    var tradStats: TradStats!
+    var advStats: AdvStats!
+    
+    
+    let hsgCutoff = 0.25
+    let starterCutoff = 24.0
+    let roleCutoff = 18.0
     
     //Static First Line Strings
     
@@ -23,12 +31,55 @@ class ModelResponse {
     
     init(model: PlayerModel) {
         playerModel = model
+        setPlayerInfo()
+    }
+    
+    func setPlayerInfo() {
+        
+        player = playerModel.testPlayer
+        
+        if playerModel.testStatDuration == StatDuration.CurrentSeason {
+            advStats = player.currentRegularSeasonAdvStats
+            tradStats = player.currentRegularSeasonTradStats
+        } else {
+            advStats = player.careerRegularSeasonAdvStats
+            tradStats = player.careerRegularSeasonTradStats
+        }
+        
+    }
+    
+    func goodOrNotGood() -> String {
+        
+        if playerModel.result == Result.Yes {
+            return "good"
+        } else {
+            return "not good"
+        }
+        
     }
     
     func firstLine() -> String {
-        return ""
+        
+        let startingString = "\(player.name) is \(goodOrNotGood()) "
+        
+        if playerModel.inconclusiveData() == false {
+        
+            if advStats.usage >= 0.25 && tradStats.minutesPlayed >= 24.0 {
+                return startingString + husFirst
+            } else if tradStats.minutesPlayed >= 24.0 {
+                return startingString + starterFirst
+            } else if tradStats.minutesPlayed >= 18.0 {
+                return startingString + roleFirst
+            } else {
+                return startingString + fringeFirst
+            }
+        
+        } else {
+            
+            return "\(player.name) " + unknownFirst
+            
+        }
+    
     }
-    
-    
     
 }

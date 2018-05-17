@@ -15,7 +15,10 @@ class PlayerModelVC: UIViewController {
     var model: PlayerModel!
     var optionalModel: PlayerModel!
     var thirdModel: PlayerModel!
+    var responseBuilder: ModelResponse!
 
+    @IBOutlet weak var firstModelLine: UILabel!
+    
     @IBOutlet weak var playerImage: UIImageView!
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var startYear: UILabel!
@@ -40,6 +43,7 @@ class PlayerModelVC: UIViewController {
             
             if let player = self.currentPlayer {
                 self.createModel(player: player)
+                self.responseBuilder = ModelResponse(model: self.model)
                 self.displayResult()
             }
             
@@ -133,9 +137,10 @@ class PlayerModelVC: UIViewController {
         
         if let player = self.currentPlayer {
             self.createModel(player: player)
+            self.responseBuilder = ModelResponse(model: self.model)
         }
         
-        displayModelResult()
+        displayResult()
         
     }
     
@@ -176,41 +181,7 @@ class PlayerModelVC: UIViewController {
             self.answerLabel.text = "¯\\_(ツ)_/¯"
         }
         
-    }
-    
-    func displayModelResult() {
-        
-        if let completedModel = self.model {
-            
-            if statDuration == StatDuration.Career && completedModel.statsScore < 0.5 {
-                completedModel.careerLegendCheck()
-            }
-           
-            if self.model.inconclusiveData() == false {
-                
-                if completedModel.statsScore >= 0.5 {
-                    self.answerLabel.text = "Yes"
-                    
-                } else if let secondaryModel = self.optionalModel {
-                    
-                    let combinedScore = (completedModel.statsScore + secondaryModel.statsScore)/2
-                    
-                    print("CombinedScore: \(combinedScore)")
-                    
-                    if combinedScore >= 0.5 {
-                        self.answerLabel.text = "Yes"
-                    } else {
-                        self.answerLabel.text = "No"
-                    }
-                    
-                } else {
-                    self.answerLabel.text = "No"
-                }
-                
-            } else {
-                self.answerLabel.text = "¯\\_(ツ)_/¯"
-            }
-        }
+        self.firstModelLine.text = responseBuilder.firstLine()
         
     }
     
