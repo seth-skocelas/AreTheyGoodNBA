@@ -16,6 +16,7 @@ class PlayerModel {
     var isSecondary = false
     var statsScore = 0.0
     var result = Result.Inconclusive
+    var scoreDict = Dictionary<String, Int>()
     
     var testStatDuration: StatDuration = StatDuration.CurrentSeason
     var testPlayer: Player

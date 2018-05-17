@@ -18,6 +18,8 @@ class PlayerModelVC: UIViewController {
     var responseBuilder: ModelResponse!
 
     @IBOutlet weak var firstModelLine: UILabel!
+    @IBOutlet weak var secondModelLine: UILabel!
+    @IBOutlet weak var thridModelLine: UILabel!
     
     @IBOutlet weak var playerImage: UIImageView!
     @IBOutlet weak var playerName: UILabel!
@@ -182,6 +184,9 @@ class PlayerModelVC: UIViewController {
         }
         
         self.firstModelLine.text = responseBuilder.firstLine()
+        self.secondModelLine.text = responseBuilder.secondLine()
+        self.thridModelLine.text = responseBuilder.thirdLine()
+        
         
     }
     

@@ -1176,7 +1176,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eQf-s8-0Ph">
-                                                                <rect key="frame" x="10" y="236.33333333333331" width="323" height="48"/>
+                                                                <rect key="frame" x="10" y="187.66666666666669" width="323" height="145.33333333333331"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player is good based on his production as a role player." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sec-eB-SbF">
                                                                         <rect key="frame" x="0.0" y="0.0" width="323" height="48"/>
@@ -1184,14 +1184,14 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="His strength is his %, which is in the top fourth of the league at his position." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8D-bx-o5S">
-                                                                        <rect key="frame" x="0.0" y="-501.33333333333331" width="323" height="0.0"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="His strength is his %, which is in the top fourth of the league at his position." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8D-bx-o5S">
+                                                                        <rect key="frame" x="0.0" y="62.999999999999943" width="323" height="33.666666666666657"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="His weakness is his %, which is in the top fourth of the league at his position." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-E4-Tyv">
-                                                                        <rect key="frame" x="0.0" y="-501.33333333333331" width="323" height="0.0"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="His weakness is his %, which is in the top fourth of the league at his position." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-E4-Tyv">
+                                                                        <rect key="frame" x="0.0" y="111.6666666666667" width="323" height="33.666666666666671"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1269,8 +1269,10 @@
                         <outlet property="playerImage" destination="WFW-zH-ei1" id="Cms-ur-3lh"/>
                         <outlet property="playerName" destination="jJA-zq-l68" id="jX6-vO-xMI"/>
                         <outlet property="position" destination="yiT-zx-tao" id="bcO-JK-jYm"/>
+                        <outlet property="secondModelLine" destination="M8D-bx-o5S" id="ghz-f9-gM7"/>
                         <outlet property="segment" destination="hY1-Gi-gVG" id="9Qu-qV-c3y"/>
                         <outlet property="startYear" destination="x0D-Y5-1Vv" id="TEw-Gf-vMa"/>
+                        <outlet property="thridModelLine" destination="bgs-E4-Tyv" id="WA8-Gm-vE9"/>
                         <outlet property="yearsPlayed" destination="ekG-fp-8fb" id="LxI-Pe-xUd"/>
                         <segue destination="EMy-Up-gy0" kind="show" identifier="toPlayerStats" id="IzC-67-kHM"/>
                     </connections>

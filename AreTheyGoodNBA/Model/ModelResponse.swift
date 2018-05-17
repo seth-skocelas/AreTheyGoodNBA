@@ -82,4 +82,24 @@ class ModelResponse {
     
     }
     
+    func secondLine() -> String {
+        
+        if let maxStat = playerModel.scoreDict.max(by: { a, b in a.value < b.value }) {
+            return "His strength is his \(maxStat.key), which is in the top half of players in his position."
+        }
+        
+        return ""
+        
+    }
+    
+    func thirdLine() -> String {
+        
+        if let minStat = playerModel.scoreDict.min(by: { a, b in a.value < b.value }) {
+            return "His weakness is his \(minStat.key), which is in the bottom half of players in his position."
+        }
+        
+        return ""
+        
+    }
+    
 }

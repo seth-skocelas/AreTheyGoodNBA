@@ -96,22 +96,27 @@ class CenterModel: PlayerModel {
         
         let tsScore = calculateHighStatScore(stat: playerRegularAdvStats.trueShooting, first: TSFirst, median: TSMed, third: TSThird)
         print("Player Stat: \(playerRegularAdvStats.trueShooting) - Player Score: \(tsScore)")
+        scoreDict.updateValue(tsScore, forKey: "true shooting percentage")
         
         let ortgScore = calculateHighStatScore(stat: playerRegularAdvStats.offRating, first: ORTGFirst, median: ORTGMed, third: ORTGThird)
         print("Player Stat: \(playerRegularAdvStats.offRating) - Player Score: \(ortgScore)")
+        scoreDict.updateValue(ortgScore, forKey: "offensive rating")
         
         let drtgScore = calculateLowStatScore(stat: playerRegularAdvStats.defRating, first: DRTGFirst, median: DRTGMed, third: DRTGThird)
         print("Player Stat: \(playerRegularAdvStats.defRating) - Player Score: \(drtgScore)")
+        scoreDict.updateValue(drtgScore, forKey: "defensive rating")
         
         let astMin = (playerRegularTradStats.assists)/(playerRegularTradStats.minutesPlayed)
         
         let astScore = calculateHighStatScore(stat: astMin, first: ASTFirst, median: ASTMed, third: ASTThird)
         print("Player Stat: \(astMin) - Player Score: \(astScore)")
+        scoreDict.updateValue(astScore, forKey: "assist rate")
         
         let trbMin = playerRegularTradStats.rebounds/playerRegularTradStats.minutesPlayed
         
         let trbScore = calculateHighStatScore(stat: trbMin, first: TRBFirst, median: TRBMed, third: TRBThird)
         print("Player Stat: \(trbMin) - Player Score: \(trbScore)")
+        scoreDict.updateValue(trbScore, forKey: "rebound rate")
         
         let tovMin = (playerRegularTradStats.turnovers/playerRegularTradStats.minutesPlayed)/playerRegularAdvStats.usage
         
@@ -121,6 +126,7 @@ class CenterModel: PlayerModel {
         } else {
             tovScore = calculateLowStatScore(stat: tovMin, first: TOVFirst, median: TOVMed, third: TOVThird)
             print("Player Stat: \(tovMin) - Player Score: \(tovScore)")
+            scoreDict.updateValue(tovScore, forKey: "turnover rate")
         }
         
         let partOne = Double(tsScore) * 0.4
