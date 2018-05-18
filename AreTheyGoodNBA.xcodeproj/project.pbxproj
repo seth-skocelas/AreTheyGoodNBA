@@ -29,7 +29,7 @@
 		97A6B7B3205C7B6E00EA31E7 /* TradStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7B2205C7B6E00EA31E7 /* TradStats.swift */; };
 		97E52861208808B2006B35B5 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E52860208808B2006B35B5 /* PlayerModel.swift */; };
 		97E5286320880907006B35B5 /* GuardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5286220880907006B35B5 /* GuardModel.swift */; };
-		97E8128020ACFD9300751818 /* ModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E8127F20ACFD9300751818 /* ModelResponse.swift */; };
+		97E8128020ACFD9300751818 /* PlayerModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E8127F20ACFD9300751818 /* PlayerModelResponse.swift */; };
 		ABD77877328B2C0B9F1C3DE8 /* Pods_AreTheyGoodNBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		97A6B7B2205C7B6E00EA31E7 /* TradStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradStats.swift; sourceTree = "<group>"; };
 		97E52860208808B2006B35B5 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		97E5286220880907006B35B5 /* GuardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardModel.swift; sourceTree = "<group>"; };
-		97E8127F20ACFD9300751818 /* ModelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelResponse.swift; sourceTree = "<group>"; };
+		97E8127F20ACFD9300751818 /* PlayerModelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModelResponse.swift; sourceTree = "<group>"; };
 		B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AreTheyGoodNBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67E05E0859F6E3FDD034DA /* Pods-AreTheyGoodNBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +143,7 @@
 				9757B97120A6B3BA004B7481 /* GuardForwardModel.swift */,
 				9757B97320A6B827004B7481 /* ForwardModel.swift */,
 				9757B97520A6BC4D004B7481 /* ForwardCenterModel.swift */,
-				97E8127F20ACFD9300751818 /* ModelResponse.swift */,
+				97E8127F20ACFD9300751818 /* PlayerModelResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 				977658AD2075B32D00E98528 /* TeamModelVC.swift in Sources */,
 				972E167D206468FE001B27EE /* AdvStats.swift in Sources */,
 				9757B97020A6661F004B7481 /* CenterModel.swift in Sources */,
-				97E8128020ACFD9300751818 /* ModelResponse.swift in Sources */,
+				97E8128020ACFD9300751818 /* PlayerModelResponse.swift in Sources */,
 				974437242054A9B1008BE29A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

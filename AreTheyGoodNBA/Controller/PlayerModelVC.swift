@@ -15,7 +15,7 @@ class PlayerModelVC: UIViewController {
     var model: PlayerModel!
     var optionalModel: PlayerModel!
     var thirdModel: PlayerModel!
-    var responseBuilder: ModelResponse!
+    var responseBuilder: PlayerModelResponse!
 
     @IBOutlet weak var firstModelLine: UILabel!
     @IBOutlet weak var secondModelLine: UILabel!
@@ -45,7 +45,7 @@ class PlayerModelVC: UIViewController {
             
             if let player = self.currentPlayer {
                 self.createModel(player: player)
-                self.responseBuilder = ModelResponse(model: self.model)
+                self.responseBuilder = PlayerModelResponse(model: self.model)
                 self.displayResult()
             }
             
@@ -139,7 +139,7 @@ class PlayerModelVC: UIViewController {
         
         if let player = self.currentPlayer {
             self.createModel(player: player)
-            self.responseBuilder = ModelResponse(model: self.model)
+            self.responseBuilder = PlayerModelResponse(model: self.model)
         }
         
         displayResult()

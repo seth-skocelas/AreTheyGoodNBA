@@ -9,17 +9,25 @@
 import Foundation
 
 
-class ModelResponse {
+class PlayerModelResponse {
     
     var playerModel: PlayerModel!
     var player: Player!
     var tradStats: TradStats!
     var advStats: AdvStats!
+    var positionString = ""
+    var positionDict: Dictionary<Position, String>!
+    var rankDict: Dictionary<Int, String>!
     
     
     let hsgCutoff = 0.25
     let starterCutoff = 24.0
     let roleCutoff = 18.0
+    
+    let positionKeys = [Position.Guard, Position.GuardForward, Position.Forward, Position.ForwardCenter, Position.Center]
+    let positionValues = ["guards", "swingmen", "forwards", "stretch fives", "centers"]
+    let rankKeys = [3,2,1,0]
+    let rankValues = ["among the best", "in the top 50%", "in the bottom 50%", "among the worst"]
     
     //Static First Line Strings
     
@@ -30,13 +38,17 @@ class ModelResponse {
     let unknownFirst = "did not play enough to be judged by the model."
     
     init(model: PlayerModel) {
+        
         playerModel = model
+        positionDict = Dictionary(uniqueKeysWithValues: zip(positionKeys, positionValues))
+        rankDict = Dictionary(uniqueKeysWithValues: zip(rankKeys, rankValues))
         setPlayerInfo()
     }
     
     func setPlayerInfo() {
         
         player = playerModel.testPlayer
+        positionString = positionDict[playerModel.testPlayer.modelPosition]!
         
         if playerModel.testStatDuration == StatDuration.CurrentSeason {
             advStats = player.currentRegularSeasonAdvStats
@@ -85,7 +97,9 @@ class ModelResponse {
     func secondLine() -> String {
         
         if let maxStat = playerModel.scoreDict.max(by: { a, b in a.value < b.value }) {
-            return "His strength is his \(maxStat.key), which is in the top half of players in his position."
+            if let rankString = rankDict[maxStat.value] {
+                return "His strength is his \(maxStat.key), which is \(rankString) of \(positionString)."
+            }
         }
         
         return ""
@@ -95,7 +109,9 @@ class ModelResponse {
     func thirdLine() -> String {
         
         if let minStat = playerModel.scoreDict.min(by: { a, b in a.value < b.value }) {
-            return "His weakness is his \(minStat.key), which is in the bottom half of players in his position."
+            if let rankString = rankDict[minStat.value] {
+                return "His weakness is his \(minStat.key), which is \(rankString) of \(positionString)."
+            }
         }
         
         return ""
