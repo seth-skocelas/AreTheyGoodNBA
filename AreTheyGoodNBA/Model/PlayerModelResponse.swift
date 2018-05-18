@@ -18,6 +18,10 @@ class PlayerModelResponse {
     var positionString = ""
     var positionDict: Dictionary<Position, String>!
     var rankDict: Dictionary<Int, String>!
+    var maxStatScore: Int!
+    var maxStatString: String = ""
+    var minStatScore: Int!
+    var minStatString: String = ""
     
     
     let hsgCutoff = 0.25
@@ -58,6 +62,8 @@ class PlayerModelResponse {
             tradStats = player.careerRegularSeasonTradStats
         }
         
+        getMinMaxStats()
+        
     }
     
     func goodOrNotGood() -> String {
@@ -95,27 +101,62 @@ class PlayerModelResponse {
     }
     
     func secondLine() -> String {
-        
-        if let maxStat = playerModel.scoreDict.max(by: { a, b in a.value < b.value }) {
-            if let rankString = rankDict[maxStat.value] {
-                return "His strength is his \(maxStat.key), which is \(rankString) of \(positionString)."
+
+        if minStatScore != rankKeys[0] {
+            
+            if let rankString = rankDict[maxStatScore] {
+                return "His strength is his \(maxStatString), which is \(rankString) of \(positionString)."
             }
+            
+        } else {
+            return "All of his stats graded by the model are among the best of \(positionString), meaning they are all in the top 25%."
         }
+        
         
         return ""
         
     }
     
     func thirdLine() -> String {
+    
+        if minStatScore != rankKeys[0] {
         
-        if let minStat = playerModel.scoreDict.min(by: { a, b in a.value < b.value }) {
-            if let rankString = rankDict[minStat.value] {
-                return "His weakness is his \(minStat.key), which is \(rankString) of \(positionString)."
+            if let rankString = rankDict[minStatScore] {
+                return "His weakness is his \(minStatString), which is \(rankString) of \(positionString)."
             }
+            
         }
-        
+
         return ""
         
     }
+    
+    func getMinMaxStats() {
+        
+        if let maxStat = playerModel.scoreDict.max(by: { a, b in a.value < b.value }) {
+            
+            maxStatScore = maxStat.value
+            maxStatString = maxStat.key
+            
+        } else {
+            
+            print("Max Stat unavailable")
+            
+        }
+        
+        if let minStat = playerModel.scoreDict.min(by: { a, b in a.value < b.value }) {
+            
+            minStatScore = minStat.value
+            minStatString = minStat.key
+            
+        } else {
+            
+            print("Min Stat unavailable")
+            
+        }
+        
+    }
+    
+    
     
 }
