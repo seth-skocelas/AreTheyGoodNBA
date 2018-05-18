@@ -101,8 +101,16 @@ class PlayerModelResponse {
     }
     
     func secondLine() -> String {
-
-        if minStatScore != rankKeys[0] {
+        
+        if playerModel.inconclusiveData() {
+            
+            if !(tradStats.isEmpty) || !(advStats.isEmpty) {
+                return "If he was judged by the model, it would have determined he was \(goodOrNotGood()) based on his production."
+            }
+            
+            return ""
+            
+        } else if minStatScore != rankKeys[0] {
             
             if let rankString = rankDict[maxStatScore] {
                 return "His strength is his \(maxStatString), which is \(rankString) of \(positionString)."
@@ -112,14 +120,13 @@ class PlayerModelResponse {
             return "All of his stats graded by the model are among the best of \(positionString), meaning they are all in the top 25%."
         }
         
-        
         return ""
         
     }
     
     func thirdLine() -> String {
-    
-        if minStatScore != rankKeys[0] {
+        
+        if minStatScore != rankKeys[0] && !playerModel.inconclusiveData() {
         
             if let rankString = rankDict[minStatScore] {
                 return "His weakness is his \(minStatString), which is \(rankString) of \(positionString)."
