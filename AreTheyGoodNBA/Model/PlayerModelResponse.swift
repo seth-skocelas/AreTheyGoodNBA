@@ -80,7 +80,11 @@ class PlayerModelResponse {
         
         let startingString = "\(player.name) is \(goodOrNotGood()) "
         
-        if playerModel.inconclusiveData() == false {
+        if let response = specialResponseDict[player.playerID], playerModel.testStatDuration == StatDuration.CurrentSeason {
+    
+            return response
+            
+        } else if playerModel.inconclusiveData() == false {
         
             if advStats.usage >= 0.25 && tradStats.minutesPlayed >= 24.0 {
                 return startingString + husFirst
@@ -163,7 +167,6 @@ class PlayerModelResponse {
         }
         
     }
-    
     
     
 }

@@ -141,6 +141,29 @@ let teamAbbrevaiationArray = [
     "WAS"
 ]
 
+//Special Responses
+
+let specialResponseDict: [Int: String] = [
+    202681: "Even as LeBron's son he was good, let alone now as he's running the show in Boston.",
+    2544: "King James is a top 2 player of all time, you don't need an app to tell you that.",
+    1717: "Dirk is the best European player of all time. He just can't move anymore.",
+    201939: "Yes, the best shooter of all time is a good player.",
+    201142: "In the summer of 2016, Kevin Durant took the hardest road. I'll let you decide.",
+    101108: "He's a conference finalist. Of course he's good!",
+    201935: "He's great so long as he doesn't have to carry a playoff team by himself.",
+    201599: "He'd be better if he went to Dallas. ¯\\_(ツ)_/¯",
+    203507: "The Greek Freak is the future.",
+    203076: "The Unibrow is one of the best players in the NBA, even if no one is watching his games.",
+    201566: "Any player that averages a triple double has to be good, right?",
+    203954: "Trust the process.",
+    202695: "The man can defend LeBron. Clearly he's talented.",
+    200768: "LeBron wouldn't think so.",
+    201942: "LeBron wouldn't think so."
+]
+
+
+
+
 
 
 

@@ -92,6 +92,8 @@ class PlayerModel {
             result = Result.Inconclusive
         }
         
+        print("\(testPlayer.playerID)\n")
+        
     }
             
     
