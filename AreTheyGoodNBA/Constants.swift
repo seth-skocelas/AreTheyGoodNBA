@@ -26,6 +26,7 @@ let TEAM_HISTORY = "franchisehistory/?"
 let PLAYER_CAREER_STATS = "playercareerstats/?"
 let TEAM_SEASON_STATS = "teamdashboardbygeneralsplits/?"
 let PLAYER_SEASON_STATS = "playerdashboardbyyearoveryear/?"
+let LEAGUE_STANDINGS = "leaguestandingsv3?"
 
 //Parameters - Static
 

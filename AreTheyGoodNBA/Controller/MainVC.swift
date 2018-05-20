@@ -48,6 +48,8 @@ class MainVC: UIViewController {
                 
                 self.teamPicker.reloadAllComponents()
                 
+                self.league.loadTeamStandings()
+                
                 self.selectedTeam = self.league.teams[0]
                 self.league.teams[0].getTeamRoster()
                 self.teamButton.isEnabled = true

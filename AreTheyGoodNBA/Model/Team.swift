@@ -25,6 +25,10 @@ class Team {
     private var _conferenceTitles: Int!
     private var _leagueTitles: Int!
     
+    private var _currentWins: Int!
+    private var _currentLosses: Int!
+    private var _currentWinPer: Double!
+    
     private var _currentRegularSeasonTradStats: TradStats!
     private var _currentPostSeasonTradStats: TradStats!
     
@@ -124,6 +128,27 @@ class Team {
         return _leagueTitles
     }
     
+    var currentWins: Int {
+        if _currentWins == nil {
+            return -1
+        }
+        return _currentWins
+    }
+    
+    var currentLosses: Int {
+        if _currentLosses == nil {
+            return -1
+        }
+        return _currentLosses
+    }
+    
+    var currentWinPer: Double {
+        if _currentWinPer == nil {
+            return -1.0
+        }
+        return _currentWinPer
+    }
+    
     var teamRoster: [Player] {
         return _teamRoster
     }
@@ -181,11 +206,17 @@ class Team {
         
     }
     
+    func loadTeamRecord(wins: Int, losses: Int, winPer: Double) {
+        
+        _currentWins = wins
+        _currentLosses = losses
+        _currentWinPer = winPer
+        
+    }
+    
     func getTeamRoster() {
         
         if teamRoster.count == 0 {
-        
-            print("here")
             
             WebService.instance.teamGroup.enter()
             WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in

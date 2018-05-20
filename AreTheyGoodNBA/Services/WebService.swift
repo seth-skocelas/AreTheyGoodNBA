@@ -140,6 +140,50 @@ class WebService {
         
     }
     
+    func getTeamStandings(completed: @escaping (_ teamStandingsArray: [AnyObject]) -> ()) {
+        
+        let urlString = "\(BASE_URL)\(LEAGUE_STANDINGS)\(LEAGUE_ID)\(CURRENT_SEASON)\(SEASON_TYPE_REGULAR)"
+        
+        let queryURL = URL(string: urlString)!
+        
+        var standingsArray = [AnyObject]()
+        
+        Alamofire.request(queryURL).responseJSON { response in
+            
+            let result = response.result
+            
+            if let baseDict = result.value as? Dictionary<String, AnyObject> {
+                
+                let resultSets = baseDict["resultSets"] as! [Dictionary<String, AnyObject>]
+                let standings = resultSets[0]
+                
+                let headers = standings["headers"] as! [AnyObject]
+                
+                let rowSet = standings["rowSet"] as! [AnyObject]
+                
+                for i in 0 ..< rowSet.count {
+                    
+                    let rowSetValues = rowSet[i] as! [AnyObject]
+                    var standingsDict = Dictionary<String, AnyObject>()
+                    
+                    for j in 0 ..< headers.count {
+                        standingsDict.updateValue(rowSetValues[j], forKey: headers[j] as! String)
+                    }
+                    
+                    standingsArray.append(standingsDict as AnyObject)
+                    
+                }
+                
+                //print(franchiseHistoryArray)
+                
+            }
+            
+            completed(standingsArray)
+        }
+        
+        
+    }
+    
     func getPlayerCareerStats(playerID: Int, completed: @escaping (_ playerCareerRegularStats: Dictionary<String, AnyObject>,_ playerCareerPlayoffStats: Dictionary<String, AnyObject> ) -> ()) {
         
         let urlString = "\(BASE_URL)\(PLAYER_CAREER_STATS)\(PER_MODE_GAME)\(PLAYER_ID)\(playerID)"

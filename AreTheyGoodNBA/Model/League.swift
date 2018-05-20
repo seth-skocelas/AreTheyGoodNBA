@@ -13,9 +13,14 @@ class League {
     
     let name: String = "NBA"
     private var _teams = [Team]()
+    private var _standings = [Dictionary<String, AnyObject>]()
     
     var teams: [Team] {
         return _teams
+    }
+    
+    var standings: [Dictionary<String, AnyObject>] {
+        return _standings
     }
     
     init() {
@@ -40,7 +45,14 @@ class League {
             
         }
         
-        
+        WebService.instance.leagueGroup.enter()
+        WebService.instance.getTeamStandings { (teamStandings) in
+            
+            self._standings = (teamStandings as? [Dictionary<String,AnyObject>])!
+            
+            WebService.instance.leagueGroup.leave()
+            
+        }
         
     }
 
@@ -64,6 +76,32 @@ class League {
         }
         
         return(finalTeamsArray)
+        
+    }
+    
+    func loadTeamStandings() {
+        
+        for team in teams {
+            
+            for dict in standings {
+                
+                if let teamID = dict["TeamID"] as? Int {
+                    
+                    if team.teamID == teamID {
+                        
+                        if let wins = dict["WINS"] as? Int, let losses = dict["LOSSES"] as? Int, let winPer = dict["WinPCT"] as? Double {
+                            team.loadTeamRecord(wins: wins, losses: losses, winPer: winPer)
+                        } else {
+                            print("Unable to load team standings")
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
         
     }
     
