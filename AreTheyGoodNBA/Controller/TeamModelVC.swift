@@ -13,6 +13,7 @@ class TeamModelVC: UIViewController {
     
     var currentTeam: Team?
     var statDuration = StatDuration.CurrentSeason
+    var model: TeamModel!
 
     @IBOutlet weak var teamLogo: UIImageView!
     @IBOutlet weak var teamName: UILabel!
@@ -29,6 +30,12 @@ class TeamModelVC: UIViewController {
             
             self.setTeamInfo()
             self.setTeamImage()
+            
+            if let team = self.currentTeam {
+                
+                self.model = TeamModel(team: team, statDuration: self.statDuration)
+                
+            }
             
         }
         

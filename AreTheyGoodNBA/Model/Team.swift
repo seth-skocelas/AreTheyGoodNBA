@@ -283,8 +283,10 @@ class Team {
                 self._currentRegularSeasonAdvStats = AdvStats(classType: ClassType.Team, statType: measureType, statDuration: StatDuration.CurrentSeason, dict: teamStats)
                 //print("Test: \(self.currentRegularSeasonAdvStats.pace), \(self.currentRegularSeasonAdvStats.trueShooting)")
                 
+                WebService.instance.teamGroup.leave()
+                
             }
-            WebService.instance.teamGroup.leave()
+            
         }
             
         else if (measureType == MeasureType.PostAdvanced) {
