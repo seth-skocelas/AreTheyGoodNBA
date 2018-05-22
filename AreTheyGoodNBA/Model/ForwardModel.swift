@@ -81,6 +81,12 @@ class ForwardModel: PlayerModel {
     let USGThird = 0.2110
     let USGMax = 0.2890
     
+    let PTMin = 0.2201
+    let PTFirst = 0.3311
+    let PTMed = 0.3985
+    let PTThird = 0.4856
+    let PTMax = 0.6305
+    
     var optionalModel: PlayerModel!
     
     
@@ -99,6 +105,12 @@ class ForwardModel: PlayerModel {
         let tsScore = calculateHighStatScore(stat: playerRegularAdvStats.trueShooting, first: TSFirst, median: TSMed, third: TSThird)
         print("Player Stat: \(playerRegularAdvStats.trueShooting) - Player Score: \(tsScore)")
         scoreDict.updateValue(tsScore, forKey: "true shooting percentage")
+        
+        let ptMin = playerRegularTradStats.points/playerRegularTradStats.minutesPlayed
+        
+        let ptScore = calculateHighStatScore(stat: ptMin, first: PTFirst, median: PTMed, third: PTThird)
+        print("Player Stat: \(ptMin) - Player Score: \(ptScore)")
+        scoreDict.updateValue(ptScore, forKey: "points scored")
         
         let ortgScore = calculateHighStatScore(stat: playerRegularAdvStats.offRating, first: ORTGFirst, median: ORTGMed, third: ORTGThird)
         print("Player Stat: \(playerRegularAdvStats.offRating) - Player Score: \(ortgScore)")
@@ -131,11 +143,14 @@ class ForwardModel: PlayerModel {
             scoreDict.updateValue(tovScore, forKey: "turnover rate")
         }
         
-        let partOne = Double(tsScore) * 0.4
+        let partOne = Double(tsScore) * 0.25
         let partTwo = Double((ortgScore + drtgScore)/2) * 0.3
-        let partThree = Double((astScore + tovScore)/2) * 0.15
-        let partFour = Double(trbScore) * 0.15
-        statsScore = (partOne + partTwo + partThree + partFour)/3
+        let partThree = Double((astScore + tovScore)/2) * 0.125
+        let partFour = Double(trbScore) * 0.125
+        let partFive = Double(ptScore) * 0.2
+        
+        statsScore = (partOne + partTwo + partThree + partFour + partFive)/3
+        
         print ("Total score: \(statsScore)")
         
         if statsScore <= goodCutoff && !isSecondary {

@@ -15,7 +15,8 @@ class PlayerModel {
     
     var isSecondary = false
     var statsScore = 0.0
-    var result = Result.Inconclusive
+    var finalResult = Result.Inconclusive
+    var inconclusiveResult = Result.No
     var scoreDict = Dictionary<String, Int>()
     
     var testStatDuration: StatDuration = StatDuration.CurrentSeason
@@ -83,16 +84,21 @@ class PlayerModel {
         if self.inconclusiveData() == false {
                 
             if statsScore >= goodCutoff {
-                result = Result.Yes
+                finalResult = Result.Yes
             } else {
-                result = Result.No
+                finalResult = Result.No
             }
             
         } else {
-            result = Result.Inconclusive
+            
+            finalResult = Result.Inconclusive
+            
+            if statsScore >= goodCutoff {
+                inconclusiveResult = Result.Yes
+            } else {
+                inconclusiveResult = Result.No
+            }
         }
-        
-        print("\(testPlayer.playerID)\n")
         
     }
             

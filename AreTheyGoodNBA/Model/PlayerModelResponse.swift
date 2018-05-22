@@ -68,7 +68,7 @@ class PlayerModelResponse {
     
     func goodOrNotGood() -> String {
         
-        if playerModel.result == Result.Yes {
+        if playerModel.finalResult == Result.Yes || playerModel.inconclusiveResult == Result.Yes {
             return "good"
         } else {
             return "not good"

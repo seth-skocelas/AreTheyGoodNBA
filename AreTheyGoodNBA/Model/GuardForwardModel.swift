@@ -81,6 +81,12 @@ class GuardForwardModel: PlayerModel {
     let USGThird = 0.2312
     let USGMax = 0.3160
     
+    let PTMin = 0.2367
+    let PTFirst = 0.3197
+    let PTMed = 0.4555
+    let PTThird = 0.5246
+    let PTMax = 0.7708
+    
     
     override init(player: Player, statDuration: StatDuration, isSecondary: Bool) {
         
@@ -97,6 +103,12 @@ class GuardForwardModel: PlayerModel {
         let tsScore = calculateHighStatScore(stat: playerRegularAdvStats.trueShooting, first: TSFirst, median: TSMed, third: TSThird)
         print("Player Stat: \(playerRegularAdvStats.trueShooting) - Player Score: \(tsScore)")
         scoreDict.updateValue(tsScore, forKey: "true shooting percentage")
+        
+        let ptMin = playerRegularTradStats.points/playerRegularTradStats.minutesPlayed
+        
+        let ptScore = calculateHighStatScore(stat: ptMin, first: PTFirst, median: PTMed, third: PTThird)
+        print("Player Stat: \(ptMin) - Player Score: \(ptScore)")
+        scoreDict.updateValue(ptScore, forKey: "points scored")
         
         let ortgScore = calculateHighStatScore(stat: playerRegularAdvStats.offRating, first: ORTGFirst, median: ORTGMed, third: ORTGThird)
         print("Player Stat: \(playerRegularAdvStats.offRating) - Player Score: \(ortgScore)")
@@ -129,11 +141,13 @@ class GuardForwardModel: PlayerModel {
             scoreDict.updateValue(tovScore, forKey: "turnover rate")
         }
         
-        let partOne = Double(tsScore) * 0.4
+        let partOne = Double(tsScore) * 0.25
         let partTwo = Double((ortgScore + drtgScore)/2) * 0.3
-        let partThree = Double((astScore + tovScore)/2) * 0.2
+        let partThree = Double((astScore + tovScore)/2) * 0.15
         let partFour = Double(trbScore) * 0.1
-        statsScore = (partOne + partTwo + partThree + partFour)/3
+        let partFive = Double(ptScore) * 0.2
+        
+        statsScore = (partOne + partTwo + partThree + partFour + partFive)/3
         print ("Total score: \(statsScore)")
         calculateResult()
         

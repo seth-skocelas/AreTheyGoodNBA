@@ -175,9 +175,9 @@ class PlayerModelVC: UIViewController {
     
     func displayResult() {
         
-        if self.model.result == Result.Yes {
+        if self.model.finalResult == Result.Yes {
             self.answerLabel.text = "Yes"
-        } else if self.model.result == Result.No {
+        } else if self.model.finalResult == Result.No {
             self.answerLabel.text = "No"
         } else {
             self.answerLabel.text = "¯\\_(ツ)_/¯"
