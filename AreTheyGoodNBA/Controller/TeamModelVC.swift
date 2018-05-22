@@ -14,6 +14,7 @@ class TeamModelVC: UIViewController {
     var currentTeam: Team?
     var statDuration = StatDuration.CurrentSeason
     var model: TeamModel!
+    var responseBuilder: TeamModelResponse!
 
     @IBOutlet weak var teamLogo: UIImageView!
     @IBOutlet weak var teamName: UILabel!
@@ -22,6 +23,10 @@ class TeamModelVC: UIViewController {
     
     @IBOutlet weak var segment: UISegmentedControl!
     
+    @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var firstModelLine: UILabel!
+    @IBOutlet weak var secondModelLine: UILabel!
+    @IBOutlet weak var thirdModelLine: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +39,8 @@ class TeamModelVC: UIViewController {
             if let team = self.currentTeam {
                 
                 self.model = TeamModel(team: team, statDuration: self.statDuration)
-                
+                self.responseBuilder = TeamModelResponse(model: self.model)
+                self.displayResult()
             }
             
         }
@@ -125,6 +131,23 @@ class TeamModelVC: UIViewController {
                 self.teamLogo.isHidden = false
             }
             }.resume()
+        
+        
+    }
+    
+    func displayResult() {
+        
+        if self.model.result == Result.Yes {
+            self.answerLabel.text = "Yes"
+        } else if self.model.result == Result.No {
+            self.answerLabel.text = "No"
+        } else {
+            self.answerLabel.text = "¯\\_(ツ)_/¯"
+        }
+        
+        self.firstModelLine.text = responseBuilder.firstLine()
+        self.secondModelLine.text = responseBuilder.secondLine()
+        self.thirdModelLine.text = responseBuilder.thirdLine()
         
         
     }

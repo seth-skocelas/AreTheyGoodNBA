@@ -22,6 +22,9 @@ class TeamModel {
     var teamRegularTradStats: TradStats!
     var teamRegularAdvStats: AdvStats!
     
+    var winScore = 0
+    var netScore = 0
+    
     //--------
     
     let NETMin = -9.3
@@ -74,11 +77,11 @@ class TeamModel {
     func calculateScore() {
         
         
-        let winScore = calculateHighStatScore(stat: testTeam.currentWinPer, first: WINFirst, median: WINMedian, third: WINThird)
+        winScore = calculateHighStatScore(stat: testTeam.currentWinPer, first: WINFirst, median: WINMedian, third: WINThird)
         print("Team Stat: \(testTeam.currentWinPer) - Team Score: \(winScore)")
         scoreDict.updateValue(winScore, forKey: "win percentage")
         
-        let netScore = calculateHighStatScore(stat: teamRegularAdvStats.netRating, first: NETFirst, median: NETMedian, third: NETThird)
+        netScore = calculateHighStatScore(stat: teamRegularAdvStats.netRating, first: NETFirst, median: NETMedian, third: NETThird)
         print("Team Stat: \(teamRegularAdvStats.netRating) - Team Score: \(netScore)")
         scoreDict.updateValue(netScore, forKey: "net rating")
         

@@ -31,6 +31,7 @@
 		97E5286320880907006B35B5 /* GuardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5286220880907006B35B5 /* GuardModel.swift */; };
 		97E8128020ACFD9300751818 /* PlayerModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E8127F20ACFD9300751818 /* PlayerModelResponse.swift */; };
 		97E8128220B0EF9600751818 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E8128120B0EF9600751818 /* TeamModel.swift */; };
+		97E8128420B38B8D00751818 /* TeamModelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E8128320B38B8D00751818 /* TeamModelResponse.swift */; };
 		ABD77877328B2C0B9F1C3DE8 /* Pods_AreTheyGoodNBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		97E5286220880907006B35B5 /* GuardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardModel.swift; sourceTree = "<group>"; };
 		97E8127F20ACFD9300751818 /* PlayerModelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModelResponse.swift; sourceTree = "<group>"; };
 		97E8128120B0EF9600751818 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		97E8128320B38B8D00751818 /* TeamModelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModelResponse.swift; sourceTree = "<group>"; };
 		B5F0F16AEAC2983148A95498 /* Pods_AreTheyGoodNBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AreTheyGoodNBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE67E05E0859F6E3FDD034DA /* Pods-AreTheyGoodNBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AreTheyGoodNBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AreTheyGoodNBA/Pods-AreTheyGoodNBA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 				9757B97520A6BC4D004B7481 /* ForwardCenterModel.swift */,
 				97E8127F20ACFD9300751818 /* PlayerModelResponse.swift */,
 				97E8128120B0EF9600751818 /* TeamModel.swift */,
+				97E8128320B38B8D00751818 /* TeamModelResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				97A6B7B3205C7B6E00EA31E7 /* TradStats.swift in Sources */,
 				974437102050ACB6008BE29A /* MainVC.swift in Sources */,
 				97E52861208808B2006B35B5 /* PlayerModel.swift in Sources */,
+				97E8128420B38B8D00751818 /* TeamModelResponse.swift in Sources */,
 				9757B97620A6BC4D004B7481 /* ForwardCenterModel.swift in Sources */,
 				9757B97420A6B827004B7481 /* ForwardModel.swift in Sources */,
 				97E8128220B0EF9600751818 /* TeamModel.swift in Sources */,
