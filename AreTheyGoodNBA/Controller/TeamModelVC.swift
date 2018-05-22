@@ -102,6 +102,13 @@ class TeamModelVC: UIViewController {
             statDuration = StatDuration.Career
         }
         
+        if let team = self.currentTeam {
+            
+            self.model = TeamModel(team: team, statDuration: self.statDuration)
+            self.responseBuilder = TeamModelResponse(model: self.model)
+            self.displayResult()
+        }
+        
     }
     
     func setTeamImage() {

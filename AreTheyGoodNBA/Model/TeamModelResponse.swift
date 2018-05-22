@@ -59,7 +59,7 @@ class TeamModelResponse {
         if teamModel.testStatDuration == StatDuration.CurrentSeason {
             return startingString + "this regular season based on their record and net rating so far."
         } else {
-            return startingString + "based on their performance over the history of their franchise."
+            return startingString + "based on their performance over the history of the franchise."
         }
         
     }
@@ -71,6 +71,20 @@ class TeamModelResponse {
                 return "Their win percentage is \(rankString) of all 30 teams."
             }
         } else {
+            
+            if minStatScore != rankKeys[0] {
+                
+                if let rankString = rankDict[maxStatScore] {
+                    
+                    return "They are \(rankString) in \(maxStatString)"
+                    
+                }
+                
+            } else {
+                
+                return "They are among the best in all franchise stats judged by the model."
+                
+            }
 
         }
         
@@ -85,6 +99,16 @@ class TeamModelResponse {
                 return "Their net ranking is \(rankString) of all 30 teams."
             }
         } else {
+            
+            if minStatString != maxStatString {
+                
+                if let rankString = rankDict[minStatScore] {
+                    
+                    return "They are \(rankString) in \(minStatString)."
+                    
+                }
+                
+            }
             
         }
         

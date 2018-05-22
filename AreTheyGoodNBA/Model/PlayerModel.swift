@@ -11,7 +11,7 @@ import Foundation
 
 class PlayerModel {
     
-    let goodCutoff = 0.5
+    let goodCutoff = 0.4995 //fix this
     
     var isSecondary = false
     var statsScore = 0.0
