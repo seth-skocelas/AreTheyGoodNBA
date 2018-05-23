@@ -139,35 +139,35 @@ class PlayerStatsVC: UIViewController {
             errorLabel.isHidden = true
         
             gamesPlayed.text = "\(tradStats.gamesPlayed)"
-            minutesPlayed.text = "\(tradStats.minutesPlayed)"
-            threePointPercent.text = "\(tradStats.threePointPercent)"
-            fieldGoalPercent.text = "\(tradStats.fieldGoalPercent)"
-            fieldGoalsMade.text = "\(tradStats.fieldGoalPerMin)"
-            threePointsMade.text = "\(tradStats.threePointPerMin)"
-            fieldGoalAttempts.text = "\(tradStats.fieldGoalAttempts)"
-            threePointAttempts.text = "\(tradStats.threePointAttempts)"
-            points.text = "\(tradStats.points)"
-            rebounds.text = "\(tradStats.rebounds)"
-            assists.text = "\(tradStats.assists)"
-            turnovers.text = "\(tradStats.turnovers)"
+            minutesPlayed.text = "\(tradStats.minutesPlayed.oneDecimalString)"
+            threePointPercent.text = "\(tradStats.threePointPercent.threeDecimalString)"
+            fieldGoalPercent.text = "\(tradStats.fieldGoalPercent.threeDecimalString)"
+            fieldGoalsMade.text = "\(tradStats.fieldGoalPerMin.threeDecimalString)"
+            threePointsMade.text = "\(tradStats.threePointPerMin.oneDecimalString)"
+            fieldGoalAttempts.text = "\(tradStats.fieldGoalAttempts.oneDecimalString)"
+            threePointAttempts.text = "\(tradStats.threePointAttempts.oneDecimalString)"
+            points.text = "\(tradStats.points.oneDecimalString)"
+            rebounds.text = "\(tradStats.rebounds.oneDecimalString)"
+            assists.text = "\(tradStats.assists.oneDecimalString)"
+            turnovers.text = "\(tradStats.turnovers.oneDecimalString)"
             
             if statDuration == StatDuration.CurrentSeason {
                 plusMinus.isHidden = false
                 plusMinusLabel.isHidden = false
-                plusMinus.text = "\(tradStats.plusMinus)"
+                plusMinus.text = "\(tradStats.plusMinus.oneDecimalString)"
             } else {
                 plusMinus.isHidden = true
                 plusMinusLabel.isHidden = true
             }
             
-            offRating.text = "\(advStats.offRating)"
-            defRating.text = "\(advStats.defRating)"
-            netRating.text = "\(advStats.netRating)"
-            usage.text = "\(advStats.usage)"
-            effectiveFG.text = "\(advStats.effectiveFG)"
-            trueShooting.text = "\(advStats.trueShooting)"
-            pace.text = "\(advStats.pace)"
-            pie.text = "\(advStats.PIE)"
+            offRating.text = "\(advStats.offRating.oneDecimalString)"
+            defRating.text = "\(advStats.defRating.oneDecimalString)"
+            netRating.text = "\(advStats.netRating.oneDecimalString)"
+            usage.text = "\(advStats.usage.threeDecimalString)"
+            effectiveFG.text = "\(advStats.effectiveFG.threeDecimalString)"
+            trueShooting.text = "\(advStats.trueShooting.threeDecimalString)"
+            pace.text = "\(advStats.pace.threeDecimalString)"
+            pie.text = "\(advStats.PIE.threeDecimalString)"
             
             statsStackView.isHidden = false
         
