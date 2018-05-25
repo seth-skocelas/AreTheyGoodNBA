@@ -14,11 +14,14 @@ class TeamStatsVC: UIViewController {
     var currentTeam: Team?
     var statDuration: StatDuration?
     var teamStatsTuple: TeamStatsTuple?
+
     
     @IBOutlet weak var teamLogo: UIImageView!
     @IBOutlet weak var teamName: UILabel!
-    @IBOutlet weak var startYear: UILabel!
-    @IBOutlet weak var gamesPlayed: UILabel!
+    @IBOutlet weak var firstInfoLabel: UILabel!
+    @IBOutlet weak var firstInfoValue: UILabel!
+    @IBOutlet weak var secondInfoLabel: UILabel!
+    @IBOutlet weak var secondInfoValue: UILabel!
     
     @IBOutlet weak var measureTypeSegment: UISegmentedControl!
     
@@ -89,6 +92,7 @@ class TeamStatsVC: UIViewController {
     }
     
     @IBAction func segmentChanged(_ sender: Any) {
+        setTeamInfo()
         setTeamSeasonStats()
     }
     
@@ -98,12 +102,30 @@ class TeamStatsVC: UIViewController {
             teamName.text = text
         }
         
-        if let text = currentTeam?.startYear {
-            startYear.text = text
-        }
-        
-        if let year = currentTeam?.gamesPlayed {
-            gamesPlayed.text = "\(year)"
+        if statDuration == StatDuration.Career {
+            
+            if let text = currentTeam?.startYear {
+                firstInfoLabel.text = "Start Year:"
+                firstInfoValue.text = text
+            }
+            
+            if let number = currentTeam?.gamesPlayed {
+                secondInfoLabel.text = "Games Played:"
+                secondInfoValue.text = "\(number)"
+            }
+            
+        } else {
+            
+            if let wins = currentTeam?.currentWins, let losses = currentTeam?.currentLosses {
+                firstInfoLabel.text = "Win/Loss:"
+                firstInfoValue.text = "\(wins)-\(losses)"
+            }
+            
+            if let number = currentTeam?.currentRegularSeasonAdvStats.netRating {
+                secondInfoLabel.text = "Net Rating:"
+                secondInfoValue.text = number.oneDecimalString
+            }
+            
         }
         
     }

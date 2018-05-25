@@ -146,8 +146,8 @@
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Year:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCf-oI-iPN">
-                                                <rect key="frame" x="91" y="37.5" width="80.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Win/Loss:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCf-oI-iPN">
+                                                <rect key="frame" x="91" y="37.5" width="75" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -158,8 +158,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Games Played:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Inb-tJ-AB3">
-                                                <rect key="frame" x="91" y="64" width="114" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Net Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Inb-tJ-AB3">
+                                                <rect key="frame" x="91" y="64" width="86" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -301,11 +301,13 @@
                     </view>
                     <connections>
                         <outlet property="answerLabel" destination="5Wk-aW-iIc" id="e6D-9b-XWe"/>
+                        <outlet property="firstInfoLabel" destination="lCf-oI-iPN" id="DHn-37-s0Z"/>
+                        <outlet property="firstInfoValue" destination="AXU-oD-w7j" id="ZdF-fp-J9K"/>
                         <outlet property="firstModelLine" destination="53q-h4-rmk" id="p34-St-rky"/>
-                        <outlet property="gamesPlayed" destination="shF-EZ-pTO" id="fLu-iy-WCK"/>
+                        <outlet property="secondInfoLabel" destination="Inb-tJ-AB3" id="idX-E2-DgB"/>
+                        <outlet property="secondInfoValue" destination="shF-EZ-pTO" id="xrJ-oa-HaW"/>
                         <outlet property="secondModelLine" destination="c3I-Fe-R6D" id="fYR-24-sRl"/>
                         <outlet property="segment" destination="qPl-oQ-aFH" id="8qI-65-iCf"/>
-                        <outlet property="startYear" destination="AXU-oD-w7j" id="Yx9-LL-4cW"/>
                         <outlet property="teamLogo" destination="dJg-J8-Nng" id="Ifs-eY-uFM"/>
                         <outlet property="teamName" destination="suy-jf-6dL" id="RKQ-8j-tlU"/>
                         <outlet property="thirdModelLine" destination="w8E-Iq-UcK" id="F4P-aR-PuD"/>
@@ -995,8 +997,9 @@
                         <outlet property="fieldGoalAttempts" destination="BFN-d6-Jak" id="Jq5-4G-B2m"/>
                         <outlet property="fieldGoalPercent" destination="BXM-Iy-bsU" id="0DA-Pf-7Iu"/>
                         <outlet property="fieldGoalsMade" destination="h4D-yx-KEZ" id="eJs-3I-c4E"/>
+                        <outlet property="firstInfoLabel" destination="ieu-Wh-aal" id="pzM-c4-Fbd"/>
+                        <outlet property="firstInfoValue" destination="XuV-qD-xh6" id="kmf-Ul-0LG"/>
                         <outlet property="franchiseStackView" destination="xv3-dM-gKZ" id="Nmr-K0-r6c"/>
-                        <outlet property="gamesPlayed" destination="oCf-l1-dvI" id="bkp-fF-rBk"/>
                         <outlet property="leagueTitles" destination="gmf-aM-YR2" id="FiF-f8-grN"/>
                         <outlet property="losses" destination="Tv1-Hp-f3g" id="muh-nl-dfb"/>
                         <outlet property="measureTypeSegment" destination="pp1-SW-ao9" id="hFN-hy-Vqy"/>
@@ -1010,7 +1013,8 @@
                         <outlet property="points" destination="ppu-9u-ahz" id="gvk-b8-d2E"/>
                         <outlet property="rebounds" destination="o7Q-vh-QZ5" id="3ja-1w-HWA"/>
                         <outlet property="regularSeasonStackView" destination="IEl-YE-JXw" id="03o-pZ-nMK"/>
-                        <outlet property="startYear" destination="XuV-qD-xh6" id="gd5-1q-sk8"/>
+                        <outlet property="secondInfoLabel" destination="x0N-go-ugJ" id="k1E-Hb-CWx"/>
+                        <outlet property="secondInfoValue" destination="oCf-l1-dvI" id="V0C-gw-AOl"/>
                         <outlet property="teamLogo" destination="x5o-KY-sHa" id="9AP-A5-81X"/>
                         <outlet property="teamName" destination="rs0-nh-ZzL" id="vRl-ub-5FN"/>
                         <outlet property="threePointAttempts" destination="8JW-rz-hk9" id="xM6-ej-LYy"/>

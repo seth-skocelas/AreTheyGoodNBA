@@ -18,8 +18,11 @@ class TeamModelVC: UIViewController {
 
     @IBOutlet weak var teamLogo: UIImageView!
     @IBOutlet weak var teamName: UILabel!
-    @IBOutlet weak var startYear: UILabel!
-    @IBOutlet weak var gamesPlayed: UILabel!
+    @IBOutlet weak var firstInfoLabel: UILabel!
+    @IBOutlet weak var firstInfoValue: UILabel!
+    @IBOutlet weak var secondInfoLabel: UILabel!
+    @IBOutlet weak var secondInfoValue: UILabel!
+
     
     @IBOutlet weak var segment: UISegmentedControl!
     
@@ -76,12 +79,30 @@ class TeamModelVC: UIViewController {
             teamName.text = text
         }
         
-        if let text = currentTeam?.startYear {
-            startYear.text = text
-        }
-        
-        if let number = currentTeam?.gamesPlayed {
-            gamesPlayed.text = "\(number)"
+        if statDuration == StatDuration.Career {
+            
+            if let text = currentTeam?.startYear {
+                firstInfoLabel.text = "Start Year:"
+                firstInfoValue.text = text
+            }
+            
+            if let number = currentTeam?.gamesPlayed {
+                secondInfoLabel.text = "Games Played:"
+                secondInfoValue.text = "\(number)"
+            }
+            
+        } else {
+            
+            if let wins = currentTeam?.currentWins, let losses = currentTeam?.currentLosses {
+                firstInfoLabel.text = "Win/Loss:"
+                firstInfoValue.text = "\(wins)-\(losses)"
+            }
+            
+            if let number = currentTeam?.currentRegularSeasonAdvStats.netRating {
+                secondInfoLabel.text = "Net Rating:"
+                secondInfoValue.text = number.oneDecimalString
+            }
+            
         }
         
     }
@@ -104,6 +125,7 @@ class TeamModelVC: UIViewController {
         
         if let team = self.currentTeam {
             
+            self.setTeamInfo()
             self.model = TeamModel(team: team, statDuration: self.statDuration)
             self.responseBuilder = TeamModelResponse(model: self.model)
             self.displayResult()
