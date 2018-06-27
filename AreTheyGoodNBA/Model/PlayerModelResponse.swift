@@ -138,7 +138,7 @@ class PlayerModelResponse {
             
         }
 
-        return ""
+        return " "
         
     }
     
