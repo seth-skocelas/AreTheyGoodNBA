@@ -109,7 +109,7 @@ class PlayerModelResponse {
         if playerModel.inconclusiveData() {
             
             if !(tradStats.isEmpty) || !(advStats.isEmpty) {
-                return "If he was judged by the model, it would have determined he was \(goodOrNotGood()) based on his production."
+                return "The model would have determined he was \(goodOrNotGood()) based on his production."
             }
             
             return ""
