@@ -31,6 +31,8 @@ class MainVC: UIViewController {
         playerPicker.delegate = self
         playerPicker.dataSource = self
         
+        createPlayerStatsCSV()
+        
         createLeague()
         
         //2544 = Lebron
@@ -85,6 +87,7 @@ class MainVC: UIViewController {
                 
             }
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -116,6 +119,21 @@ class MainVC: UIViewController {
             
         }
         
+    }
+    
+    func createPlayerStatsCSV() {
+        
+        let fileName = "PlayerStats.csv"
+        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        
+        let header = "Player Name\n"
+        
+        do {
+            try header.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            print("Failed to create file")
+            print("\(error)")
+        }
     }
     
     @IBAction func analyzeTeamPressed(_ sender: Any) {

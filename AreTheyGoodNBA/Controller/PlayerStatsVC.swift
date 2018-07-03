@@ -68,6 +68,7 @@ class PlayerStatsVC: UIViewController {
             self.setPlayerInfo()
             self.setPlayerStats()
             self.setPlayerImage()
+            
         }
         
     }

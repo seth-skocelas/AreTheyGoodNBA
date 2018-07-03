@@ -47,6 +47,8 @@ class PlayerModelVC: UIViewController {
                 self.createModel(player: player)
                 self.responseBuilder = PlayerModelResponse(model: self.model)
                 self.displayResult()
+                
+                player.exportStats()
             }
             
         }

@@ -48,6 +48,11 @@ class TeamModelVC: UIViewController {
             
         }
         
+        //this is temporary in order to export the players to a .CSV on the device. I might add a separate button for this on the home page in the future
+        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("PlayerStats.csv")
+        let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+        self.present(vc, animated: true, completion: nil)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
