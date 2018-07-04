@@ -48,7 +48,7 @@ class PlayerModelVC: UIViewController {
                 self.responseBuilder = PlayerModelResponse(model: self.model)
                 self.displayResult()
                 
-                self.model.exportStats(statDuration: StatDuration.CurrentSeason)
+                //self.model.exportStats(statDuration: StatDuration.CurrentSeason)
                 
             }
             
@@ -143,7 +143,7 @@ class PlayerModelVC: UIViewController {
         if let player = self.currentPlayer {
             self.createModel(player: player)
             self.responseBuilder = PlayerModelResponse(model: self.model)
-            self.model.exportStats(statDuration: statDuration)
+            //self.model.exportStats(statDuration: statDuration)
         }
         
         displayResult()

@@ -31,7 +31,7 @@ class MainVC: UIViewController {
         playerPicker.delegate = self
         playerPicker.dataSource = self
         
-        createPlayerStatsCSV()
+        //createPlayerStatsCSV()
         
         createLeague()
         
