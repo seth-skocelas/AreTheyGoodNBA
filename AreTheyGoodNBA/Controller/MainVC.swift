@@ -123,13 +123,23 @@ class MainVC: UIViewController {
     
     func createPlayerStatsCSV() {
         
-        let fileName = "PlayerStats.csv"
-        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        let currentFileName = "CurrentPlayerStats.csv"
+        let currentPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(currentFileName)
         
-        let header = "Player Name\n"
+        let careerFileName = "CareerPlayerStats.csv"
+        let careerPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(careerFileName)
+        
+        let header = "ID,Player Name,Team,Years,Position,GamesPlayed,MinutesPlayed,3PT%,3PTM,3PTA,FG%,FGM,FGA,PTS,REB,AST,TO,+/-,OffRating,DefRating,NetRating,EFG%,TS%,USG,PACE,PIE,Inconclusive,Score\n"
         
         do {
-            try header.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+            try header.write(to: currentPath!, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            print("Failed to create file")
+            print("\(error)")
+        }
+        
+        do {
+            try header.write(to: careerPath!, atomically: true, encoding: String.Encoding.utf8)
         } catch {
             print("Failed to create file")
             print("\(error)")

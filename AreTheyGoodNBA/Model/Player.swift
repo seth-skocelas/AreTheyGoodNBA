@@ -380,20 +380,6 @@ class Player {
         
     }
     
-    func exportStats() {
-        
-        let fileName = "PlayerStats.csv"
-        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        
-        let stats = "\(name)\n"
-        
-        do {
-            try stats.append(to: path!)
-        } catch {
-            print("Failed to create file")
-            print("\(error)")
-        }
-        
-    }
+
     
 }
