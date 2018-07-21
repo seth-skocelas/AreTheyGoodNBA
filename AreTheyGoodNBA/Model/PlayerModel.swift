@@ -11,7 +11,10 @@ import Foundation
 
 class PlayerModel {
     
-    let goodCutoff = 0.4995 //fix this
+    //default good/notgood score determination. This will be updated on creation based on CurrentSeason/Career
+    
+    var goodCutoff = 0.4995
+    
     
     var isSecondary = false
     var statsScore = 0.0
@@ -36,10 +39,16 @@ class PlayerModel {
             playerRegularTradStats = self.testPlayer.currentRegularSeasonTradStats
             playerRegularAdvStats = self.testPlayer.currentRegularSeasonAdvStats
             
+            //Season-end average score for all non-inconclusive players in 17-18 season was .443
+            goodCutoff = 0.44
+            
         } else if statDuration == StatDuration.Career {
             
             playerRegularTradStats = self.testPlayer.careerRegularSeasonTradStats
             playerRegularAdvStats = self.testPlayer.careerRegularSeasonAdvStats
+            
+            //Season-end average career score for all non-inconclusive players in 17-18 season was .382
+            goodCutoff = 0.38
             
         }
         
