@@ -113,25 +113,34 @@ class League {
         switch seasonString {
             
             case "1996-97","1997-98","1998-99","2000-01":
+                _teams[2].teamName = "New Jersey Nets"
                 _teams[14].teamName = "Vancouver Grizzlies"
-                _teams.remove(at: 18)
                 _teams[20].teamName = "Seattle SuperSonics"
+                _teams.remove(at: 18)
                 break
             case "2001-02":
-                _teams.remove(at: 18)
+                _teams[2].teamName = "New Jersey Nets"
                 _teams[20].teamName = "Seattle SuperSonics"
+                _teams.remove(at: 18)
                 break
             case "2002-03","2003-04":
+                _teams[2].teamName = "New Jersey Nets"
                 _teams[18].teamName = "New Orleans Hornets"
-                _teams.remove(at: 3)
                 _teams[20].teamName = "Seattle SuperSonics"
+                _teams.remove(at: 3)
                 break
             case "2004-05","2005-06","2006-07","2007-08":
+                _teams[2].teamName = "New Jersey Nets"
                 _teams[3].teamName = "Charlotte Bobcats"
                 _teams[18].teamName = "New Orleans Hornets"
                 _teams[20].teamName = "Seattle SuperSonics"
                 break
-            case "2008-09","2009-10","2010-11","2011-12","2012-13":
+            case "2008-09","2009-10","2010-11","2011-12":
+                _teams[2].teamName = "New Jersey Nets"
+                _teams[3].teamName = "Charlotte Bobcats"
+                _teams[18].teamName = "New Orleans Hornets"
+                break
+            case "2012-13":
                 _teams[3].teamName = "Charlotte Bobcats"
                 _teams[18].teamName = "New Orleans Hornets"
                 break
