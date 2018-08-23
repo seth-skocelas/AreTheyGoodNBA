@@ -38,10 +38,15 @@ class Team {
     private var _teamRoster = [Player]()
     
     var teamName: String {
-        if _teamName == nil {
-            return ""
+        get {
+            if _teamName == nil {
+                return ""
+            }
+            return _teamName
+            }
+        set (newName) {
+            _teamName = newName
         }
-        return _teamName
     }
     
     var teamAbbreviation: String {

@@ -13,7 +13,7 @@
 		9731443F2066E2E400D357AE /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9731443E2066E2E400D357AE /* League.swift */; };
 		9736442C20B6244B008EF088 /* Double-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9736442B20B6244B008EF088 /* Double-Extension.swift */; };
 		9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370D2050ACB6008BE29A /* AppDelegate.swift */; };
-		974437102050ACB6008BE29A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370F2050ACB6008BE29A /* MainVC.swift */; };
+		974437102050ACB6008BE29A /* SelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9744370F2050ACB6008BE29A /* SelectVC.swift */; };
 		974437132050ACB6008BE29A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974437112050ACB6008BE29A /* Main.storyboard */; };
 		974437152050ACB6008BE29A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 974437142050ACB6008BE29A /* Assets.xcassets */; };
 		974437182050ACB6008BE29A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974437162050ACB6008BE29A /* LaunchScreen.storyboard */; };
@@ -23,6 +23,7 @@
 		9757B97220A6B3BA004B7481 /* GuardForwardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9757B97120A6B3BA004B7481 /* GuardForwardModel.swift */; };
 		9757B97420A6B827004B7481 /* ForwardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9757B97320A6B827004B7481 /* ForwardModel.swift */; };
 		9757B97620A6BC4D004B7481 /* ForwardCenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9757B97520A6BC4D004B7481 /* ForwardCenterModel.swift */; };
+		97753B552127645300BCC1D0 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97753B542127645300BCC1D0 /* MainVC.swift */; };
 		977658AB2075B31300E98528 /* PlayerModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977658AA2075B31300E98528 /* PlayerModelVC.swift */; };
 		977658AD2075B32D00E98528 /* TeamModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977658AC2075B32D00E98528 /* TeamModelVC.swift */; };
 		97A6B7AF205B7DCB00EA31E7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7AE205B7DCB00EA31E7 /* Player.swift */; };
@@ -47,7 +48,7 @@
 		9736442B20B6244B008EF088 /* Double-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double-Extension.swift"; sourceTree = "<group>"; };
 		9744370A2050ACB6008BE29A /* AreTheyGoodNBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AreTheyGoodNBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9744370D2050ACB6008BE29A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9744370F2050ACB6008BE29A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		9744370F2050ACB6008BE29A /* SelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVC.swift; sourceTree = "<group>"; };
 		974437122050ACB6008BE29A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		974437142050ACB6008BE29A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		974437172050ACB6008BE29A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		9757B97120A6B3BA004B7481 /* GuardForwardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardForwardModel.swift; sourceTree = "<group>"; };
 		9757B97320A6B827004B7481 /* ForwardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardModel.swift; sourceTree = "<group>"; };
 		9757B97520A6BC4D004B7481 /* ForwardCenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardCenterModel.swift; sourceTree = "<group>"; };
+		97753B542127645300BCC1D0 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		977658AA2075B31300E98528 /* PlayerModelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModelVC.swift; sourceTree = "<group>"; };
 		977658AC2075B32D00E98528 /* TeamModelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModelVC.swift; sourceTree = "<group>"; };
 		97A6B7AE205B7DCB00EA31E7 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -170,7 +172,8 @@
 		974437212054A7CB008BE29A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9744370F2050ACB6008BE29A /* MainVC.swift */,
+				97753B542127645300BCC1D0 /* MainVC.swift */,
+				9744370F2050ACB6008BE29A /* SelectVC.swift */,
 				97261E0520716DAD00316F52 /* PlayerStatsVC.swift */,
 				97261E0720716E9C00316F52 /* TeamStatsVC.swift */,
 				977658AA2075B31300E98528 /* PlayerModelVC.swift */,
@@ -338,7 +341,7 @@
 				97261E0620716DAD00316F52 /* PlayerStatsVC.swift in Sources */,
 				9731443F2066E2E400D357AE /* League.swift in Sources */,
 				97A6B7B3205C7B6E00EA31E7 /* TradStats.swift in Sources */,
-				974437102050ACB6008BE29A /* MainVC.swift in Sources */,
+				974437102050ACB6008BE29A /* SelectVC.swift in Sources */,
 				97E52861208808B2006B35B5 /* PlayerModel.swift in Sources */,
 				97E8128420B38B8D00751818 /* TeamModelResponse.swift in Sources */,
 				9757B97620A6BC4D004B7481 /* ForwardCenterModel.swift in Sources */,
@@ -355,6 +358,7 @@
 				9757B97020A6661F004B7481 /* CenterModel.swift in Sources */,
 				97E8128020ACFD9300751818 /* PlayerModelResponse.swift in Sources */,
 				974437242054A9B1008BE29A /* Constants.swift in Sources */,
+				97753B552127645300BCC1D0 /* MainVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

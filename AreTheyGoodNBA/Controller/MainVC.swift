@@ -10,26 +10,66 @@ import UIKit
 
 class MainVC: UIViewController {
 
+    @IBOutlet weak var seasonPicker: UIPickerView!
+    
+    var selectedSeason = SEASON_YEAR_CURRENT
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        seasonPicker.dataSource = self
+        seasonPicker.delegate = self
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "toSelect" {
+            if let destination = segue.destination as? SelectVC {
+                if let season = sender as? String {
+                    destination.selectedSeason = season
+                }
+            }
+        }
+        
+        
     }
-    */
+    
+    @IBAction func selectPressed(_ sender: Any) {
+        
+        performSegue(withIdentifier: "toSelect", sender: selectedSeason)
+        
+    }
+    
+}
 
+
+extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        var attributedString = NSAttributedString()
+        attributedString = NSAttributedString(string: seasonSelectArray[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
+        return attributedString
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return seasonSelectArray.count
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[row])&"
+        selectedSeason = seasonSelectArray[row]
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
 }

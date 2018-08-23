@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="opK-fh-lJ7">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,27 +11,122 @@
     </dependencies>
     <scenes>
         <!--MainVC-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="uUS-7Y-KUB">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="AreTheyGoodNBA" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="opK-fh-lJ7" customClass="MainVC" customModule="AreTheyGoodNBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xxi-US-AtP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-FJ-KCM">
-                                <rect key="frame" x="0.0" y="25" width="320" height="533"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZEI-TZ-Zqv">
+                                <rect key="frame" x="0.0" y="30" width="320" height="528"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AreTheyGood? NBA Edition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPC-q1-30c">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AreTheyGood? NBA Edition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFV-Ap-wNI">
                                         <rect key="frame" x="23.5" y="0.0" width="273.5" height="26"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="26" id="Y9S-46-yyo"/>
+                                            <constraint firstAttribute="height" constant="26" id="oY5-ns-hOf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mds-hP-Ghl">
+                                        <rect key="frame" x="0.0" y="148.5" width="320" height="227"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Season:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6a-v2-4DQ">
+                                                <rect key="frame" x="107.5" y="0.0" width="105.5" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="7db-UJ-4Pu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVu-W5-Iah">
+                                                <rect key="frame" x="0.0" y="27" width="320" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="led-nO-zri"/>
+                                                </constraints>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="r05-8c-Pzg">
+                                        <rect key="frame" x="15" y="498" width="290" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YU0-NH-evK">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="50H-PK-gS5"/>
+                                                    <constraint firstAttribute="height" constant="30" id="cLn-Kh-OEF"/>
+                                                </constraints>
+                                                <state key="normal" title="App Info">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="analyzeTeamPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l0Y-r2-GCq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyE-zj-Lb4">
+                                                <rect key="frame" x="170" y="0.0" width="120" height="30"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="XAU-bE-pIs"/>
+                                                    <constraint firstAttribute="width" constant="120" id="ySb-Gt-3Yi"/>
+                                                </constraints>
+                                                <state key="normal" title="Select">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectPressed:" destination="opK-fh-lJ7" eventType="touchUpInside" id="gaD-S4-PLo"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XB0-uW-zbQ" firstAttribute="bottom" secondItem="ZEI-TZ-Zqv" secondAttribute="bottom" constant="10" id="0vE-EF-fxo"/>
+                            <constraint firstItem="ZEI-TZ-Zqv" firstAttribute="top" secondItem="XB0-uW-zbQ" secondAttribute="top" constant="10" id="I5W-gs-AKM"/>
+                            <constraint firstAttribute="trailing" secondItem="ZEI-TZ-Zqv" secondAttribute="trailing" id="QTd-Au-OYg"/>
+                            <constraint firstItem="ZEI-TZ-Zqv" firstAttribute="leading" secondItem="XB0-uW-zbQ" secondAttribute="leading" id="hIY-ZP-Kz2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XB0-uW-zbQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="seasonPicker" destination="XVu-W5-Iah" id="UlM-HJ-x76"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toSelect" id="IiI-at-ISa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v8x-HE-QFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1172" y="-96"/>
+        </scene>
+        <!--SelectVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SelectVC" customModule="AreTheyGoodNBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLK-yg-Ddj">
+                                <rect key="frame" x="16" y="28" width="51" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="wY4-hW-uLx"/>
+                                </constraints>
+                                <state key="normal" title="Season"/>
+                                <connections>
+                                    <action selector="seasonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RyZ-wQ-id5"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-FJ-KCM">
+                                <rect key="frame" x="0.0" y="78" width="320" height="480"/>
+                                <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Team:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVY-uM-ndg">
-                                        <rect key="frame" x="114" y="34.5" width="92" height="17"/>
+                                        <rect key="frame" x="114" y="0.0" width="92" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="CeL-ef-Kcf"/>
                                         </constraints>
@@ -40,13 +135,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xV-CK-5Xj">
-                                        <rect key="frame" x="0.0" y="60" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="21" width="320" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="yFV-0q-j0h"/>
                                         </constraints>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Player:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfz-fv-h4W">
-                                        <rect key="frame" x="111.5" y="269" width="97.5" height="17"/>
+                                        <rect key="frame" x="111.5" y="225" width="97.5" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="Gvm-Xh-EE9"/>
                                         </constraints>
@@ -55,18 +150,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7z-ug-EG9">
-                                        <rect key="frame" x="0.0" y="294.5" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="246" width="320" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="YjH-Aw-Xo2"/>
                                         </constraints>
                                     </pickerView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ykf-A8-2cM">
-                                        <rect key="frame" x="21.5" y="503" width="277" height="30"/>
+                                        <rect key="frame" x="15" y="450" width="290" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2J-Dm-ah7">
-                                                <rect key="frame" x="0.0" y="0.0" width="111" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="Wzz-wK-Pw9"/>
                                                     <constraint firstAttribute="height" constant="30" id="m5b-jB-ocC"/>
                                                 </constraints>
                                                 <state key="normal" title="  Analyze Team  ">
@@ -77,10 +173,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iO7-9S-s8I">
-                                                <rect key="frame" x="161" y="0.0" width="116" height="30"/>
+                                                <rect key="frame" x="170" y="0.0" width="120" height="30"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Px0-FU-tc5"/>
+                                                    <constraint firstAttribute="width" constant="120" id="yu9-vQ-57X"/>
                                                 </constraints>
                                                 <state key="normal" title="  Analyze Player  ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,19 +190,30 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0by-UB-sZG">
+                                <rect key="frame" x="129" y="33.5" width="63" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="qGS-FJ-KCM" firstAttribute="top" secondItem="iLK-yg-Ddj" secondAttribute="bottom" constant="20" id="DP7-y6-Nt5"/>
+                            <constraint firstItem="0by-UB-sZG" firstAttribute="centerY" secondItem="iLK-yg-Ddj" secondAttribute="centerY" id="F8X-ZF-Iwa"/>
+                            <constraint firstItem="iLK-yg-Ddj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="LoO-h0-9SZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qGS-FJ-KCM" secondAttribute="bottom" constant="10" id="Y0h-CK-xUg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qGS-FJ-KCM" secondAttribute="trailing" id="dQh-Rv-qlG"/>
-                            <constraint firstItem="qGS-FJ-KCM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="mH1-nk-VZ7"/>
                             <constraint firstItem="qGS-FJ-KCM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t08-4e-E3e"/>
+                            <constraint firstItem="0by-UB-sZG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xJy-Yz-6H7"/>
+                            <constraint firstItem="iLK-yg-Ddj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="xsu-Tb-1jj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="playerButton" destination="iO7-9S-s8I" id="5HU-iu-wpF"/>
                         <outlet property="playerPicker" destination="v7z-ug-EG9" id="YB2-GD-mb0"/>
+                        <outlet property="seasonLabel" destination="0by-UB-sZG" id="WRt-MR-wrO"/>
                         <outlet property="teamButton" destination="f2J-Dm-ah7" id="7Yc-jn-I4L"/>
                         <outlet property="teamPicker" destination="2xV-CK-5Xj" id="nw6-E3-5rs"/>
                         <segue destination="JIg-1S-Brz" kind="show" identifier="toPlayerModel" id="sg8-rB-jNl"/>
@@ -1101,7 +1209,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2l-Sj-UtS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="-0.5" width="320" height="568.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZr-ap-GhP">
                                         <rect key="frame" x="15.5" y="20" width="41" height="30"/>

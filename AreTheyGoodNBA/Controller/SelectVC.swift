@@ -11,6 +11,7 @@ import UIKit
 class SelectVC: UIViewController {
     
     var league: League!
+    var selectedSeason: String?
     var selectedTeam = Team()
     var selectedPlayer = Player()
     var currentPlayerIndex = 0
@@ -19,11 +20,16 @@ class SelectVC: UIViewController {
     @IBOutlet weak var playerPicker: UIPickerView!
     @IBOutlet weak var playerButton: UIButton!
     @IBOutlet weak var teamButton: UIButton!
+    @IBOutlet weak var seasonLabel: UILabel!
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        if selectedSeason != nil {
+            seasonLabel.text = selectedSeason
+        }
         
         teamPicker.delegate = self
         teamPicker.dataSource = self
@@ -48,9 +54,12 @@ class SelectVC: UIViewController {
             
             if self.league.teams.count != 0 {
                 
+                self.league.adjustTeamListBySeason(seasonString: self.selectedSeason!)
+                
                 self.teamPicker.reloadAllComponents()
                 
                 self.league.loadTeamStandings()
+                
                 
                 self.selectedTeam = self.league.teams[0]
                 self.league.teams[0].getTeamRoster()
@@ -172,7 +181,10 @@ class SelectVC: UIViewController {
         
     }
     
-
+    @IBAction func seasonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension SelectVC: UIPickerViewDelegate, UIPickerViewDataSource {

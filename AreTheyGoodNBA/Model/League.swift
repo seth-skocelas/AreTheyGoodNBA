@@ -36,7 +36,7 @@ class League {
             for (index,team) in finalTeamsArray.enumerated() {
                 
                 tempTeam = Team(teamDict: team, index: index)
-                //print(tempTeam.teamName + " has won \(tempTeam.leagueTitles) titles.")
+                //print("\(tempTeam.teamID) " + " has won \(tempTeam.leagueTitles) titles.")
                 self._teams.append(tempTeam)
                 
             }
@@ -105,4 +105,44 @@ class League {
         
     }
     
+    func adjustTeamListBySeason(seasonString: String) {
+        
+        _teams = teams.sorted(by: { $0.teamName < $1.teamName })
+        
+        
+        switch seasonString {
+            
+            case "1996-97","1997-98","1998-99","2000-01":
+                _teams[14].teamName = "Vancouver Grizzlies"
+                _teams.remove(at: 18)
+                _teams[20].teamName = "Seattle SuperSonics"
+                break
+            case "2001-02":
+                _teams.remove(at: 18)
+                _teams[20].teamName = "Seattle SuperSonics"
+                break
+            case "2002-03","2003-04":
+                _teams[18].teamName = "New Orleans Hornets"
+                _teams.remove(at: 3)
+                _teams[20].teamName = "Seattle SuperSonics"
+                break
+            case "2004-05","2005-06","2006-07","2007-08":
+                _teams[3].teamName = "Charlotte Bobcats"
+                _teams[18].teamName = "New Orleans Hornets"
+                _teams[20].teamName = "Seattle SuperSonics"
+                break
+            case "2008-09","2009-10","2010-11","2011-12","2012-13":
+                _teams[3].teamName = "Charlotte Bobcats"
+                _teams[18].teamName = "New Orleans Hornets"
+                break
+            case "2013-14":
+                _teams[3].teamName = "Charlotte Bobcats"
+                break
+            default:
+                break
+        }
+        
+        _teams = teams.sorted(by: { $0.teamName < $1.teamName })
+    }
+ 
 }
