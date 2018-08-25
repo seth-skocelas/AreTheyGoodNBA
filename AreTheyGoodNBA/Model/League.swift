@@ -112,7 +112,14 @@ class League {
         
         switch seasonString {
             
-            case "1996-97","1997-98","1998-99","2000-01":
+            case "1996-97":
+                _teams[2].teamName = "New Jersey Nets"
+                _teams[14].teamName = "Vancouver Grizzlies"
+                _teams[20].teamName = "Seattle SuperSonics"
+                _teams[29].teamName = "Washington Bullets"
+                _teams.remove(at: 18)
+                break
+            case "1997-98","1998-99","2000-01":
                 _teams[2].teamName = "New Jersey Nets"
                 _teams[14].teamName = "Vancouver Grizzlies"
                 _teams[20].teamName = "Seattle SuperSonics"
