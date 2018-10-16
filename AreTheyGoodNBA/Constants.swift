@@ -56,7 +56,7 @@ let LAST_N_GAMES = "LastNGames=0&"
 let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
-let SEASON_YEAR_CURRENT = "2017-18"
+let SEASON_YEAR_CURRENT = "2018-19"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable
@@ -144,6 +144,7 @@ let teamAbbrevaiationArray = [
 
 let seasonSelectArray = [
     SEASON_YEAR_CURRENT,
+    "2017-18",
     "2016-17",
     "2015-16",
     "2014-15",
@@ -177,7 +178,6 @@ let specialResponseDict: [Int: String] = [
     201142: "In the summer of 2016, Kevin Durant took the hardest road. I'll let you decide.",
     101108: "He's a conference finalist. Of course he's good!",
     201935: "He's great so long as he doesn't have to carry a playoff team by himself.",
-    201599: "He'd be better if he went to Dallas. ¯\\_(ツ)_/¯",
     203507: "The Greek Freak is the future.",
     203076: "The Unibrow is one of the best players in the NBA, even if no one is watching his games.",
     201566: "Any player that averages a triple double has to be good, right?",
