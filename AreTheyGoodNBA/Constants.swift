@@ -10,7 +10,7 @@ import Foundation
 
 let BASE_URL = "https://stats.nba.com/stats/"
 let BASE_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/"
-let PICTURE_INFO_URL = "/2017/260x190/"
+let PICTURE_INFO_URL = "/\(PICTURE_YEAR)/260x190/"
 let BASE_LOGO_URL = "http://stats.nba.com/media/img/teams/logos/"
 let LOGO_INFO_URL = "_logo.svg"
 
@@ -57,6 +57,7 @@ let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
 let SEASON_YEAR_CURRENT = "2018-19"
+let PICTURE_YEAR = "2018"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable

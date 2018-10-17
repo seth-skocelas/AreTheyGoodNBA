@@ -10,6 +10,8 @@ import Foundation
 
 class Player {
     
+    var isCurrentSeason = false //add to this so that code works
+    
     private var _name: String!
     private var _playerID: Int!  //nba.com ID
     private var _teamID: Int!
