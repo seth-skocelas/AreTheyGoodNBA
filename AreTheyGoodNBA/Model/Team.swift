@@ -193,19 +193,19 @@ class Team {
         
         if teamDict.count != 0 {
         
-            _teamID = teamDict["TEAM_ID"] as! Int
+            _teamID = teamDict["TEAM_ID"] as? Int
             _teamName = "\(teamDict["TEAM_CITY"] ?? "Not" as AnyObject) \(teamDict["TEAM_NAME"] ?? "Available" as AnyObject)"
             _teamAbbreviation = teamAbbrevaiationArray[index]
-            _startYear = teamDict["START_YEAR"] as! String
-            _years = teamDict["YEARS"] as! Int
-            _gamesPlayed = teamDict["GAMES"] as! Int
-            _wins = teamDict["WINS"] as! Int
-            _losses = teamDict["LOSSES"] as! Int
-            _winPercentage = teamDict["WIN_PCT"]?.doubleValue as! Double
-            _playoffApperances = teamDict["PO_APPEARANCES"] as! Int
-            _divisionTitles = teamDict["DIV_TITLES"] as! Int
-            _conferenceTitles = teamDict["CONF_TITLES"] as! Int
-            _leagueTitles = teamDict["LEAGUE_TITLES"] as! Int
+            _startYear = teamDict["START_YEAR"] as? String
+            _years = teamDict["YEARS"] as? Int
+            _gamesPlayed = teamDict["GAMES"] as? Int
+            _wins = teamDict["WINS"] as? Int
+            _losses = teamDict["LOSSES"] as? Int
+            _winPercentage = teamDict["WIN_PCT"]?.doubleValue
+            _playoffApperances = teamDict["PO_APPEARANCES"] as? Int
+            _divisionTitles = teamDict["DIV_TITLES"] as? Int
+            _conferenceTitles = teamDict["CONF_TITLES"] as? Int
+            _leagueTitles = teamDict["LEAGUE_TITLES"] as? Int
             
         }
         

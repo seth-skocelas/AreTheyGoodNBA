@@ -138,20 +138,20 @@ class TradStats {
             self._statType = statType
             self._statDuration = statDuration
             
-            self._gamesPlayed = dict["GP"] as! Int
-            self._minutesPlayed = dict["MIN"]?.doubleValue as! Double
-            self._threePointPercent = dict["FG3_PCT"]?.doubleValue as! Double
-            self._threePointPerMin = dict["FG3M"]?.doubleValue as! Double
-            self._threePointAttempts = dict["FG3A"]?.doubleValue as! Double
-            self._fieldGoalPercent = dict["FG_PCT"]?.doubleValue as! Double
-            self._fieldGoalPerMin = dict["FGM"]?.doubleValue as! Double
-            self._fieldGoalAttempts = dict["FGA"]?.doubleValue as! Double
-            self._points = dict["PTS"]?.doubleValue as! Double
-            self._rebounds = dict["REB"]?.doubleValue as! Double
-            self._assists = dict["AST"]?.doubleValue as! Double
-            self._turnovers = dict["TOV"]?.doubleValue as! Double
+            self._gamesPlayed = dict["GP"] as? Int
+            self._minutesPlayed = dict["MIN"]?.doubleValue
+            self._threePointPercent = dict["FG3_PCT"]?.doubleValue
+            self._threePointPerMin = dict["FG3M"]?.doubleValue
+            self._threePointAttempts = dict["FG3A"]?.doubleValue
+            self._fieldGoalPercent = dict["FG_PCT"]?.doubleValue
+            self._fieldGoalPerMin = dict["FGM"]?.doubleValue
+            self._fieldGoalAttempts = dict["FGA"]?.doubleValue
+            self._points = dict["PTS"]?.doubleValue
+            self._rebounds = dict["REB"]?.doubleValue
+            self._assists = dict["AST"]?.doubleValue
+            self._turnovers = dict["TOV"]?.doubleValue
             if statDuration == StatDuration.CurrentSeason {
-                self._plusMinus = dict["PLUS_MINUS"]?.doubleValue as! Double
+                self._plusMinus = dict["PLUS_MINUS"]?.doubleValue
             }
             
         }

@@ -160,16 +160,16 @@ class Player {
     //Get data from nba.com API dictionary
     init(commonPlayerInfo: Dictionary<String, AnyObject>) {
         
-        _name = commonPlayerInfo["DISPLAY_FIRST_LAST"] as! String
-        _playerID = commonPlayerInfo["PERSON_ID"] as! Int
-        _teamID = commonPlayerInfo["TEAM_ID"] as! Int
-        _height = commonPlayerInfo["HEIGHT"] as! String
-        _weight = commonPlayerInfo["WEIGHT"] as! String
-        _yearsExperience = commonPlayerInfo["SEASON_EXP"] as! Int
-        _jerseyNumber = commonPlayerInfo["JERSEY"] as! String
-        _position = commonPlayerInfo["POSITION"] as! String
+        _name = commonPlayerInfo["DISPLAY_FIRST_LAST"] as? String
+        _playerID = commonPlayerInfo["PERSON_ID"] as? Int
+        _teamID = commonPlayerInfo["TEAM_ID"] as? Int
+        _height = commonPlayerInfo["HEIGHT"] as? String
+        _weight = commonPlayerInfo["WEIGHT"] as? String
+        _yearsExperience = commonPlayerInfo["SEASON_EXP"] as? Int
+        _jerseyNumber = commonPlayerInfo["JERSEY"] as? String
+        _position = commonPlayerInfo["POSITION"] as? String
         _currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
-        _startingYear = commonPlayerInfo["DRAFT_YEAR"] as! String
+        _startingYear = commonPlayerInfo["DRAFT_YEAR"] as? String
         
         determineModelPosition()
         
@@ -179,13 +179,13 @@ class Player {
     
     init(commonPlayerInfo: Dictionary<String, AnyObject>, fromTeamRoster: Bool) {
         
-        _name = commonPlayerInfo["PLAYER"] as! String
-        _teamID = commonPlayerInfo["TeamID"] as! Int
-        _playerID = commonPlayerInfo["PLAYER_ID"] as! Int
-        _height = commonPlayerInfo["HEIGHT"] as! String
-        _weight = commonPlayerInfo["WEIGHT"] as! String
-        _jerseyNumber = commonPlayerInfo["NUM"] as! String
-        _position = commonPlayerInfo["POSITION"] as! String
+        _name = commonPlayerInfo["PLAYER"] as? String
+        _teamID = commonPlayerInfo["TeamID"] as? Int
+        _playerID = commonPlayerInfo["PLAYER_ID"] as? Int
+        _height = commonPlayerInfo["HEIGHT"] as? String
+        _weight = commonPlayerInfo["WEIGHT"] as? String
+        _jerseyNumber = commonPlayerInfo["NUM"] as? String
+        _position = commonPlayerInfo["POSITION"] as? String
         
         determineModelPosition()
         
@@ -353,9 +353,9 @@ class Player {
             
             if commonPlayerInfo.count != 0 {
             
-                self._yearsExperience = commonPlayerInfo["SEASON_EXP"] as! Int
+                self._yearsExperience = commonPlayerInfo["SEASON_EXP"] as? Int
                 self._currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
-                self._startingYear = commonPlayerInfo["DRAFT_YEAR"] as! String
+                self._startingYear = commonPlayerInfo["DRAFT_YEAR"] as? String
                 
             }
             

@@ -97,16 +97,16 @@ class AdvStats {
             self._statType = statType
             self._statDuration = statDuration
             
-            self._offRating = dict["OFF_RATING"]?.doubleValue as! Double
-            self._defRating = dict["DEF_RATING"]?.doubleValue as! Double
-            self._netRating = dict["NET_RATING"]?.doubleValue as! Double
-            self._effectiveFG = dict["EFG_PCT"]?.doubleValue as! Double
-            self._trueShooting = dict["TS_PCT"]?.doubleValue as! Double
-            self._pace = dict["PACE"]?.doubleValue as! Double
-            self._PIE = dict["PIE"]?.doubleValue as! Double
+            self._offRating = dict["OFF_RATING"]?.doubleValue
+            self._defRating = dict["DEF_RATING"]?.doubleValue
+            self._netRating = dict["NET_RATING"]?.doubleValue
+            self._effectiveFG = dict["EFG_PCT"]?.doubleValue
+            self._trueShooting = dict["TS_PCT"]?.doubleValue
+            self._pace = dict["PACE"]?.doubleValue
+            self._PIE = dict["PIE"]?.doubleValue
             
             if classType == ClassType.Player {
-                self._usage = dict["USG_PCT"]?.doubleValue as! Double
+                self._usage = dict["USG_PCT"]?.doubleValue
             }
             
         }
