@@ -19,6 +19,7 @@
 		974437182050ACB6008BE29A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974437162050ACB6008BE29A /* LaunchScreen.storyboard */; };
 		974437242054A9B1008BE29A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974437232054A9B1008BE29A /* Constants.swift */; };
 		974437272054E930008BE29A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974437262054E930008BE29A /* WebService.swift */; };
+		974C9B6A218183B200535CAB /* AppInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974C9B69218183B200535CAB /* AppInfoVC.swift */; };
 		9757B97020A6661F004B7481 /* CenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9757B96F20A6661F004B7481 /* CenterModel.swift */; };
 		9757B97220A6B3BA004B7481 /* GuardForwardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9757B97120A6B3BA004B7481 /* GuardForwardModel.swift */; };
 		9757B97420A6B827004B7481 /* ForwardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9757B97320A6B827004B7481 /* ForwardModel.swift */; };
@@ -55,6 +56,7 @@
 		974437192050ACB6008BE29A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		974437232054A9B1008BE29A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		974437262054E930008BE29A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		974C9B69218183B200535CAB /* AppInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoVC.swift; sourceTree = "<group>"; };
 		9757B96F20A6661F004B7481 /* CenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterModel.swift; sourceTree = "<group>"; };
 		9757B97120A6B3BA004B7481 /* GuardForwardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardForwardModel.swift; sourceTree = "<group>"; };
 		9757B97320A6B827004B7481 /* ForwardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardModel.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				97261E0720716E9C00316F52 /* TeamStatsVC.swift */,
 				977658AA2075B31300E98528 /* PlayerModelVC.swift */,
 				977658AC2075B32D00E98528 /* TeamModelVC.swift */,
+				974C9B69218183B200535CAB /* AppInfoVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			files = (
 				97E5286320880907006B35B5 /* GuardModel.swift in Sources */,
 				97261E0820716E9C00316F52 /* TeamStatsVC.swift in Sources */,
+				974C9B6A218183B200535CAB /* AppInfoVC.swift in Sources */,
 				97E267AA20EC34AB002D844A /* String-Extension.swift in Sources */,
 				977658AB2075B31300E98528 /* PlayerModelVC.swift in Sources */,
 				97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */,

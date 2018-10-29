@@ -93,7 +93,7 @@ class TeamStatsVC: UIViewController {
 
 
     @IBAction func backButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func segmentChanged(_ sender: Any) {

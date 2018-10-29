@@ -36,6 +36,12 @@ class MainVC: UIViewController {
         
     }
     
+    @IBAction func appInfoPressed(_ sender: Any) {
+        
+        performSegue(withIdentifier: "toAppInfo", sender: nil)
+        
+    }
+    
     @IBAction func selectPressed(_ sender: Any) {
         
         performSegue(withIdentifier: "toSelect", sender: selectedSeason)
