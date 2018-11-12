@@ -130,6 +130,12 @@ class PlayerModelVC: UIViewController {
             
         }
         
+        if segue.identifier == "toSelectFromModel" {
+            if let destination = segue.destination as? MainVC {
+                    destination.comparePlayer = currentPlayer
+                }
+            }
+        
     }
     
     @IBAction func segmentChanged(_ sender: Any) {
@@ -155,6 +161,12 @@ class PlayerModelVC: UIViewController {
         WebService.instance.playerGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "toPlayerStats", sender: PlayerStatsTuple(player: self.currentPlayer!,statDuration: self.statDuration))
         }
+        
+    }
+    
+    @IBAction func comparePressed(_ sender: Any) {
+    
+        self.performSegue(withIdentifier: "toSelectFromModel", sender: nil)
         
     }
     

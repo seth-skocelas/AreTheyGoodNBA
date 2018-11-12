@@ -13,6 +13,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var seasonPicker: UIPickerView!
     
     var selectedSeason = SEASON_YEAR_CURRENT
+    var comparePlayer: Player?
     
     override func viewDidLoad() {
         
@@ -20,6 +21,10 @@ class MainVC: UIViewController {
 
         seasonPicker.dataSource = self
         seasonPicker.delegate = self
+        
+        if let player = comparePlayer {
+            print(player.name)
+        }
         
     }
     
@@ -29,6 +34,10 @@ class MainVC: UIViewController {
             if let destination = segue.destination as? SelectVC {
                 if let season = sender as? String {
                     destination.selectedSeason = season
+                }
+                
+                if let player = comparePlayer {
+                    destination.comparePlayer = player
                 }
             }
         }

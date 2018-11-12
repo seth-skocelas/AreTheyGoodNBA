@@ -15,6 +15,8 @@ class SelectVC: UIViewController {
     var selectedTeam = Team()
     var selectedPlayer = Player()
     var currentPlayerIndex = 0
+    var comparePlayer: Player?
+    var compareMode = false;
     
     @IBOutlet weak var teamPicker: UIPickerView!
     @IBOutlet weak var playerPicker: UIPickerView!
@@ -40,6 +42,12 @@ class SelectVC: UIViewController {
         //createPlayerStatsCSV()
         
         createLeague()
+        
+        if comparePlayer != nil {
+            teamButton.isHidden = true
+            compareMode = true
+            print("SelectVC: \(String(describing: comparePlayer?.name))")
+        }
         
         //2544 = Lebron
         //1628372 = DSJ
@@ -128,6 +136,17 @@ class SelectVC: UIViewController {
             
         }
         
+        if segue.identifier == "toComparePlayerModel" {
+            
+            if let destination = segue.destination as? ComparePlayerModelVC {
+                
+                destination.playerOne = comparePlayer
+                destination.playerTwo = selectedPlayer
+                
+            }
+            
+        }
+        
     }
     
     func createPlayerStatsCSV() {
@@ -172,11 +191,26 @@ class SelectVC: UIViewController {
     @IBAction func analyzePlayerPressed(_ sender: Any) {
         
         playerButton.isEnabled = false
+        teamButton.isEnabled = false
         selectedPlayer.getAllStats()
-        WebService.instance.playerGroup.notify(queue: .main) {
-            self.performSegue(withIdentifier: "toPlayerModel", sender: self.selectedPlayer)
-            self.playerButton.isEnabled = true
-            self.teamButton.isEnabled = true
+        
+        if (compareMode) {
+            
+            WebService.instance.playerGroup.notify(queue: .main) {
+                self.performSegue(withIdentifier: "toComparePlayerModel", sender: nil)
+                self.playerButton.isEnabled = true
+                self.teamButton.isEnabled = true
+                self.teamButton.isHidden = false
+            }
+            
+        } else {
+            
+            WebService.instance.playerGroup.notify(queue: .main) {
+                self.performSegue(withIdentifier: "toPlayerModel", sender: self.selectedPlayer)
+                self.playerButton.isEnabled = true
+                self.teamButton.isEnabled = true
+                
+            }
         }
         
     }

@@ -222,4 +222,20 @@ class PlayerStatsVC: UIViewController {
         setPlayerStats()
         
     }
+    
+    @IBAction func comparePressed(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "toSelectFromStats", sender: currentPlayer)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toSelectFromStats" {
+            if let destination = segue.destination as? MainVC {
+                destination.comparePlayer = currentPlayer
+            }
+        }
+        
+    }
+    
 }
