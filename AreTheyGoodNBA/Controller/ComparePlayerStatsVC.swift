@@ -9,6 +9,9 @@
 import UIKit
 
 class ComparePlayerStatsVC: UIViewController {
+    
+    var playerOne: Player?
+    var playerTwo: Player?
 
     override func viewDidLoad() {
         super.viewDidLoad()
