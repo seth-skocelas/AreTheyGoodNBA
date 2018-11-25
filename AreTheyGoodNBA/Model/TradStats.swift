@@ -81,7 +81,7 @@ class TradStats {
         if _fieldGoalPerMin == nil {
             return -1
         }
-        return _fieldGoalPercent
+        return _fieldGoalPerMin
     }
     
     var fieldGoalAttempts: Double {

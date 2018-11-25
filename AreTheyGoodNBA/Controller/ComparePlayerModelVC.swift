@@ -165,6 +165,7 @@ class ComparePlayerModelVC: UIViewController {
         
                 destination.playerOne = playerOne
                 destination.playerTwo = playerTwo
+                destination.statDuration = statDuration
                 
             }
                 
@@ -194,7 +195,7 @@ class ComparePlayerModelVC: UIViewController {
     @IBAction func checkStatsPressed(_ sender: Any) {
         
         WebService.instance.playerGroup.notify(queue: .main) {
-            //self.performSegue(withIdentifier: "toPlayerStats", sender: PlayerStatsTuple(player: self.currentPlayer!,statDuration: self.statDuration))
+            self.performSegue(withIdentifier: "toComparePlayerStats", sender: nil)
         }
         
     }
