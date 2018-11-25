@@ -142,8 +142,8 @@ class ComparePlayerStatsVC: UIViewController {
                 oneTradStats = (playerOne?.currentPostSeasonTradStats)!
                 oneAdvStats = (playerOne?.currentPostSeasonAdvStats)!
                 
-                twoTradStats = (playerOne?.currentPostSeasonTradStats)!
-                twoAdvStats = (playerOne?.currentPostSeasonAdvStats)!
+                twoTradStats = (playerTwo?.currentPostSeasonTradStats)!
+                twoAdvStats = (playerTwo?.currentPostSeasonAdvStats)!
                 
             }
             
@@ -154,16 +154,16 @@ class ComparePlayerStatsVC: UIViewController {
                 oneTradStats = (playerOne?.careerRegularSeasonTradStats)!
                 oneAdvStats = (playerOne?.careerRegularSeasonAdvStats)!
                 
-                twoTradStats = (playerOne?.careerRegularSeasonTradStats)!
-                twoAdvStats = (playerOne?.careerRegularSeasonAdvStats)!
+                twoTradStats = (playerTwo?.careerRegularSeasonTradStats)!
+                twoAdvStats = (playerTwo?.careerRegularSeasonAdvStats)!
                 
             } else if measureTypeSegment.selectedSegmentIndex == 1 {
                 
                 oneTradStats = (playerOne?.careerPostSeasonTradStats)!
                 oneAdvStats = (playerOne?.careerPostSeasonAdvStats)!
                 
-                twoTradStats = (playerOne?.careerPostSeasonTradStats)!
-                twoAdvStats = (playerOne?.careerPostSeasonAdvStats)!
+                twoTradStats = (playerTwo?.careerPostSeasonTradStats)!
+                twoAdvStats = (playerTwo?.careerPostSeasonAdvStats)!
                 
             }
             
@@ -171,7 +171,7 @@ class ComparePlayerStatsVC: UIViewController {
         
         if !(oneTradStats.isEmpty) || !(oneAdvStats.isEmpty)  {
             
-            //oneErrorLabel.isHidden = true
+            oneErrorLabel.isHidden = true
             
             oneGamesPlayed.text = "\(oneTradStats.gamesPlayed)"
             oneMinutesPlayed.text = "\(oneTradStats.minutesPlayed.oneDecimalString)"
@@ -203,12 +203,12 @@ class ComparePlayerStatsVC: UIViewController {
             
         } else {
             oneStackView.isHidden = true
-            //oneErrorLabel.isHidden = false
+            oneErrorLabel.isHidden = false
         }
         
         if !(twoTradStats.isEmpty) || !(twoAdvStats.isEmpty)  {
             
-            //twoErrorLabel.isHidden = true
+            twoErrorLabel.isHidden = true
             
             twoGamesPlayed.text = "\(twoTradStats.gamesPlayed)"
             twoMinutesPlayed.text = "\(twoTradStats.minutesPlayed.oneDecimalString)"
@@ -240,7 +240,7 @@ class ComparePlayerStatsVC: UIViewController {
             
         } else {
             twoStackView.isHidden = true
-            //twoErrorLabel.isHidden = false
+            twoErrorLabel.isHidden = false
         }
         
     }

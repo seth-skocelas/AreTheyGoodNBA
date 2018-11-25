@@ -188,7 +188,7 @@ class ComparePlayerModelVC: UIViewController {
             //self.model.exportStats(statDuration: statDuration)
         }
         
-        displayResult()
+        //displayResult()
         
     }
     
