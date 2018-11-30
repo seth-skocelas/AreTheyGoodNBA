@@ -12,6 +12,7 @@ import Foundation
 class League {
     
     let name: String = "NBA"
+    private var _selectedSeason: String!
     private var _teams = [Team]()
     private var _standings = [Dictionary<String, AnyObject>]()
     
@@ -23,7 +24,14 @@ class League {
         return _standings
     }
     
-    init() {
+    var selectedSeason: String {
+        if _selectedSeason == nil {
+            return ""
+        }
+        return _selectedSeason
+    }
+    
+    init(selectedSeason: String) {
         
         
         WebService.instance.leagueGroup.enter()
@@ -36,6 +44,7 @@ class League {
             for (index,team) in finalTeamsArray.enumerated() {
                 
                 tempTeam = Team(teamDict: team, index: index)
+                tempTeam.selectedSeason = selectedSeason
                 //print("\(tempTeam.teamID) " + " has won \(tempTeam.leagueTitles) titles.")
                 self._teams.append(tempTeam)
                 

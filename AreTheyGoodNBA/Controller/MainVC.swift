@@ -12,6 +12,7 @@ class MainVC: UIViewController {
 
     @IBOutlet weak var seasonPicker: UIPickerView!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var selectedSeason = SEASON_YEAR_CURRENT
     var comparePlayer: Player?
@@ -26,6 +27,7 @@ class MainVC: UIViewController {
         if let player = comparePlayer {
             print(player.name)
             startButton.setTitle("Back", for: .normal)
+            titleLabel.text = "Compare \(player.name) to:"
         }
         
     }

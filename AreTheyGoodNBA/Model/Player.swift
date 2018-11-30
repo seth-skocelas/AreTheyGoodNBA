@@ -22,6 +22,7 @@ class Player {
     private var _position: String!
     private var _currentTeam: String!
     private var _startingYear: String!
+    private var _selectedSeason: String!
     
     private var _currentRegularSeasonTradStats: TradStats!
     private var _currentPostSeasonTradStats: TradStats!
@@ -89,6 +90,18 @@ class Player {
             return ""
         }
         return _startingYear
+    }
+    
+    var selectedSeason: String {
+        get {
+            if _selectedSeason == nil {
+                return ""
+            }
+            return _selectedSeason
+        }
+        set (newSeason) {
+            _selectedSeason = newSeason
+        }
     }
     
     var currentRegularSeasonTradStats: TradStats {

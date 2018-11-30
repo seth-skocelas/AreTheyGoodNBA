@@ -24,6 +24,7 @@ class Team {
     private var _divisionTitles: Int!
     private var _conferenceTitles: Int!
     private var _leagueTitles: Int!
+    private var _selectedSeason: String!
     
     private var _currentWins: Int!
     private var _currentLosses: Int!
@@ -133,6 +134,18 @@ class Team {
         return _leagueTitles
     }
     
+    var selectedSeason: String {
+        get {
+            if _selectedSeason == nil {
+                return ""
+            }
+            return _selectedSeason
+        }
+        set (newSeason) {
+            _selectedSeason = newSeason
+        }
+    }
+    
     var currentWins: Int {
         if _currentWins == nil {
             return -1
@@ -227,8 +240,10 @@ class Team {
             WebService.instance.getCommonTeamRoster(teamID: self.teamID) { (teamArray) in
             
                 for player in teamArray {
-                
-                    self._teamRoster.append(Player(commonPlayerInfo: player, fromTeamRoster: true))
+                    
+                    let createdPlayer = Player(commonPlayerInfo: player, fromTeamRoster: true)
+                    createdPlayer.selectedSeason = self.selectedSeason
+                    self._teamRoster.append(createdPlayer)
                 
                 }
             

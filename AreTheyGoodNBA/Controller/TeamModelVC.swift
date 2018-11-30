@@ -43,6 +43,7 @@ class TeamModelVC: UIViewController {
                 
                 self.model = TeamModel(team: team, statDuration: self.statDuration)
                 self.responseBuilder = TeamModelResponse(model: self.model)
+                self.segment.setTitle("\(team.selectedSeason)", forSegmentAt: 0)
                 self.displayResult()
             }
             

@@ -46,6 +46,7 @@ class PlayerModelVC: UIViewController {
             if let player = self.currentPlayer {
                 self.createModel(player: player)
                 self.responseBuilder = PlayerModelResponse(model: self.model)
+                self.segment.setTitle("\(player.selectedSeason)", forSegmentAt: 0)
                 self.displayResult()
                 
                 //self.model.exportStats(statDuration: StatDuration.CurrentSeason)

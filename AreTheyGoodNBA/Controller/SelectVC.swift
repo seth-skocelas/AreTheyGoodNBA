@@ -43,10 +43,10 @@ class SelectVC: UIViewController {
         
         createLeague()
         
-        if comparePlayer != nil {
+        if let player = comparePlayer {
             teamButton.isHidden = true
             compareMode = true
-            print("SelectVC: \(String(describing: comparePlayer?.name))")
+            print("SelectVC: \(player.name)")
         }
         
         //2544 = Lebron
@@ -56,7 +56,11 @@ class SelectVC: UIViewController {
     
     func createLeague() {
         
-        league = League()
+        if let season = selectedSeason {
+            league = League(selectedSeason: season)
+        } else {
+            league = League(selectedSeason: "")
+        }
         
         WebService.instance.leagueGroup.notify(queue: .main) {
             
