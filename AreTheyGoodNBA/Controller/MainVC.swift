@@ -11,6 +11,7 @@ import UIKit
 class MainVC: UIViewController {
 
     @IBOutlet weak var seasonPicker: UIPickerView!
+    @IBOutlet weak var startButton: UIButton!
     
     var selectedSeason = SEASON_YEAR_CURRENT
     var comparePlayer: Player?
@@ -24,6 +25,7 @@ class MainVC: UIViewController {
         
         if let player = comparePlayer {
             print(player.name)
+            startButton.setTitle("Back", for: .normal)
         }
         
     }
@@ -45,9 +47,13 @@ class MainVC: UIViewController {
         
     }
     
-    @IBAction func appInfoPressed(_ sender: Any) {
+    @IBAction func startButtonPressed(_ sender: Any) {
         
-        performSegue(withIdentifier: "toAppInfo", sender: nil)
+        if comparePlayer != nil {
+            dismiss(animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "toAppInfo", sender: nil)
+        }
         
     }
     

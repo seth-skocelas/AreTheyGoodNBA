@@ -171,6 +171,13 @@ class ComparePlayerModelVC: UIViewController {
                 
         }
         
+        if segue.identifier == "toStartFromCompareModel" {
+            
+            if let destination = segue.destination as? MainVC {
+                destination.comparePlayer = nil
+            }
+            
+        }
         
     }
     
@@ -200,6 +207,9 @@ class ComparePlayerModelVC: UIViewController {
         
     }
     
+    @IBAction func startOverPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toStartFromCompareModel", sender: nil)
+    }
     
     @IBAction func homeButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)

@@ -304,6 +304,18 @@ class ComparePlayerStatsVC: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toStartFromCompareStats" {
+            
+            if let destination = segue.destination as? MainVC {
+                destination.comparePlayer = nil
+            }
+            
+        }
+        
+    }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         
         dismiss(animated: false, completion: nil)
@@ -316,5 +328,8 @@ class ComparePlayerStatsVC: UIViewController {
         
     }
     
-
+    @IBAction func startOverPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toStartFromCompareStats", sender: nil)
+    }
+    
 }
