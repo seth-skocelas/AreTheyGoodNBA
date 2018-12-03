@@ -27,6 +27,7 @@ class ComparePlayerStatsVC: UIViewController {
     @IBOutlet var onePlayerName: UILabel!
     @IBOutlet weak var oneYearsPlayed: UILabel!
     @IBOutlet weak var onePosition: UILabel!
+    @IBOutlet weak var oneSeason: UILabel!
     
     @IBOutlet weak var oneGamesPlayed: UILabel!
     @IBOutlet weak var oneMinutesPlayed: UILabel!
@@ -49,6 +50,7 @@ class ComparePlayerStatsVC: UIViewController {
     @IBOutlet var twoPlayerName: UILabel!
     @IBOutlet weak var twoYearsPlayed: UILabel!
     @IBOutlet weak var twoPosition: UILabel!
+    @IBOutlet weak var twoSeason: UILabel!
     
     @IBOutlet weak var twoGamesPlayed: UILabel!
     @IBOutlet weak var twoMinutesPlayed: UILabel!
@@ -117,6 +119,13 @@ class ComparePlayerStatsVC: UIViewController {
             twoPosition.text = text
         }
         
+        if let text = playerOne?.selectedSeason {
+            oneSeason.text = "\(text)"
+        }
+        
+        if let text = playerTwo?.selectedSeason {
+            twoSeason.text = "\(text)"
+        }
         
     }
     

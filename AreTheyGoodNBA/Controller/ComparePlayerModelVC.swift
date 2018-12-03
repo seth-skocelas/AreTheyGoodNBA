@@ -33,12 +33,14 @@ class ComparePlayerModelVC: UIViewController {
     @IBOutlet weak var playerOneName: UILabel!
     @IBOutlet weak var oneYearsPlayed: UILabel!
     @IBOutlet weak var onePosition: UILabel!
+    @IBOutlet weak var oneSeason: UILabel!
     
     @IBOutlet weak var playerTwoImage: UIImageView!
     @IBOutlet weak var playerTwoName: UILabel!
     @IBOutlet weak var twoYearsPlayed: UILabel!
     @IBOutlet weak var twoPosition: UILabel!
-
+    @IBOutlet weak var twoSeason: UILabel!
+    
     
     @IBOutlet weak var segment: UISegmentedControl!
     
@@ -72,11 +74,19 @@ class ComparePlayerModelVC: UIViewController {
     func setPlayerInfo() {
         
         if let text =  playerOne?.name {
-            playerOneName.text = text
+            playerOneName.text = "\(text)"
         }
         
         if let text =  playerTwo?.name {
-            playerTwoName.text = text
+            playerTwoName.text = "\(text)"
+        }
+        
+        if let text = playerOne?.selectedSeason {
+            oneSeason.text = "\(text)"
+        }
+        
+        if let text = playerTwo?.selectedSeason {
+            twoSeason.text = "\(text)"
         }
         
         if let number =  playerOne?.yearsExperience {
