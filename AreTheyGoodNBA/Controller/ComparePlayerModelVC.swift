@@ -16,14 +16,9 @@ class ComparePlayerModelVC: UIViewController {
     var statDuration = StatDuration.CurrentSeason
     
     var oneModel: PlayerModel!
-    var oneOptionalModel: PlayerModel!
-    var oneThirdModel: PlayerModel!
-    
     var twoModel: PlayerModel!
-    var twoOptionalModel: PlayerModel!
-    var twoThirdModel: PlayerModel!
     
-    var responseBuilder: PlayerModelResponse!
+    var responseBuilder: CompareModelResponse!
     
     @IBOutlet weak var firstModelLine: UILabel!
     @IBOutlet weak var secondModelLine: UILabel!
@@ -60,8 +55,8 @@ class ComparePlayerModelVC: UIViewController {
             if let playerOne = self.playerOne, let playerTwo = self.playerTwo {
                 self.createModel(playerOne: playerOne, playerTwo: playerTwo)
                 
-                //self.responseBuilder = PlayerModelResponse(model: self.model)
-                //self.displayResult()
+                self.responseBuilder = CompareModelResponse(oneModel: self.oneModel, twoModel: self.twoModel)
+                self.displayResult()
                 
                 //self.model.exportStats(statDuration: StatDuration.CurrentSeason)
                 
@@ -201,11 +196,11 @@ class ComparePlayerModelVC: UIViewController {
         
         if let playerOne = self.playerOne, let playerTwo = self.playerTwo {
             self.createModel(playerOne: playerOne, playerTwo: playerTwo)
-            //self.responseBuilder = PlayerModelResponse(model: self.model)
+            self.responseBuilder = CompareModelResponse(oneModel: self.oneModel, twoModel: self.twoModel)
             //self.model.exportStats(statDuration: statDuration)
         }
         
-        //displayResult()
+        displayResult()
         
     }
     
@@ -238,25 +233,42 @@ class ComparePlayerModelVC: UIViewController {
         } else if playerOne.modelPosition == Position.Center {
             self.oneModel = CenterModel(player: playerOne, statDuration: self.statDuration, isSecondary: false)
         }
+        
+        if playerTwo.modelPosition == Position.Guard {
+            self.twoModel = GuardModel(player: playerTwo, statDuration: self.statDuration, isSecondary: false)
+        } else if playerTwo.modelPosition == Position.GuardForward {
+            self.twoModel = GuardForwardModel(player: playerTwo, statDuration: self.statDuration, isSecondary: false)
+        } else if playerTwo.modelPosition == Position.Forward {
+            self.twoModel = ForwardModel(player: playerTwo, statDuration: self.statDuration, isSecondary: false)
+        } else if playerTwo.modelPosition == Position.ForwardCenter {
+            self.twoModel = ForwardCenterModel(player: playerTwo, statDuration: self.statDuration, isSecondary: false)
+        } else if playerTwo.modelPosition == Position.Center {
+            self.twoModel = CenterModel(player: playerTwo, statDuration: self.statDuration, isSecondary: false)
+        }
+        
+        
     }
     
     func displayResult() {
         
+        if let oneName = playerOne?.name, let twoName = playerTwo?.name {
         
-        /*
-        if self.model.finalResult == Result.Yes {
-            self.answerLabel.text = "Yes"
-        } else if self.model.finalResult == Result.No {
-            self.answerLabel.text = "No"
-        } else {
-            self.answerLabel.text = "¯\\_(ツ)_/¯"
+            if (self.oneModel.statsScore - self.twoModel.statsScore) >= 0.1 {
+                self.answerLabel.text = "\(oneName) > \(twoName)"
+            } else if (self.oneModel.statsScore - self.twoModel.statsScore) <= -0.1 {
+                self.answerLabel.text = "\(oneName) > \(twoName)"
+            } else {
+                self.answerLabel.text = "\(oneName) = \(twoName)"
+            }
+            
         }
  
-         */
+    
+        
         
         self.firstModelLine.text = responseBuilder.firstLine()
-        self.secondModelLine.text = responseBuilder.secondLine()
-        self.thridModelLine.text = responseBuilder.thirdLine()
+        //self.secondModelLine.text = responseBuilder.secondLine()
+        //self.thridModelLine.text = responseBuilder.thirdLine()
         
         
     }

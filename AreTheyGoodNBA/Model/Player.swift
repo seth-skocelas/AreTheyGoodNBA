@@ -43,6 +43,24 @@ class Player {
         return _name
     }
     
+    var firstName: String {
+        if _name == nil {
+            return ""
+        }
+        
+        let array =  _name.components(separatedBy: " ")
+        return array[0]
+    }
+    
+    var lastName: String {
+        if _name == nil {
+            return ""
+        }
+        
+        let array =  _name.components(separatedBy: " ")
+        return array[1]
+    }
+    
     var playerID: Int {
         if _playerID == nil {
             return -1
