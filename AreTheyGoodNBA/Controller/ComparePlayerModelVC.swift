@@ -22,7 +22,7 @@ class ComparePlayerModelVC: UIViewController {
     
     @IBOutlet weak var firstModelLine: UILabel!
     @IBOutlet weak var secondModelLine: UILabel!
-    @IBOutlet weak var thridModelLine: UILabel!
+    @IBOutlet weak var thirdModelLine: UILabel!
     
     @IBOutlet weak var playerOneImage: UIImageView!
     @IBOutlet weak var playerOneName: UILabel!
@@ -253,22 +253,20 @@ class ComparePlayerModelVC: UIViewController {
         
         if let oneName = playerOne?.name, let twoName = playerTwo?.name {
         
-            if (self.oneModel.statsScore - self.twoModel.statsScore) >= 0.1 {
+            if (self.oneModel.statsScore - self.twoModel.statsScore) >= 0.05 {
                 self.answerLabel.text = "\(oneName) > \(twoName)"
-            } else if (self.oneModel.statsScore - self.twoModel.statsScore) <= -0.1 {
-                self.answerLabel.text = "\(oneName) > \(twoName)"
+            } else if (self.oneModel.statsScore - self.twoModel.statsScore) <= -0.05 {
+                self.answerLabel.text = "\(twoName) > \(oneName)"
             } else {
                 self.answerLabel.text = "\(oneName) = \(twoName)"
             }
             
         }
  
-    
-        
-        
         self.firstModelLine.text = responseBuilder.firstLine()
-        //self.secondModelLine.text = responseBuilder.secondLine()
-        //self.thridModelLine.text = responseBuilder.thirdLine()
+        self.secondModelLine.text = responseBuilder.secondLine()
+        self.thirdModelLine.text = responseBuilder.thirdLine()
+        
         
         
     }

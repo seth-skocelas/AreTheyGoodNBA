@@ -66,56 +66,46 @@ class CompareModelResponse {
         
         if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
             return "One or both players have not played enough to produce an accurate model score, so please compare stats to make a better judgement."
-        } else if onePlayerModel.statsScore > twoPlayerModel.statsScore {
+        } else if onePlayerModel.statsScore - twoPlayerModel.statsScore >= 0.05 {
             return "\(onePlayer.lastName) has a higher model score than \(twoPlayer.lastName)."
-        } else if onePlayerModel.statsScore < twoPlayerModel.statsScore {
+        } else if onePlayerModel.statsScore - twoPlayerModel.statsScore <= -0.05 {
             return "\(twoPlayer.lastName) has a higher model score than \(onePlayer.lastName)."
         } else {
-            return "Both players have the same model score for their position."
+            return "Both players have a similar model score for their position."
         }
         
     }
     
-    /*
+  
     
     func secondLine() -> String {
         
-        if playerModel.inconclusiveData() {
-            
-            if !(tradStats.isEmpty) || !(advStats.isEmpty) {
-                return "The model would have determined he was \(goodOrNotGood()) based on his production."
-            }
-            
-            return ""
-            
-        } else if minStatScore != rankKeys[0] {
-            
-            if let rankString = rankDict[maxStatScore] {
-                return "His strength is his \(maxStatString), which is \(rankString) of \(positionString)."
-            }
-            
+        if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
+            return " "
+        } else if oneAdvStats.trueShooting > twoAdvStats.trueShooting {
+            return "\(onePlayer.lastName) has a higher true shooting percentage."
+        } else if oneAdvStats.trueShooting < twoAdvStats.trueShooting {
+            return "\(twoPlayer.lastName) has a higher true shooting percentage."
         } else {
-            return "All of his stats graded by the model are among the best of \(positionString), meaning they are all in the top 25%."
+            return "Both players have the same true shooting percentage."
         }
-        
-        return ""
         
     }
     
     func thirdLine() -> String {
         
-        if minStatScore != rankKeys[0] && !playerModel.inconclusiveData() {
-            
-            if let rankString = rankDict[minStatScore] {
-                return "His weakness is his \(minStatString), which is \(rankString) of \(positionString)."
-            }
-            
+        if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
+            return " "
+        } else if oneAdvStats.netRating > twoAdvStats.netRating {
+            return "\(onePlayer.lastName) has a higher net rating."
+        } else if oneAdvStats.netRating < twoAdvStats.netRating {
+            return "\(twoPlayer.lastName) has a higher net rating."
+        } else {
+            return "Both players have the net rating."
         }
-        
-        return " "
         
     }
     
-    */
+
     
 }

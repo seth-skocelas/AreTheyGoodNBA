@@ -2692,7 +2692,7 @@
                         <outlet property="playerTwoName" destination="voA-zf-YEU" id="2H7-u7-4Ng"/>
                         <outlet property="secondModelLine" destination="G3i-pS-o5I" id="LwA-2O-gbg"/>
                         <outlet property="segment" destination="BFK-KY-jEB" id="jOd-Kd-TZb"/>
-                        <outlet property="thridModelLine" destination="Vgm-pO-6T6" id="1Id-Vo-bah"/>
+                        <outlet property="thirdModelLine" destination="Vgm-pO-6T6" id="sB3-Bu-ywC"/>
                         <outlet property="twoPosition" destination="lRs-dj-Sxj" id="cXY-pr-SuQ"/>
                         <outlet property="twoSeason" destination="OtK-Qd-jLu" id="f9Z-SU-wcG"/>
                         <outlet property="twoYearsPlayed" destination="00S-Ns-YJi" id="hAk-oG-5Ij"/>
