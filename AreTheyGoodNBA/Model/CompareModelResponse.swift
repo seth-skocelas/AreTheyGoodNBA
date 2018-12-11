@@ -64,15 +64,34 @@ class CompareModelResponse {
     
     func firstLine() -> String {
         
+        var text = ""
+        
+        let oneResult = goodOrNotGood(model: onePlayerModel)
+        let twoResult = goodOrNotGood(model: twoPlayerModel)
+        
         if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
             return "One or both players have not played enough to produce an accurate model score, so please compare stats to make a better judgement."
-        } else if onePlayerModel.statsScore - twoPlayerModel.statsScore >= 0.05 {
-            return "\(onePlayer.lastName) has a higher model score than \(twoPlayer.lastName)."
-        } else if onePlayerModel.statsScore - twoPlayerModel.statsScore <= -0.05 {
-            return "\(twoPlayer.lastName) has a higher model score than \(onePlayer.lastName)."
-        } else {
-            return "Both players have a similar model score for their position."
         }
+        
+        if oneResult == "good" && twoResult == "good" {
+            text += "Both players are good according to the model. "
+        } else if oneResult == "good" && twoResult == "not good" {
+            text += "According to the model, \(onePlayer.lastName) is good and \(twoPlayer.lastName) is not good. "
+        } else if oneResult == "not good" && twoResult == "good" {
+            text += "According to the model, \(twoPlayer.lastName) is good and \(onePlayer.lastName) is not good. "
+        } else {
+            text += "Both players are not good according to the model. "
+        }
+        
+        if onePlayerModel.statsScore - twoPlayerModel.statsScore >= 0.05 {
+            text += "\(onePlayer.lastName) has a higher model score."
+        } else if onePlayerModel.statsScore - twoPlayerModel.statsScore <= -0.05 {
+            text += "\(twoPlayer.lastName) has a higher model score."
+        } else {
+            text += "Both players have a similar model score for their position."
+        }
+        
+        return text
         
     }
     
