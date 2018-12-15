@@ -58,6 +58,16 @@ class ComparePlayerModelVC: UIViewController {
                 self.responseBuilder = CompareModelResponse(oneModel: self.oneModel, twoModel: self.twoModel)
                 self.displayResult()
                 
+                if playerOne.modelPosition != playerTwo.modelPosition {
+                    
+                    let alert = UIAlertController(title: "Comparing Two Players of Different Positions", message: "Please note that model comparisons may not be as accurate since you are comparing two players of different positions. Please review the stats for yourself to make an educated decision.", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    
+                    self.present(alert, animated: true)
+                    
+                }
+                
                 //self.model.exportStats(statDuration: StatDuration.CurrentSeason)
                 
             }
