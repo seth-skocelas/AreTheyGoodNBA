@@ -61,6 +61,27 @@ class Player {
         return array[1]
     }
     
+    var seasonLastName: String {
+        
+        if _name == nil {
+            return ""
+        }
+        
+        let array =  _name.components(separatedBy: " ")
+        return "\(selectedSeason) \(array[1])"
+        
+    }
+    
+    var seasonFullName: String {
+        
+        if _name == nil {
+            return ""
+        }
+        
+        return "\(selectedSeason) \(name)"
+        
+    }
+    
     var playerID: Int {
         if _playerID == nil {
             return -1
@@ -415,4 +436,14 @@ class Player {
     
 
     
+}
+
+extension Player: Equatable {
+    
+    public static func ==(lhs: Player, rhs: Player) -> Bool{
+        return
+            lhs.name == rhs.name &&
+            lhs.playerID == rhs.playerID
+
+    }
 }

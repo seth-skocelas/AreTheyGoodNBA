@@ -14,6 +14,7 @@ class ComparePlayerStatsVC: UIViewController {
     var playerTwo: Player?
     var statDuration: StatDuration?
     
+    @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var measureTypeSegment: UISegmentedControl!
     @IBOutlet weak var oneStackView: UIStackView!
@@ -77,8 +78,10 @@ class ComparePlayerStatsVC: UIViewController {
         
         
         if statDuration == StatDuration.CurrentSeason {
-            titleLabel.text = "Current Season Stats"
+            mainLabel.text = "Compared Player Stats"
+            titleLabel.text = "Player Stats"
         } else if statDuration == StatDuration.Career {
+            mainLabel.text = "Compared Player Stats"
             titleLabel.text = "Career Stats"
         }
         
@@ -95,7 +98,7 @@ class ComparePlayerStatsVC: UIViewController {
     
     func setPlayerInfo() {
         
-        if let text =  playerOne?.name {
+        if let text =  playerOne?.seasonFullName {
             onePlayerName.text = text
         }
         
@@ -107,7 +110,7 @@ class ComparePlayerStatsVC: UIViewController {
             onePosition.text = text
         }
         
-        if let text =  playerTwo?.name {
+        if let text =  playerTwo?.seasonFullName {
             twoPlayerName.text = text
         }
         

@@ -10,6 +10,8 @@ import Foundation
 
 class CompareModelResponse {
     
+    var oneName = ""
+    var twoName = ""
     var onePlayerModel: PlayerModel!
     var onePlayer: Player!
     var oneTradStats: TradStats!
@@ -34,6 +36,8 @@ class CompareModelResponse {
         onePlayer = onePlayerModel.testPlayer
         twoPlayer = twoPlayerModel.testPlayer
         
+        setPlayerNames()
+        
         if onePlayerModel.testStatDuration == StatDuration.CurrentSeason {
             oneAdvStats = onePlayer.currentRegularSeasonAdvStats
             oneTradStats = onePlayer.currentRegularSeasonTradStats
@@ -48,6 +52,26 @@ class CompareModelResponse {
         } else {
             twoAdvStats = twoPlayer.careerRegularSeasonAdvStats
             twoTradStats = twoPlayer.careerRegularSeasonTradStats
+        }
+        
+    }
+    
+    func setPlayerNames() {
+        
+        if let one = onePlayer, let two = twoPlayer {
+            
+            if one == two {
+            
+                oneName = one.seasonLastName
+                twoName = two.seasonLastName
+                
+            } else {
+                
+                oneName = one.lastName
+                twoName = two.lastName
+    
+            }
+            
         }
         
     }
@@ -76,17 +100,17 @@ class CompareModelResponse {
         if oneResult == "good" && twoResult == "good" {
             text += "Both players are good according to the model. "
         } else if oneResult == "good" && twoResult == "not good" {
-            text += "According to the model, \(onePlayer.lastName) is good and \(twoPlayer.lastName) is not good. "
+            text += "According to the model, \(oneName) is good and \(twoName) is not good. "
         } else if oneResult == "not good" && twoResult == "good" {
-            text += "According to the model, \(twoPlayer.lastName) is good and \(onePlayer.lastName) is not good. "
+            text += "According to the model, \(twoName) is good and \(oneName) is not good. "
         } else {
             text += "Both players are not good according to the model. "
         }
         
         if onePlayerModel.statsScore - twoPlayerModel.statsScore >= 0.05 {
-            text += "\(onePlayer.lastName) has a higher model score."
+            text += "\(oneName) has a higher model score."
         } else if onePlayerModel.statsScore - twoPlayerModel.statsScore <= -0.05 {
-            text += "\(twoPlayer.lastName) has a higher model score."
+            text += "\(twoName) has a higher model score."
         } else {
             text += "Both players have a similar model score for their position."
         }
@@ -102,9 +126,9 @@ class CompareModelResponse {
         if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
             return " "
         } else if oneAdvStats.trueShooting > twoAdvStats.trueShooting {
-            return "\(onePlayer.lastName) has a higher true shooting percentage."
+            return "\(oneName) has a higher true shooting percentage."
         } else if oneAdvStats.trueShooting < twoAdvStats.trueShooting {
-            return "\(twoPlayer.lastName) has a higher true shooting percentage."
+            return "\(twoName) has a higher true shooting percentage."
         } else {
             return "Both players have the same true shooting percentage."
         }
@@ -116,9 +140,9 @@ class CompareModelResponse {
         if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
             return " "
         } else if oneAdvStats.netRating > twoAdvStats.netRating {
-            return "\(onePlayer.lastName) has a higher net rating."
+            return "\(oneName) has a higher net rating."
         } else if oneAdvStats.netRating < twoAdvStats.netRating {
-            return "\(twoPlayer.lastName) has a higher net rating."
+            return "\(twoName) has a higher net rating."
         } else {
             return "Both players have the net rating."
         }
