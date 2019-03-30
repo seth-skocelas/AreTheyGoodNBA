@@ -65,6 +65,11 @@ class CompareModelResponse {
                 oneName = one.seasonLastName
                 twoName = two.seasonLastName
                 
+            } else if one.lastName == two.lastName {
+                
+                oneName = one.name
+                twoName = two.name
+                
             } else {
                 
                 oneName = one.lastName
