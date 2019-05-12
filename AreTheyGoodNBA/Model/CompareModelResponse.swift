@@ -24,6 +24,8 @@ class CompareModelResponse {
     var twoAdvStats: AdvStats!
     var twoPositionString = ""
     
+    var oneLineOnly = false
+    
     init(oneModel: PlayerModel, twoModel: PlayerModel) {
         
         onePlayerModel = oneModel
@@ -98,7 +100,22 @@ class CompareModelResponse {
         let oneResult = goodOrNotGood(model: onePlayerModel)
         let twoResult = goodOrNotGood(model: twoPlayerModel)
         
+        if let one = onePlayer, let two = twoPlayer {
+            
+            if one == two && one.selectedSeason == two.selectedSeason && onePlayerModel.testStatDuration == StatDuration.CurrentSeason {
+                oneLineOnly = true
+                return "You selected the same player/season combo, so there is nothing to compare."
+            }
+            
+            if one == two && onePlayerModel.testStatDuration == StatDuration.Career {
+                oneLineOnly = true
+                return "You selected the same player, so there is nothing to compare. "
+            }
+            
+        }
+        
         if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
+            oneLineOnly = true
             return "One or both players have not played enough to produce an accurate model score, so please compare stats to make a better judgement."
         }
         
@@ -128,7 +145,7 @@ class CompareModelResponse {
     
     func secondLine() -> String {
         
-        if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
+        if oneLineOnly {
             return " "
         } else if oneAdvStats.trueShooting > twoAdvStats.trueShooting {
             return "\(oneName) has a higher true shooting percentage."
@@ -142,7 +159,7 @@ class CompareModelResponse {
     
     func thirdLine() -> String {
         
-        if onePlayerModel.inconclusiveData() || twoPlayerModel.inconclusiveData() {
+        if oneLineOnly {
             return " "
         } else if oneAdvStats.netRating > twoAdvStats.netRating {
             return "\(oneName) has a higher net rating."

@@ -269,19 +269,32 @@ class ComparePlayerModelVC: UIViewController {
     
     func displayResult() {
         
+
+        setPlayerName()
+ 
+        self.firstModelLine.text = responseBuilder.firstLine()
+        self.secondModelLine.text = responseBuilder.secondLine()
+        self.thirdModelLine.text = responseBuilder.thirdLine()
+        
+        
+        
+    }
+    
+    func setPlayerName() {
+        
         if let one = playerOne, let two = playerTwo {
             
             var oneName = ""
             var twoName = ""
             
-            if one == two {
+            if one == two && one.selectedSeason != two.selectedSeason && statDuration == StatDuration.CurrentSeason {
                 oneName = one.seasonFullName
                 twoName = two.seasonFullName
             } else {
                 oneName = one.name
                 twoName = two.name
             }
-        
+            
             if (self.oneModel.statsScore - self.twoModel.statsScore) >= 0.05 {
                 self.answerLabel.text = "\(oneName) > \(twoName)"
             } else if (self.oneModel.statsScore - self.twoModel.statsScore) <= -0.05 {
@@ -291,12 +304,6 @@ class ComparePlayerModelVC: UIViewController {
             }
             
         }
- 
-        self.firstModelLine.text = responseBuilder.firstLine()
-        self.secondModelLine.text = responseBuilder.secondLine()
-        self.thirdModelLine.text = responseBuilder.thirdLine()
-        
-        
         
     }
     

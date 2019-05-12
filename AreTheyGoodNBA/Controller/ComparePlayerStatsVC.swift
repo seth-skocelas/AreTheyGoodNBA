@@ -258,7 +258,7 @@ class ComparePlayerStatsVC: UIViewController {
             var oneName = ""
             var twoName = ""
             
-            if one == two {
+            if one == two && one.selectedSeason != two.selectedSeason {
                 oneName = one.seasonFullName
                 twoName = two.seasonFullName
             } else {
