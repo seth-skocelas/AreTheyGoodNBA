@@ -98,9 +98,7 @@ class ComparePlayerStatsVC: UIViewController {
     
     func setPlayerInfo() {
         
-        if let text =  playerOne?.seasonFullName {
-            onePlayerName.text = text
-        }
+        setPlayerName()
         
         if let number =  playerOne?.yearsExperience {
             oneYearsPlayed.text = "\(number)"
@@ -108,10 +106,6 @@ class ComparePlayerStatsVC: UIViewController {
         
         if let text =  playerOne?.position {
             onePosition.text = text
-        }
-        
-        if let text =  playerTwo?.seasonFullName {
-            twoPlayerName.text = text
         }
         
         if let number =  playerTwo?.yearsExperience {
@@ -253,6 +247,28 @@ class ComparePlayerStatsVC: UIViewController {
         } else {
             twoStackView.isHidden = true
             twoErrorLabel.isHidden = false
+        }
+        
+    }
+    
+    func setPlayerName() {
+        
+        if let one = playerOne, let two = playerTwo {
+            
+            var oneName = ""
+            var twoName = ""
+            
+            if one == two {
+                oneName = one.seasonFullName
+                twoName = two.seasonFullName
+            } else {
+                oneName = one.name
+                twoName = two.name
+            }
+        
+            onePlayerName.text = oneName
+            twoPlayerName.text = twoName
+
         }
         
     }
