@@ -47,6 +47,7 @@ class PlayerModelVC: UIViewController {
                 self.createModel(player: player)
                 self.responseBuilder = PlayerModelResponse(model: self.model)
                 self.segment.setTitle("\(player.selectedSeason)", forSegmentAt: 0)
+                self.segment.setTitle("Career", forSegmentAt: 1)
                 self.displayResult()
                 
                 //self.model.exportStats(statDuration: StatDuration.CurrentSeason)
@@ -121,6 +122,8 @@ class PlayerModelVC: UIViewController {
             
             if let destination = segue.destination as? PlayerStatsVC {
                 
+                destination.modalPresentationStyle = .fullScreen
+                
                 if let tuple = sender as? PlayerStatsTuple {
                     
                     destination.playerStatsTuple = tuple
@@ -133,6 +136,7 @@ class PlayerModelVC: UIViewController {
         
         if segue.identifier == "toSelectFromModel" {
             if let destination = segue.destination as? MainVC {
+                    destination.modalPresentationStyle = .fullScreen
                     destination.comparePlayer = currentPlayer
                 }
             }

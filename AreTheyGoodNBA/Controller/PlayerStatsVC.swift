@@ -55,6 +55,10 @@ class PlayerStatsVC: UIViewController {
         
         super.viewDidLoad()
         
+        //self.measureTypeSegment.setTitle("Test", forSegmentAt: 0)
+        //self.measureTypeSegment.setTitle("Test", forSegmentAt: 1)
+
+        
         currentPlayer = playerStatsTuple?.player
         statDuration = playerStatsTuple?.statDuration
         

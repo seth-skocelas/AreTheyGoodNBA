@@ -62,6 +62,8 @@ class TeamModelVC: UIViewController {
             
             if let destination = segue.destination as? TeamStatsVC {
                 
+                destination.modalPresentationStyle = .fullScreen
+                
                 if let tuple = sender as? TeamStatsTuple {
                     
                     destination.teamStatsTuple = tuple

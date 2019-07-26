@@ -36,6 +36,9 @@ class MainVC: UIViewController {
         
         if segue.identifier == "toSelect" {
             if let destination = segue.destination as? SelectVC {
+                
+                destination.modalPresentationStyle = .fullScreen
+                
                 if let season = sender as? String {
                     destination.selectedSeason = season
                 }

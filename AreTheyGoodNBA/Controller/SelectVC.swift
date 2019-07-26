@@ -117,6 +117,8 @@ class SelectVC: UIViewController {
             
             if let destination = segue.destination as? TeamModelVC {
                 
+                destination.modalPresentationStyle = .fullScreen
+                
                 if let team = sender as? Team {
                     
                     destination.currentTeam = team
@@ -129,6 +131,8 @@ class SelectVC: UIViewController {
         if segue.identifier == "toPlayerModel" {
             
             if let destination = segue.destination as? PlayerModelVC {
+                
+                destination.modalPresentationStyle = .fullScreen
                 
                 if let player = sender as? Player {
                     
@@ -144,6 +148,7 @@ class SelectVC: UIViewController {
             
             if let destination = segue.destination as? ComparePlayerModelVC {
                 
+                destination.modalPresentationStyle = .fullScreen
                 destination.playerOne = comparePlayer
                 destination.playerTwo = selectedPlayer
                 
