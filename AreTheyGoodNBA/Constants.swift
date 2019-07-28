@@ -172,7 +172,7 @@ let seasonSelectArray = [
 //Special Responses
 
 let specialResponseDict: [Int: String] = [
-    202681: "Even as LeBron's son he was good, let alone now as he's running the show in Boston.",
+    202681: "As good as the earth is round.",
     2544: "King James is a top 2 player of all time, you don't need an app to tell you that.",
     1717: "Dirk is the best European player of all time. He just can't move anymore.",
     201939: "Yes, the best shooter of all time is a good player.",
@@ -184,7 +184,6 @@ let specialResponseDict: [Int: String] = [
     201566: "Any player that averages a triple double has to be good, right?",
     203954: "Trust the process.",
     202695: "The man can defend LeBron. Clearly he's talented.",
-    200768: "LeBron wouldn't think so.",
     201942: "LeBron wouldn't think so."
 ]
 

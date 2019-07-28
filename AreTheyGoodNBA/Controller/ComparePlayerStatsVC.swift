@@ -337,6 +337,7 @@ class ComparePlayerStatsVC: UIViewController {
         if segue.identifier == "toStartFromCompareStats" {
             
             if let destination = segue.destination as? MainVC {
+                destination.modalPresentationStyle = .fullScreen
                 destination.comparePlayer = nil
             }
             

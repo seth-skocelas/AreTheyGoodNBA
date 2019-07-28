@@ -185,6 +185,8 @@ class ComparePlayerModelVC: UIViewController {
         if segue.identifier == "toComparePlayerStats" {
             
             if let destination = segue.destination as? ComparePlayerStatsVC {
+                
+                destination.modalPresentationStyle = .fullScreen
         
                 destination.playerOne = playerOne
                 destination.playerTwo = playerTwo
@@ -197,6 +199,7 @@ class ComparePlayerModelVC: UIViewController {
         if segue.identifier == "toStartFromCompareModel" {
             
             if let destination = segue.destination as? MainVC {
+                destination.modalPresentationStyle = .fullScreen
                 destination.comparePlayer = nil
             }
             
