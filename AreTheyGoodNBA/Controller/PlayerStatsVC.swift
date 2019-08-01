@@ -71,7 +71,7 @@ class PlayerStatsVC: UIViewController {
         WebService.instance.playerGroup.notify(queue: .main) {
             self.setPlayerInfo()
             self.setPlayerStats()
-            self.setPlayerImage()
+            self.setClassTypeImage()
             
         }
         
@@ -183,35 +183,12 @@ class PlayerStatsVC: UIViewController {
         
     }
     
-    func setPlayerImage() {
+    func setClassTypeImage() {
         
-        var urlString = ""
-        
-        if let teamID = currentPlayer?.teamID {
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
-            if let playerID = currentPlayer?.playerID {
-                urlString = "\(urlString)\(playerID).png"
-            }
+        if let player = currentPlayer {
+            self.playerImage.image = player.image.Image
+            self.playerImage.isHidden = false
         }
-        
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.playerImage.image = UIImage(data: data!)
-                self.playerImage.isHidden = false
-            }
-            }.resume()
-        
         
     }
 
@@ -236,6 +213,7 @@ class PlayerStatsVC: UIViewController {
         
         if segue.identifier == "toSelectFromStats" {
             if let destination = segue.destination as? MainVC {
+                destination.modalPresentationStyle = .fullScreen
                 destination.comparePlayer = currentPlayer
             }
         }

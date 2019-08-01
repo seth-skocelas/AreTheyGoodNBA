@@ -88,7 +88,7 @@ class ComparePlayerStatsVC: UIViewController {
         WebService.instance.playerGroup.notify(queue: .main) {
             self.setPlayerInfo()
             self.setPlayerStats()
-            self.setPlayerImage()
+            self.setClassTypeImages()
             
         }
         
@@ -273,62 +273,17 @@ class ComparePlayerStatsVC: UIViewController {
         
     }
     
-    func setPlayerImage() {
+    func setClassTypeImages() {
         
-        var urlString = ""
-        
-        if let teamID = playerOne?.teamID {
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
-            if let playerID = playerOne?.playerID {
-                urlString = "\(urlString)\(playerID).png"
-            }
+        if let one = playerOne {
+            self.onePlayerImage.image = one.image.Image
+            self.onePlayerImage.isHidden = false
         }
         
-        
-        guard let urlOne = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: urlOne) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.onePlayerImage.image = UIImage(data: data!)
-                self.onePlayerImage.isHidden = false
-            }
-            }.resume()
-        
-        if let teamID = playerTwo?.teamID {
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
-            if let playerID = playerTwo?.playerID {
-                urlString = "\(urlString)\(playerID).png"
-            }
+        if let two = playerTwo {
+            self.twoPlayerImage.image = two.image.Image
+            self.twoPlayerImage.isHidden = false
         }
-        
-        
-        guard let urlTwo = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: urlTwo) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.twoPlayerImage.image = UIImage(data: data!)
-                self.twoPlayerImage.isHidden = false
-            }
-            }.resume()
-        
         
     }
     

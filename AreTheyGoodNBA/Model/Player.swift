@@ -23,6 +23,7 @@ class Player {
     private var _currentTeam: String!
     private var _startingYear: String!
     private var _selectedSeason: String!
+    private var _image: ClassTypeImage!
     
     private var _currentRegularSeasonTradStats: TradStats!
     private var _currentPostSeasonTradStats: TradStats!
@@ -143,6 +144,18 @@ class Player {
         }
     }
     
+    var image: ClassTypeImage {
+        
+        get {
+            if _image == nil {
+                return ClassTypeImage()
+            }
+            
+            return _image
+        }
+        
+    }
+    
     var currentRegularSeasonTradStats: TradStats {
         if _currentRegularSeasonTradStats == nil {
             return TradStats()
@@ -253,6 +266,10 @@ class Player {
         getPlayerStats(measureType: MeasureType.RegularAdvanced, statDuration: StatDuration.CurrentSeason)
         getPlayerStats(measureType: MeasureType.PostAdvanced, statDuration: StatDuration.CurrentSeason)
         
+    }
+    
+    func setClassTypeImage() {
+        _image = ClassTypeImage(player: self)
     }
     
     func getPlayerStats(measureType: MeasureType, statDuration: StatDuration) {

@@ -29,6 +29,8 @@ class ClassTypeImage {
         return _imageSet
     }
     
+    init() { }
+    
     init(team: Team) {
         
         _classType = ClassType.Team
@@ -44,6 +46,7 @@ class ClassTypeImage {
         WebService.instance.playerGroup.enter()
         WebService.instance.getWebImage(urlString: getPlayerImageURL()) { (image) in
             self._image = image;
+            self._imageSet = true
             WebService.instance.playerGroup.leave()
         }
         

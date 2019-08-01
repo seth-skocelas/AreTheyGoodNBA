@@ -178,6 +178,7 @@ class SelectVC: UIViewController {
         playerButton.isEnabled = false
         teamButton.isEnabled = false
         selectedPlayer.getAllStats()
+        selectedPlayer.setClassTypeImage()
         
         if (compareMode) {
             

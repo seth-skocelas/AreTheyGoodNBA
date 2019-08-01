@@ -86,13 +86,8 @@ class PlayerModelVC: UIViewController {
     func setClassTypeImage() {
         
         if let player = currentPlayer {
-            
-            let image = ClassTypeImage(player: player)
-            WebService.instance.playerGroup.notify(queue: .main) {
-                self.playerImage.image = image.Image
-                self.playerImage.isHidden = false
-            }
-
+            self.playerImage.image = player.image.Image
+            self.playerImage.isHidden = false
         }
         
     }
