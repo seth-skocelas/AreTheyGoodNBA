@@ -406,6 +406,26 @@ class WebService {
         
     }
     
+    func getWebImage(urlString : String, completed: @escaping (_ image: UIImage ) -> ()) {
+        
+        guard let url = URL(string: urlString) else {return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print("Failed fetching image:", error!)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print("Not a proper HTTPURLResponse or statusCode")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completed(UIImage(data: data!)!)
+            }
+            }.resume()
+        
+    }
     
 }
 

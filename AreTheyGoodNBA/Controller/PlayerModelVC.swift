@@ -40,7 +40,7 @@ class PlayerModelVC: UIViewController {
         WebService.instance.playerGroup.notify(queue: .main) {
             
             self.setPlayerInfo()
-            self.setPlayerImage()
+            self.setClassTypeImage()
             //test code below
             
             if let player = self.currentPlayer {
@@ -83,36 +83,17 @@ class PlayerModelVC: UIViewController {
         
     }
     
-    func setPlayerImage() {
+    func setClassTypeImage() {
         
-        var urlString = ""
-        
-        if let teamID = currentPlayer?.teamID {
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
-            if let playerID = currentPlayer?.playerID {
-                urlString = "\(urlString)\(playerID).png"
-            }
-        }
-        
-
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
+        if let player = currentPlayer {
             
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.playerImage.image = UIImage(data: data!)
+            let image = ClassTypeImage(player: player)
+            WebService.instance.playerGroup.notify(queue: .main) {
+                self.playerImage.image = image.Image
                 self.playerImage.isHidden = false
             }
-            }.resume()
-        
+
+        }
         
     }
     
