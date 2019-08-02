@@ -164,6 +164,7 @@ class SelectVC: UIViewController {
         teamButton.isEnabled = false
         playerButton.isEnabled = false
         selectedTeam.getAllStats()
+        selectedTeam.setClassTypeImage()
         WebService.instance.teamGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "toTeamModel", sender: self.selectedTeam)
             self.teamButton.isEnabled = true

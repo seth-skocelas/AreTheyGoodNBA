@@ -36,6 +36,13 @@ class ClassTypeImage {
         _classType = ClassType.Team
         _team = team
         
+        WebService.instance.teamGroup.enter()
+        WebService.instance.getWebImage(urlString: getTeamImageURL(), isSVG: true) { (image) in
+            self._image = image;
+            self._imageSet = true
+            WebService.instance.teamGroup.leave()
+        }
+        
     }
     
     init(player: Player) {
@@ -44,7 +51,7 @@ class ClassTypeImage {
         _player = player
         
         WebService.instance.playerGroup.enter()
-        WebService.instance.getWebImage(urlString: getPlayerImageURL()) { (image) in
+        WebService.instance.getWebImage(urlString: getPlayerImageURL(), isSVG: false) { (image) in
             self._image = image;
             self._imageSet = true
             WebService.instance.playerGroup.leave()
@@ -67,4 +74,13 @@ class ClassTypeImage {
         }
         return ""
     }
+    
+    func getTeamImageURL() -> String {
+        
+        if let team = self._team {
+            return "\(BASE_LOGO_URL)\(team.teamAbbreviation)\(LOGO_INFO_URL)"
+        }
+        return ""
+    }
+    
 }

@@ -37,6 +37,7 @@ class Team {
     private var _currentPostSeasonAdvStats: AdvStats!
     
     private var _teamRoster = [Player]()
+    private var _image: ClassTypeImage!
     
     var teamName: String {
         get {
@@ -171,6 +172,18 @@ class Team {
         return _teamRoster
     }
     
+    var image: ClassTypeImage {
+        
+        get {
+            if _image == nil {
+                return ClassTypeImage()
+            }
+            
+            return _image
+        }
+        
+    }
+    
     var currentRegularSeasonTradStats: TradStats {
         if _currentRegularSeasonTradStats == nil {
             return TradStats()
@@ -263,6 +276,10 @@ class Team {
         getTeamStats(measureType: MeasureType.RegularAdvanced)
         getTeamStats(measureType: MeasureType.PostAdvanced)
 
+    }
+    
+    func setClassTypeImage() {
+        _image = ClassTypeImage(team: self)
     }
     
     func getTeamStats(measureType: MeasureType) {

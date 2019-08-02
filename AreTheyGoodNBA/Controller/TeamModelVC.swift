@@ -37,7 +37,7 @@ class TeamModelVC: UIViewController {
         WebService.instance.teamGroup.notify(queue: .main) {
             
             self.setTeamInfo()
-            self.setTeamImage()
+            self.setTeamLogo()
             
             if let team = self.currentTeam {
                 
@@ -141,36 +141,15 @@ class TeamModelVC: UIViewController {
         
     }
     
-    func setTeamImage() {
-        
-        var urlString = ""
+    func setTeamLogo() {
         
         if let team = currentTeam {
-            urlString = "\(BASE_LOGO_URL)\(team.teamAbbreviation)\(LOGO_INFO_URL)"
+            self.teamLogo.image = team.image.Image
+            self.teamLogo.isHidden = false
         }
         
-
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                let svgImage = SVGKImage(data: data!)
-                self.teamLogo.image = svgImage?.uiImage
-                self.teamLogo.isHidden = false
-            }
-            }.resume()
-        
-        
     }
+    
     
     func displayResult() {
         

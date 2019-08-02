@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SVGKit
 
 class WebService {
     
@@ -406,7 +407,7 @@ class WebService {
         
     }
     
-    func getWebImage(urlString : String, completed: @escaping (_ image: UIImage ) -> ()) {
+    func getWebImage(urlString : String, isSVG: Bool, completed: @escaping (_ image: UIImage ) -> ()) {
         
         guard let url = URL(string: urlString) else {return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -421,7 +422,17 @@ class WebService {
             }
             
             DispatchQueue.main.async {
-                completed(UIImage(data: data!)!)
+                
+                if isSVG {
+                    if let svgImage = SVGKImage(data: data!) {
+                        completed(svgImage.uiImage)
+                    } else {
+                        print("SVG not loaded")
+                        completed(UIImage())
+                    }
+                } else {
+                    completed(UIImage(data: data!)!)
+                }
             }
             }.resume()
         

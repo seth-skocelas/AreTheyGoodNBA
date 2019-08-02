@@ -70,7 +70,7 @@ class TeamStatsVC: UIViewController {
         WebService.instance.teamGroup.notify(queue: .main) {
             
             self.setTeamInfo()
-            self.setTeamImage()
+            self.setTeamLogo()
             
             if self.statDuration == StatDuration.CurrentSeason {
                 
@@ -131,6 +131,15 @@ class TeamStatsVC: UIViewController {
                 secondInfoValue.text = number.oneDecimalString
             }
             
+        }
+        
+    }
+    
+    func setTeamLogo() {
+        
+        if let team = currentTeam {
+            self.teamLogo.image = team.image.Image
+            self.teamLogo.isHidden = false
         }
         
     }
@@ -215,37 +224,5 @@ class TeamStatsVC: UIViewController {
         }
         
     }
-    
-    
-    func setTeamImage() {
-        
-        var urlString = ""
-        
-        if let team = currentTeam {
-            urlString = "\(BASE_LOGO_URL)\(team.teamAbbreviation)\(LOGO_INFO_URL)"
-        }
-        
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                let svgImage = SVGKImage(data: data!)
-                self.teamLogo.image = svgImage?.uiImage
-                self.teamLogo.isHidden = false
-            }
-            }.resume()
-        
-        
-    }
-    
 
 }
