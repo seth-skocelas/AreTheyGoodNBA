@@ -53,6 +53,8 @@ class Player {
         return array[0]
     }
     
+    //error handling is needed
+    
     var lastName: String {
         if _name == nil {
             return ""
@@ -347,6 +349,8 @@ class Player {
         
     }
     
+    //this needs to be changed to getPlayerCareerRegularStats, removing the parameter
+    
     func getPlayerStats(statDuration: StatDuration) {
         
         if statDuration == StatDuration.Career {
@@ -400,6 +404,8 @@ class Player {
             
         }
         
+        //this could be simplified
+        
         var careerAdvanceStats = Dictionary<String, AnyObject>()
         
         careerAdvanceStats.updateValue(offRating/count as AnyObject, forKey: "OFF_RATING")
@@ -432,6 +438,8 @@ class Player {
         }
         
     }
+    
+    //this should be a switch statement
     
     func determineModelPosition() {
         

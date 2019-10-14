@@ -246,6 +246,8 @@ class WebService {
         
     }
     
+    //refactor this (consolidate url string, switch statement)
+    
     func getTeamSeasonStatsURL(teamID: Int, measureType: MeasureType) -> String {
         
         if measureType == MeasureType.RegularAdvanced {

@@ -40,6 +40,7 @@ class PlayerStatsVC: UIViewController {
     @IBOutlet weak var turnovers: UILabel!
     @IBOutlet weak var plusMinus: UILabel!
     @IBOutlet weak var plusMinusLabel: UILabel!
+    @IBOutlet weak var freeThrowPercent: UILabel!
     
     @IBOutlet weak var offRating: UILabel!
     @IBOutlet weak var defRating: UILabel!
@@ -155,6 +156,7 @@ class PlayerStatsVC: UIViewController {
             rebounds.text = "\(tradStats.rebounds.oneDecimalString)"
             assists.text = "\(tradStats.assists.oneDecimalString)"
             turnovers.text = "\(tradStats.turnovers.oneDecimalString)"
+            freeThrowPercent.text = "\(tradStats.freeThrowPercent.threeDecimalString)"
             
             if statDuration == StatDuration.CurrentSeason {
                 plusMinus.isHidden = false

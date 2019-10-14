@@ -298,7 +298,7 @@ class Team {
         }
             
         else if (measureType == MeasureType.PostBase) {
-            
+             
             WebService.instance.teamGroup.enter()
             WebService.instance.getTeamSeasonStats(teamID: self.teamID, measureType: measureType) { (teamStats) in
                 
