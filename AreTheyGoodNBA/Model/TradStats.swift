@@ -29,6 +29,9 @@ class TradStats {
     private var _assists: Double!
     private var _turnovers: Double!
     private var _plusMinus: Double!
+    private var _freeThrowPercent: Double!
+    
+    
     // PlusMinus only available for current season (might be able to pull this if I pull year by year and average)
     
     var isEmpty: Bool {
@@ -119,6 +122,13 @@ class TradStats {
         return _turnovers
     }
     
+    var freeThrowPercent: Double {
+        if _freeThrowPercent == nil {
+            return -1
+        }
+        return _freeThrowPercent
+    }
+    
     var plusMinus: Double {
         if _plusMinus == nil {
             //-1 could be a legitimate value for plusminus, so I increased it to -100000, which wouldn't be
@@ -150,6 +160,7 @@ class TradStats {
             self._rebounds = dict["REB"]?.doubleValue
             self._assists = dict["AST"]?.doubleValue
             self._turnovers = dict["TOV"]?.doubleValue
+            self._freeThrowPercent = dict["FT_PCT"]?.doubleValue
             if statDuration == StatDuration.CurrentSeason {
                 self._plusMinus = dict["PLUS_MINUS"]?.doubleValue
             }

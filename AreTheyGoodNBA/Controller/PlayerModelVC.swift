@@ -40,13 +40,14 @@ class PlayerModelVC: UIViewController {
         WebService.instance.playerGroup.notify(queue: .main) {
             
             self.setPlayerInfo()
-            self.setPlayerImage()
+            self.setClassTypeImage()
             //test code below
             
             if let player = self.currentPlayer {
                 self.createModel(player: player)
                 self.responseBuilder = PlayerModelResponse(model: self.model)
                 self.segment.setTitle("\(player.selectedSeason)", forSegmentAt: 0)
+                self.segment.setTitle("Career", forSegmentAt: 1)
                 self.displayResult()
                 
                 //self.model.exportStats(statDuration: StatDuration.CurrentSeason)
@@ -82,36 +83,12 @@ class PlayerModelVC: UIViewController {
         
     }
     
-    func setPlayerImage() {
+    func setClassTypeImage() {
         
-        var urlString = ""
-        
-        if let teamID = currentPlayer?.teamID {
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
-            if let playerID = currentPlayer?.playerID {
-                urlString = "\(urlString)\(playerID).png"
-            }
+        if let player = currentPlayer {
+            self.playerImage.image = player.image.Image
+            self.playerImage.isHidden = false
         }
-        
-
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.playerImage.image = UIImage(data: data!)
-                self.playerImage.isHidden = false
-            }
-            }.resume()
-        
         
     }
     
@@ -120,6 +97,8 @@ class PlayerModelVC: UIViewController {
         if segue.identifier == "toPlayerStats" {
             
             if let destination = segue.destination as? PlayerStatsVC {
+                
+                destination.modalPresentationStyle = .fullScreen
                 
                 if let tuple = sender as? PlayerStatsTuple {
                     
@@ -133,6 +112,7 @@ class PlayerModelVC: UIViewController {
         
         if segue.identifier == "toSelectFromModel" {
             if let destination = segue.destination as? MainVC {
+                    destination.modalPresentationStyle = .fullScreen
                     destination.comparePlayer = currentPlayer
                 }
             }

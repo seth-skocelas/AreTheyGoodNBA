@@ -39,7 +39,7 @@ class SelectVC: UIViewController {
         playerPicker.delegate = self
         playerPicker.dataSource = self
         
-        //createPlayerStatsCSV()
+        CSVCreation.CreatePlayerStatsCSV()
         
         createLeague()
         
@@ -117,6 +117,8 @@ class SelectVC: UIViewController {
             
             if let destination = segue.destination as? TeamModelVC {
                 
+                destination.modalPresentationStyle = .fullScreen
+                
                 if let team = sender as? Team {
                     
                     destination.currentTeam = team
@@ -129,6 +131,8 @@ class SelectVC: UIViewController {
         if segue.identifier == "toPlayerModel" {
             
             if let destination = segue.destination as? PlayerModelVC {
+                
+                destination.modalPresentationStyle = .fullScreen
                 
                 if let player = sender as? Player {
                     
@@ -144,6 +148,7 @@ class SelectVC: UIViewController {
             
             if let destination = segue.destination as? ComparePlayerModelVC {
                 
+                destination.modalPresentationStyle = .fullScreen
                 destination.playerOne = comparePlayer
                 destination.playerTwo = selectedPlayer
                 
@@ -153,36 +158,13 @@ class SelectVC: UIViewController {
         
     }
     
-    func createPlayerStatsCSV() {
-        
-        let currentFileName = "CurrentPlayerStats.csv"
-        let currentPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(currentFileName)
-        
-        let careerFileName = "CareerPlayerStats.csv"
-        let careerPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(careerFileName)
-        
-        let header = "ID,Player Name,Team,Years,Position,GamesPlayed,MinutesPlayed,3PT%,3PTM,3PTA,FG%,FGM,FGA,PTS,REB,AST,TO,+/-,OffRating,DefRating,NetRating,EFG%,TS%,USG,PACE,PIE,Inconclusive,Score\n"
-        
-        do {
-            try header.write(to: currentPath!, atomically: true, encoding: String.Encoding.utf8)
-        } catch {
-            print("Failed to create file")
-            print("\(error)")
-        }
-        
-        do {
-            try header.write(to: careerPath!, atomically: true, encoding: String.Encoding.utf8)
-        } catch {
-            print("Failed to create file")
-            print("\(error)")
-        }
-    }
     
     @IBAction func analyzeTeamPressed(_ sender: Any) {
         
         teamButton.isEnabled = false
         playerButton.isEnabled = false
         selectedTeam.getAllStats()
+        selectedTeam.setClassTypeImage()
         WebService.instance.teamGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "toTeamModel", sender: self.selectedTeam)
             self.teamButton.isEnabled = true
@@ -197,6 +179,7 @@ class SelectVC: UIViewController {
         playerButton.isEnabled = false
         teamButton.isEnabled = false
         selectedPlayer.getAllStats()
+        selectedPlayer.setClassTypeImage()
         
         if (compareMode) {
             

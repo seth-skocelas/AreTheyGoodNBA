@@ -23,6 +23,7 @@ class Player {
     private var _currentTeam: String!
     private var _startingYear: String!
     private var _selectedSeason: String!
+    private var _image: ClassTypeImage!
     
     private var _currentRegularSeasonTradStats: TradStats!
     private var _currentPostSeasonTradStats: TradStats!
@@ -51,6 +52,8 @@ class Player {
         let array =  _name.components(separatedBy: " ")
         return array[0]
     }
+    
+    //error handling is needed
     
     var lastName: String {
         if _name == nil {
@@ -141,6 +144,18 @@ class Player {
         set (newSeason) {
             _selectedSeason = newSeason
         }
+    }
+    
+    var image: ClassTypeImage {
+        
+        get {
+            if _image == nil {
+                return ClassTypeImage()
+            }
+            
+            return _image
+        }
+        
     }
     
     var currentRegularSeasonTradStats: TradStats {
@@ -255,6 +270,10 @@ class Player {
         
     }
     
+    func setClassTypeImage() {
+        _image = ClassTypeImage(player: self)
+    }
+    
     func getPlayerStats(measureType: MeasureType, statDuration: StatDuration) {
         
         if (measureType == MeasureType.RegularBase && statDuration == StatDuration.CurrentSeason) {
@@ -330,6 +349,8 @@ class Player {
         
     }
     
+    //this needs to be changed to getPlayerCareerRegularStats, removing the parameter
+    
     func getPlayerStats(statDuration: StatDuration) {
         
         if statDuration == StatDuration.Career {
@@ -383,6 +404,8 @@ class Player {
             
         }
         
+        //this could be simplified
+        
         var careerAdvanceStats = Dictionary<String, AnyObject>()
         
         careerAdvanceStats.updateValue(offRating/count as AnyObject, forKey: "OFF_RATING")
@@ -415,6 +438,8 @@ class Player {
         }
         
     }
+    
+    //this should be a switch statement
     
     func determineModelPosition() {
         

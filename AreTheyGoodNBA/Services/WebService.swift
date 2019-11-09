@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SVGKit
 
 class WebService {
     
@@ -16,6 +17,8 @@ class WebService {
     let leagueGroup = DispatchGroup()
     let teamGroup = DispatchGroup()
     let playerGroup = DispatchGroup()
+    
+    let headers: HTTPHeaders = ["Referer": "https://stats.nba.com"]
     
     var SELECTED_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
     
@@ -27,7 +30,7 @@ class WebService {
         
         var commonPlayerInfoDict = Dictionary<String, AnyObject>()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -64,7 +67,7 @@ class WebService {
         
         var commonTeamRosterArray = [Dictionary<String, AnyObject>]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -107,7 +110,7 @@ class WebService {
         
         var franchiseHistoryArray = [AnyObject]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -150,7 +153,7 @@ class WebService {
         
         var standingsArray = [AnyObject]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -195,7 +198,7 @@ class WebService {
         var playerCareerPlayoffStats = Dictionary<String, AnyObject>()
         
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -245,6 +248,8 @@ class WebService {
         
     }
     
+    //refactor this (consolidate url string, switch statement)
+    
     func getTeamSeasonStatsURL(teamID: Int, measureType: MeasureType) -> String {
         
         if measureType == MeasureType.RegularAdvanced {
@@ -278,7 +283,7 @@ class WebService {
         let queryURL = URL(string: urlString)!
         var overallTeamDashboardDict = Dictionary<String, AnyObject>()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -349,7 +354,7 @@ class WebService {
         var overallPlayerStatsDict = Dictionary<String, AnyObject>()
         var playerYearStatsArray = [AnyObject]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -406,6 +411,36 @@ class WebService {
         
     }
     
+    func getWebImage(urlString : String, isSVG: Bool, completed: @escaping (_ image: UIImage ) -> ()) {
+        
+        guard let url = URL(string: urlString) else {return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print("Failed fetching image:", error!)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print("Not a proper HTTPURLResponse or statusCode")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                if isSVG {
+                    if let svgImage = SVGKImage(data: data!) {
+                        completed(svgImage.uiImage)
+                    } else {
+                        print("SVG not loaded")
+                        completed(UIImage())
+                    }
+                } else {
+                    completed(UIImage(data: data!)!)
+                }
+            }
+            }.resume()
+        
+    }
     
 }
 

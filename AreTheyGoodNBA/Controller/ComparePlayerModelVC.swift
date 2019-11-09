@@ -49,7 +49,7 @@ class ComparePlayerModelVC: UIViewController {
         WebService.instance.playerGroup.notify(queue: .main) {
             
             self.setPlayerInfo()
-            self.setPlayerImage()
+            self.setClassTypeImages()
             //test code below
             
             if let playerOne = self.playerOne, let playerTwo = self.playerTwo {
@@ -121,62 +121,17 @@ class ComparePlayerModelVC: UIViewController {
         
     }
     
-    func setPlayerImage() {
+    func setClassTypeImages() {
         
-        var urlString = ""
-        
-        if let teamID = playerOne?.teamID {
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
-            if let playerID = playerOne?.playerID {
-                urlString = "\(urlString)\(playerID).png"
-            }
+        if let one = playerOne {
+            self.playerOneImage.image = one.image.Image
+            self.playerOneImage.isHidden = false
         }
         
-        
-        guard let urlOne = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: urlOne) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.playerOneImage.image = UIImage(data: data!)
-                self.playerOneImage.isHidden = false
-            }
-            }.resume()
-        
-        if let teamID = playerTwo?.teamID {
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
-            if let playerID = playerTwo?.playerID {
-                urlString = "\(urlString)\(playerID).png"
-            }
+        if let two = playerTwo {
+            self.playerTwoImage.image = two.image.Image
+            self.playerTwoImage.isHidden = false
         }
-        
-        
-        guard let urlTwo = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: urlTwo) { (data, response, error) in
-            if error != nil {
-                print("Failed fetching image:", error!)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("Not a proper HTTPURLResponse or statusCode")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.playerTwoImage.image = UIImage(data: data!)
-                self.playerTwoImage.isHidden = false
-            }
-            }.resume()
-        
         
     }
     
@@ -185,6 +140,8 @@ class ComparePlayerModelVC: UIViewController {
         if segue.identifier == "toComparePlayerStats" {
             
             if let destination = segue.destination as? ComparePlayerStatsVC {
+                
+                destination.modalPresentationStyle = .fullScreen
         
                 destination.playerOne = playerOne
                 destination.playerTwo = playerTwo
@@ -197,6 +154,7 @@ class ComparePlayerModelVC: UIViewController {
         if segue.identifier == "toStartFromCompareModel" {
             
             if let destination = segue.destination as? MainVC {
+                destination.modalPresentationStyle = .fullScreen
                 destination.comparePlayer = nil
             }
             
@@ -269,19 +227,32 @@ class ComparePlayerModelVC: UIViewController {
     
     func displayResult() {
         
+
+        setPlayerName()
+ 
+        self.firstModelLine.text = responseBuilder.firstLine()
+        self.secondModelLine.text = responseBuilder.secondLine()
+        self.thirdModelLine.text = responseBuilder.thirdLine()
+        
+        
+        
+    }
+    
+    func setPlayerName() {
+        
         if let one = playerOne, let two = playerTwo {
             
             var oneName = ""
             var twoName = ""
             
-            if one == two {
+            if one == two && one.selectedSeason != two.selectedSeason && statDuration == StatDuration.CurrentSeason {
                 oneName = one.seasonFullName
                 twoName = two.seasonFullName
             } else {
                 oneName = one.name
                 twoName = two.name
             }
-        
+            
             if (self.oneModel.statsScore - self.twoModel.statsScore) >= 0.05 {
                 self.answerLabel.text = "\(oneName) > \(twoName)"
             } else if (self.oneModel.statsScore - self.twoModel.statsScore) <= -0.05 {
@@ -291,12 +262,6 @@ class ComparePlayerModelVC: UIViewController {
             }
             
         }
- 
-        self.firstModelLine.text = responseBuilder.firstLine()
-        self.secondModelLine.text = responseBuilder.secondLine()
-        self.thirdModelLine.text = responseBuilder.thirdLine()
-        
-        
         
     }
     

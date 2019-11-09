@@ -109,6 +109,8 @@ class PlayerModel {
             }
         }
         
+        CSVCreation.exportPlayerStats(currentPlayerModel: self)
+        
     }
             
     
