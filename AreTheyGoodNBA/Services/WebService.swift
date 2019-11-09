@@ -18,6 +18,8 @@ class WebService {
     let teamGroup = DispatchGroup()
     let playerGroup = DispatchGroup()
     
+    let headers: HTTPHeaders = ["Referer": "https://stats.nba.com"]
+    
     var SELECTED_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
     
     func getCommonPlayerInfo(playerID: Int, completed: @escaping (_ commonPlayerInfoDict: Dictionary<String, AnyObject>) -> ()) {
@@ -28,7 +30,7 @@ class WebService {
         
         var commonPlayerInfoDict = Dictionary<String, AnyObject>()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -65,7 +67,7 @@ class WebService {
         
         var commonTeamRosterArray = [Dictionary<String, AnyObject>]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -108,7 +110,7 @@ class WebService {
         
         var franchiseHistoryArray = [AnyObject]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -151,7 +153,7 @@ class WebService {
         
         var standingsArray = [AnyObject]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -196,7 +198,7 @@ class WebService {
         var playerCareerPlayoffStats = Dictionary<String, AnyObject>()
         
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -281,7 +283,7 @@ class WebService {
         let queryURL = URL(string: urlString)!
         var overallTeamDashboardDict = Dictionary<String, AnyObject>()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
@@ -352,7 +354,7 @@ class WebService {
         var overallPlayerStatsDict = Dictionary<String, AnyObject>()
         var playerYearStatsArray = [AnyObject]()
         
-        Alamofire.request(queryURL).responseJSON { response in
+        Alamofire.request(queryURL, headers: headers).responseJSON { response in
             
             let result = response.result
             
