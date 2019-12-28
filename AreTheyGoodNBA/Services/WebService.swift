@@ -191,7 +191,7 @@ class WebService {
     
     func getPlayerCareerStats(playerID: Int, completed: @escaping (_ playerCareerRegularStats: Dictionary<String, AnyObject>,_ playerCareerPlayoffStats: Dictionary<String, AnyObject> ) -> ()) {
         
-        let urlString = "\(BASE_URL)\(PLAYER_CAREER_STATS)\(PER_MODE_GAME)\(PLAYER_ID)\(playerID)"
+        let urlString = "\(BASE_URL)\(PLAYER_CAREER_STATS)\(LEAGUE_ID)\(PER_MODE_GAME)\(PLAYER_ID)\(playerID)"
         let queryURL = URL(string: urlString)!
         
         var playerCareerRegularStats = Dictionary<String, AnyObject>()
@@ -242,6 +242,7 @@ class WebService {
                 }
                 
             }
+            print("Completed: \(urlString)")
             completed(playerCareerRegularStats, playerCareerPlayoffStats)
         }
         
@@ -405,7 +406,7 @@ class WebService {
                 }
                 
             }
-            
+            print("Completed: \(urlString)")
             completed(overallPlayerStatsDict, playerYearStatsArray)
         }
         
@@ -417,11 +418,13 @@ class WebService {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print("Failed fetching image:", error!)
+                completed(UIImage())
                 return
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 print("Not a proper HTTPURLResponse or statusCode")
+                completed(UIImage())
                 return
             }
             

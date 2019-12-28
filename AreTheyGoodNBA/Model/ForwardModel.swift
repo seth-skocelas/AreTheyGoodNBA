@@ -12,27 +12,27 @@ class ForwardModel: PlayerModel {
     
     //slight minutes discrepancy between data from nba.com and Basketball Reference
     
-    let TSMin = 0.4800
-    let TSFirst = 0.5360
-    let TSMed = 0.5500
-    let TSThird = 0.5820
-    let TSMax = 0.6380
+    let TSMin = 0.3950
+    let TSFirst = 0.5260
+    let TSMed = 0.5670
+    let TSThird = 0.5960
+    let TSMax = 0.6930
     
     //Assist per min
     
-    let ASTMin = 0.02719
-    let ASTFirst = 0.04393
-    let ASTMed = 0.05771
-    let ASTThird = 0.07081
-    let ASTMax = 0.22213
+    let ASTMin = 0.02041
+    let ASTFirst = 0.04590
+    let ASTMed = 0.05687
+    let ASTThird = 0.08374
+    let ASTMax = 0.30372
     
     //Total Rebounds per min
     
-    let TRBMin = 0.08436
-    let TRBFirst = 0.15787
-    let TRBMed = 0.19403
-    let TRBThird = 0.23053
-    let TRBMax = 0.39089
+    let TRBMin = 0.0989
+    let TRBFirst = 0.1581
+    let TRBMed = 0.1877
+    let TRBThird = 0.2275
+    let TRBMax = 0.4208
     
     /* Currently not getting steals, might add this later.
      
@@ -54,38 +54,38 @@ class ForwardModel: PlayerModel {
     
     //TOV based on usage
     
-    let TOVMin = 0.5135
-    let TOVFirst = 0.2898
-    let TOVMed = 0.2482
-    let TOVThird = 0.2078
-    let TOVMax = 0.1309
+    let TOVMin = 0.51092
+    let TOVFirst = 0.32712
+    let TOVMed = 0.2775
+    let TOVThird = 0.23312
+    let TOVMax = 0.06741
     
     
-    let ORTGMin = 95.0
-    let ORTGFirst = 105.0
-    let ORTGMed = 109.0
-    let ORTGThird = 114.0
-    let ORTGMax = 123.0
+    let ORTGMin = 92.5
+    let ORTGFirst = 103.3
+    let ORTGMed = 107.4
+    let ORTGThird = 110.4
+    let ORTGMax = 115.0
     
     //reverse DRTG
     
-    let DRTGMin = 115.0
-    let DRTGFirst = 111.0
-    let DRTGMed = 109.0
-    let DRTGThird = 107.0
-    let DRTGMax = 103.0
+    let DRTGMin = 123.6
+    let DRTGFirst = 111.2
+    let DRTGMed = 107.1
+    let DRTGThird = 103.0
+    let DRTGMax = 95.1
     
-    let USGMin = 0.1050
-    let USGFirst = 0.1470
-    let USGMed = 0.1740
-    let USGThird = 0.2110
-    let USGMax = 0.2890
+    let USGMin = 0.075
+    let USGFirst = 0.140
+    let USGMed = 0.170
+    let USGThird = 0.207
+    let USGMax = 0.370
     
-    let PTMin = 0.2201
-    let PTFirst = 0.3311
-    let PTMed = 0.3985
-    let PTThird = 0.4856
-    let PTMax = 0.6305
+    let PTMin = 0.1699
+    let PTFirst = 0.3376
+    let PTMed = 0.4123
+    let PTThird = 0.5129
+    let PTMax = 0.9807
     
     var optionalModel: PlayerModel!
     
