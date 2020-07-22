@@ -24,6 +24,9 @@ class MainVC: UIViewController {
         seasonPicker.dataSource = self
         seasonPicker.delegate = self
         
+        WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[0])&"
+        selectedSeason = seasonSelectArray[0]
+        
         if let player = comparePlayer {
             print(player.name)
             startButton.setTitle("Back", for: .normal)

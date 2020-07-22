@@ -23,7 +23,7 @@ typealias TeamStatsTuple = (team: Team, statDuration: StatDuration)
 let PLAYER_INFO = "commonplayerinfo/?"
 let TEAM_ROSTER = "commonteamroster/?"
 let TEAM_HISTORY = "franchisehistory/?"
-let PLAYER_CAREER_STATS = "playercareerstats/?"
+let PLAYER_CAREER_STATS = "playercareerstats?"
 let TEAM_SEASON_STATS = "teamdashboardbygeneralsplits/?"
 let PLAYER_SEASON_STATS = "playerdashboardbyyearoveryear/?"
 let LEAGUE_STANDINGS = "leaguestandingsv3?"
@@ -181,11 +181,6 @@ let specialResponseDict: [Int: String] = [
     101108: "He's a conference finalist. Of course he's good!",
     201935: "He's great so long as he doesn't have to carry a playoff team by himself.",
     203507: "The Greek Freak is the future.",
-    203076: "The Unibrow is one of the best players in the NBA, even if no one is watching his games.",
-    201566: "Any player that averages a triple double has to be good, right?",
-    203954: "Trust the process.",
-    202695: "The man can defend LeBron. Clearly he's talented.",
-    201942: "LeBron wouldn't think so."
 ]
 
 
