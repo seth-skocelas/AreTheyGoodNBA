@@ -18,7 +18,7 @@ class WebService {
     let teamGroup = DispatchGroup()
     let playerGroup = DispatchGroup()
     
-    let headers: HTTPHeaders = ["Referer": "https://stats.nba.com"]
+    let headers: HTTPHeaders = ["Referer": "https://stats.nba.com", "x-nba-stats-origin": "stats", "x-nba-stats-token": "true"]
     
     var SELECTED_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
     
