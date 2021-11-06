@@ -22,7 +22,7 @@ typealias TeamStatsTuple = (team: Team, statDuration: StatDuration)
 
 let PLAYER_INFO = "commonplayerinfo/?"
 let TEAM_ROSTER = "commonteamroster/?"
-let TEAM_HISTORY = "franchisehistory/?"
+let TEAM_HISTORY = "franchisehistory?LeagueID=00"
 let PLAYER_CAREER_STATS = "playercareerstats?"
 let TEAM_SEASON_STATS = "teamdashboardbygeneralsplits/?"
 let PLAYER_SEASON_STATS = "playerdashboardbyyearoveryear/?"
@@ -56,8 +56,8 @@ let LAST_N_GAMES = "LastNGames=0&"
 let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
-let SEASON_YEAR_CURRENT = "2020-21"
-let PICTURE_YEAR = "2020"
+let SEASON_YEAR_CURRENT = "2021-22"
+let PICTURE_YEAR = "2021"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable
@@ -145,6 +145,7 @@ let teamAbbrevaiationArray = [
 
 let seasonSelectArray = [
     SEASON_YEAR_CURRENT,
+    "2020-21",
     "2019-20",
     "2018-19",
     "2017-18",

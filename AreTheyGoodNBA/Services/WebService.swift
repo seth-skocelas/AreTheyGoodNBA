@@ -104,8 +104,8 @@ class WebService {
     
     func getFranchiseHistory(completed: @escaping (_ franchiseHistoryArray: [AnyObject]) -> ()) {
         
-        let urlString = "\(BASE_URL)\(TEAM_HISTORY)\(LEAGUE_ID)"
-        //print(urlString)
+        let urlString = "\(BASE_URL)\(TEAM_HISTORY)"
+        print(urlString)
         let queryURL = URL(string: urlString)!
         
         var franchiseHistoryArray = [AnyObject]()
