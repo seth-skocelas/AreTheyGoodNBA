@@ -39,8 +39,8 @@ class PlayerModel {
             playerRegularTradStats = self.testPlayer.currentRegularSeasonTradStats
             playerRegularAdvStats = self.testPlayer.currentRegularSeasonAdvStats
             
-            //Season-end average score for all non-inconclusive players in 19-20 season was .435
-            goodCutoff = 0.44
+            //Season-end average score for all non-inconclusive players in 21-22 season was .489
+            goodCutoff = 0.495
             
         } else if statDuration == StatDuration.Career {
             
@@ -48,7 +48,7 @@ class PlayerModel {
             playerRegularAdvStats = self.testPlayer.careerRegularSeasonAdvStats
             
             //Season-end average career score for all non-inconclusive players in 17-18 season was .382
-            goodCutoff = 0.38
+            goodCutoff = 0.42
             
         }
         
