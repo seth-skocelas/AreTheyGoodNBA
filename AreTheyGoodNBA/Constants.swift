@@ -56,8 +56,8 @@ let LAST_N_GAMES = "LastNGames=0&"
 let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
-let SEASON_YEAR_CURRENT = "2021-22"
-let PICTURE_YEAR = "2021"
+let SEASON_YEAR_CURRENT = "2022-23"
+let PICTURE_YEAR = "2022"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable
@@ -145,6 +145,7 @@ let teamAbbrevaiationArray = [
 
 let seasonSelectArray = [
     SEASON_YEAR_CURRENT,
+    "2021-22",
     "2020-21",
     "2019-20",
     "2018-19",
@@ -177,12 +178,9 @@ let seasonSelectArray = [
 let specialResponseDict: [Int: String] = [
     202681: "As good as the earth is round.",
     2544: "King James is a top 2 player of all time, you don't need an app to tell you that.",
-    1717: "Dirk is the best European player of all time. He just can't move anymore.",
     201939: "Yes, the best shooter of all time is a good player.",
     201142: "In the summer of 2016, Kevin Durant took the hardest road. I'll let you decide.",
-    101108: "He's a conference finalist. Of course he's good!",
-    201935: "He's great so long as he doesn't have to carry a playoff team by himself.",
-    203507: "The Greek Freak is the future.",
+    203507: "The Greek Freak is the future."
 ]
 
 
