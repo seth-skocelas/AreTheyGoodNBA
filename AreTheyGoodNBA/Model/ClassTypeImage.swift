@@ -66,7 +66,11 @@ class ClassTypeImage {
         if let player = self._player {
             
             let teamID = player.teamID
-            urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
+            if WebService.instance.currentLeague == LeagueName.WNBA {
+                urlString = "\(WNBA_PICTURE_URL)"
+            } else {
+                urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
+            }
             let playerID = player.playerID
             
             return "\(urlString)\(playerID).png"

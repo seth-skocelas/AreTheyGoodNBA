@@ -39,8 +39,6 @@ class SelectVC: UIViewController {
         playerPicker.delegate = self
         playerPicker.dataSource = self
         
-        CSVCreation.CreatePlayerStatsCSV()
-        
         createLeague()
         
         if let player = comparePlayer {

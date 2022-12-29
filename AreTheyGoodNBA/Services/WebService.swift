@@ -18,19 +18,43 @@ class WebService {
     let teamGroup = DispatchGroup()
     let playerGroup = DispatchGroup()
     
-    let headers: HTTPHeaders = ["Referer": "https://stats.nba.com"]
+    let headersNBA: HTTPHeaders = ["Referer": "https://stats.nba.com"]
+    let headersWNBA: HTTPHeaders = ["Referer": "https://stats.wnba.com"]
     
     var SELECTED_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
+    var SELECTED_LEAGUE = "LeagueID=00&"
+    var currentLeague = LeagueName.NBA
+    
+    func getBaseURL() -> String {
+        if currentLeague == LeagueName.WNBA {
+            return WNBA_BASE_URL
+        }
+        return BASE_URL
+    }
+    
+    func getPictureURL() -> String {
+        if currentLeague == LeagueName.WNBA {
+            return WNBA_PICTURE_URL
+        }
+        return BASE_PICTURE_URL
+    }
+    
+    func getHeaders() -> HTTPHeaders {
+        if currentLeague == LeagueName.WNBA {
+            return headersWNBA
+        }
+        return headersNBA
+    }
     
     func getCommonPlayerInfo(playerID: Int, completed: @escaping (_ commonPlayerInfoDict: Dictionary<String, AnyObject>) -> ()) {
         
-        let urlString = "\(BASE_URL)\(PLAYER_INFO)\(PLAYER_ID)\(playerID)"
+        let urlString = "\(getBaseURL())\(PLAYER_INFO)\(SELECTED_LEAGUE)\(PLAYER_ID)\(playerID)"
         //print(urlString)
         let queryURL = URL(string: urlString)!
         
         var commonPlayerInfoDict = Dictionary<String, AnyObject>()
         
-        Alamofire.request(queryURL, headers: headers).responseJSON { response in
+        Alamofire.request(queryURL, headers: getHeaders()).responseJSON { response in
             
             let result = response.result
             
@@ -61,13 +85,13 @@ class WebService {
     
     func getCommonTeamRoster(teamID: Int, completed: @escaping (_ teamArray: [Dictionary<String, AnyObject>]) -> ()) {
         
-        let urlString = "\(BASE_URL)\(TEAM_ROSTER)\(SELECTED_SEASON)\(TEAM_ID)\(teamID)"
+        let urlString = "\(getBaseURL())\(TEAM_ROSTER)\(SELECTED_LEAGUE)\(SELECTED_SEASON)\(TEAM_ID)\(teamID)"
         //print(urlString)
         let queryURL = URL(string: urlString)!
         
         var commonTeamRosterArray = [Dictionary<String, AnyObject>]()
         
-        Alamofire.request(queryURL, headers: headers).responseJSON { response in
+        Alamofire.request(queryURL, headers: getHeaders()).responseJSON { response in
             
             let result = response.result
             
@@ -104,13 +128,13 @@ class WebService {
     
     func getFranchiseHistory(completed: @escaping (_ franchiseHistoryArray: [AnyObject]) -> ()) {
         
-        let urlString = "\(BASE_URL)\(TEAM_HISTORY)"
+        let urlString = "\(getBaseURL())\(TEAM_HISTORY)\(SELECTED_LEAGUE)"
         print(urlString)
         let queryURL = URL(string: urlString)!
         
         var franchiseHistoryArray = [AnyObject]()
         
-        Alamofire.request(queryURL, headers: headers).responseJSON { response in
+        Alamofire.request(queryURL, headers: getHeaders()).responseJSON { response in
             
             let result = response.result
             
@@ -147,13 +171,13 @@ class WebService {
     
     func getTeamStandings(completed: @escaping (_ teamStandingsArray: [AnyObject]) -> ()) {
         
-        let urlString = "\(BASE_URL)\(LEAGUE_STANDINGS)\(LEAGUE_ID)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)"
+        let urlString = "\(getBaseURL())\(LEAGUE_STANDINGS)\(SELECTED_LEAGUE)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)"
         
         let queryURL = URL(string: urlString)!
-        
+        print(urlString)
         var standingsArray = [AnyObject]()
         
-        Alamofire.request(queryURL, headers: headers).responseJSON { response in
+        Alamofire.request(queryURL, headers: getHeaders()).responseJSON { response in
             
             let result = response.result
             
@@ -191,14 +215,14 @@ class WebService {
     
     func getPlayerCareerStats(playerID: Int, completed: @escaping (_ playerCareerRegularStats: Dictionary<String, AnyObject>,_ playerCareerPlayoffStats: Dictionary<String, AnyObject> ) -> ()) {
         
-        let urlString = "\(BASE_URL)\(PLAYER_CAREER_STATS)\(LEAGUE_ID)\(PER_MODE_GAME)\(PLAYER_ID)\(playerID)"
+        let urlString = "\(getBaseURL())\(PLAYER_CAREER_STATS)\(SELECTED_LEAGUE)\(PER_MODE_GAME)\(PLAYER_ID)\(playerID)"
         let queryURL = URL(string: urlString)!
         
         var playerCareerRegularStats = Dictionary<String, AnyObject>()
         var playerCareerPlayoffStats = Dictionary<String, AnyObject>()
         
         
-        Alamofire.request(queryURL, headers: headers).responseJSON { response in
+        Alamofire.request(queryURL, headers: getHeaders()).responseJSON { response in
             
             let result = response.result
             
@@ -255,25 +279,25 @@ class WebService {
         
         if measureType == MeasureType.RegularAdvanced {
         
-            return "\(BASE_URL)\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
+            return "\(getBaseURL())\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(SELECTED_LEAGUE)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
     
         }
         
         else if measureType == MeasureType.PostBase {
             
-            return "\(BASE_URL)\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
+            return "\(getBaseURL())\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(SELECTED_LEAGUE)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
             
         }
         
         else if measureType == MeasureType.PostAdvanced {
             
-            return "\(BASE_URL)\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
+            return "\(getBaseURL())\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(SELECTED_LEAGUE)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
             
         }
         
         else { //return RegularBase
             
-            return "\(BASE_URL)\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
+            return "\(getBaseURL())\(TEAM_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(SELECTED_LEAGUE)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(TEAM_ID)\(teamID)"
         }
         
     }
@@ -284,7 +308,7 @@ class WebService {
         let queryURL = URL(string: urlString)!
         var overallTeamDashboardDict = Dictionary<String, AnyObject>()
         
-        Alamofire.request(queryURL, headers: headers).responseJSON { response in
+        Alamofire.request(queryURL, headers: getHeaders()).responseJSON { response in
             
             let result = response.result
             
@@ -323,25 +347,25 @@ class WebService {
         
         if measureType == MeasureType.RegularAdvanced {
             
-            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
+            return "\(getBaseURL())\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(SELECTED_LEAGUE)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
             
         }
             
         else if measureType == MeasureType.PostBase {
             
-            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
+            return "\(getBaseURL())\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(SELECTED_LEAGUE)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
             
         }
             
         else if measureType == MeasureType.PostAdvanced {
             
-            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(LEAGUE_ID)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
+            return "\(getBaseURL())\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_POST)\(SELECTED_LEAGUE)\(MEASURE_TYPE_ADVANCED)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
             
         }
             
         else { //return RegularBase
             
-            return "\(BASE_URL)\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(LEAGUE_ID)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
+            return "\(getBaseURL())\(PLAYER_SEASON_STATS)\(SELECTED_SEASON)\(SEASON_TYPE_REGULAR)\(SELECTED_LEAGUE)\(MEASURE_TYPE_BASE)\(PER_MODE_GAME)\(PLUS_MINUS_NO)\(PACE_ADJUST_NO)\(RANK)\(OUTCOME)\(LOCATION)\(MONTH)\(SEASON_SEGMENT)\(DATE_FROM)\(DATE_TO)\(OPPONENT_TEAM_ID)\(VS_CONFERENCE)\(VS_DIVISION)\(GAME_SEGMENT)\(PERIOD)\(LAST_N_GAMES)\(PLAYER_ID)\(playerID)"
         }
         
         
@@ -355,7 +379,7 @@ class WebService {
         var overallPlayerStatsDict = Dictionary<String, AnyObject>()
         var playerYearStatsArray = [AnyObject]()
         
-        Alamofire.request(queryURL, headers: headers).responseJSON { response in
+        Alamofire.request(queryURL, headers: getHeaders()).responseJSON { response in
             
             let result = response.result
             

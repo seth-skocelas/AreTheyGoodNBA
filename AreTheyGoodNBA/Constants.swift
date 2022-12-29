@@ -9,7 +9,9 @@
 import Foundation
 
 let BASE_URL = "https://stats.nba.com/stats/"
+let WNBA_BASE_URL = "https://stats.wnba.com/stats/"
 let BASE_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/"
+let WNBA_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/wnba/latest/1040x760/"
 let PICTURE_INFO_URL = "/\(PICTURE_YEAR)/260x190/"
 let BASE_LOGO_URL = "http://stats.nba.com/media/img/teams/logos/"
 let LOGO_INFO_URL = "_logo.svg"
@@ -22,7 +24,7 @@ typealias TeamStatsTuple = (team: Team, statDuration: StatDuration)
 
 let PLAYER_INFO = "commonplayerinfo/?"
 let TEAM_ROSTER = "commonteamroster/?"
-let TEAM_HISTORY = "franchisehistory?LeagueID=00"
+let TEAM_HISTORY = "franchisehistory?"
 let PLAYER_CAREER_STATS = "playercareerstats?"
 let TEAM_SEASON_STATS = "teamdashboardbygeneralsplits/?"
 let PLAYER_SEASON_STATS = "playerdashboardbyyearoveryear/?"
@@ -57,6 +59,7 @@ let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
 let SEASON_YEAR_CURRENT = "2022-23"
+let SEASON_YEAR_CURRENT_WNBA = "2022"
 let PICTURE_YEAR = "2022"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
@@ -65,6 +68,11 @@ let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 let SEASON_SELECT = "Season="
 let PLAYER_ID = "PlayerID="
 let TEAM_ID = "TeamID="
+
+enum LeagueName {
+    case NBA
+    case WNBA
+}
 
 enum MeasureType {
     
@@ -143,6 +151,11 @@ let teamAbbrevaiationArray = [
     "WAS"
 ]
 
+let leagueSelectArray = [
+    "NBA",
+    "WNBA"
+]
+
 let seasonSelectArray = [
     SEASON_YEAR_CURRENT,
     "2021-22",
@@ -171,6 +184,35 @@ let seasonSelectArray = [
     "1998-99",
     "1997-98",
     "1996-97"
+]
+
+let seasonWNBASelectArray = [
+    SEASON_YEAR_CURRENT_WNBA,
+    "2021",
+    "2020",
+    "2019",
+    "2018",
+    "2017",
+    "2016",
+    "2015",
+    "2014",
+    "2013",
+    "2012",
+    "2011",
+    "2010",
+    "2009",
+    "2008",
+    "2007",
+    "2006",
+    "2005",
+    "2004",
+    "2003",
+    "2002",
+    "2001",
+    "2000",
+    "1999",
+    "1998",
+    "1997"
 ]
 
 //Special Responses

@@ -10,12 +10,15 @@ import UIKit
 
 class MainVC: UIViewController {
 
+    @IBOutlet weak var leaguePicker: UIPickerView!
     @IBOutlet weak var seasonPicker: UIPickerView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
     var selectedSeason = SEASON_YEAR_CURRENT
     var comparePlayer: Player?
+    var currentSeasonArray = seasonSelectArray
+    var currentLeague = WebService.instance.currentLeague
     
     override func viewDidLoad() {
         
@@ -23,6 +26,8 @@ class MainVC: UIViewController {
 
         seasonPicker.dataSource = self
         seasonPicker.delegate = self
+        leaguePicker.dataSource = self
+        leaguePicker.delegate = self
         
         WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[0])&"
         selectedSeason = seasonSelectArray[0]
@@ -79,21 +84,69 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
         var attributedString = NSAttributedString()
-        attributedString = NSAttributedString(string: seasonSelectArray[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
-        return attributedString
         
+        if pickerView.tag == 0 {
+            attributedString = NSAttributedString(string: leagueSelectArray[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
+        }
+        
+        if pickerView.tag == 1 {
+            if currentLeague == LeagueName.WNBA {
+                attributedString = NSAttributedString(string: seasonWNBASelectArray[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
+            } else {
+                attributedString = NSAttributedString(string: seasonSelectArray[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
+            }
+        }
+        
+        return attributedString
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return seasonSelectArray.count
-        
+        if pickerView.tag == 0 {
+            return leagueSelectArray.count
+        }
+        if pickerView.tag == 1 {
+            if currentLeague == LeagueName.WNBA {
+                return seasonWNBASelectArray.count
+            }
+            return seasonSelectArray.count
+        }
+        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[row])&"
-        selectedSeason = seasonSelectArray[row]
+        if pickerView.tag == 0 {
+            
+            if row == 0 {
+                WebService.instance.SELECTED_LEAGUE = "LeagueID=00&"
+                WebService.instance.currentLeague = LeagueName.NBA
+                currentLeague = LeagueName.NBA
+                WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[0])&"
+                selectedSeason = seasonSelectArray[0]
+                self.seasonPicker.reloadAllComponents()
+            }
+            if row == 1 {
+                WebService.instance.SELECTED_LEAGUE = "LeagueID=10&"
+                WebService.instance.currentLeague = LeagueName.WNBA
+                currentLeague = LeagueName.WNBA
+                WebService.instance.SELECTED_SEASON = "Season=\(seasonWNBASelectArray[0])&"
+                selectedSeason = seasonWNBASelectArray[0]
+                self.seasonPicker.reloadAllComponents()
+            }
+            
+        }
+        
+        if pickerView.tag == 1 {
+            
+            if currentLeague == LeagueName.WNBA {
+                WebService.instance.SELECTED_SEASON = "Season=\(seasonWNBASelectArray[row])&"
+                selectedSeason = seasonWNBASelectArray[row]
+            } else {
+                WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[row])&"
+                selectedSeason = seasonSelectArray[row]
+            }
+        }
         
     }
     
