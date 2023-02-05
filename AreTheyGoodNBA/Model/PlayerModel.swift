@@ -108,9 +108,6 @@ class PlayerModel {
                 inconclusiveResult = Result.No
             }
         }
-        
-        CSVCreation.exportPlayerStats(currentPlayerModel: self)
-        
     }
             
     

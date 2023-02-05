@@ -161,9 +161,11 @@ class SelectVC: UIViewController {
         
         teamButton.isEnabled = false
         playerButton.isEnabled = false
+        LoadingOverlay.shared.showOverlay(view: self.view)
         selectedTeam.getAllStats()
         selectedTeam.setClassTypeImage()
         WebService.instance.teamGroup.notify(queue: .main) {
+            LoadingOverlay.shared.hideOverlayView()
             self.performSegue(withIdentifier: "toTeamModel", sender: self.selectedTeam)
             self.teamButton.isEnabled = true
             self.playerButton.isEnabled = true
@@ -176,12 +178,14 @@ class SelectVC: UIViewController {
         
         playerButton.isEnabled = false
         teamButton.isEnabled = false
+        LoadingOverlay.shared.showOverlay(view: self.view)
         selectedPlayer.getAllStats()
         selectedPlayer.setClassTypeImage()
         
         if (compareMode) {
             
             WebService.instance.playerGroup.notify(queue: .main) {
+                LoadingOverlay.shared.hideOverlayView()
                 self.performSegue(withIdentifier: "toComparePlayerModel", sender: nil)
                 self.playerButton.isEnabled = true
                 self.teamButton.isEnabled = true
@@ -191,6 +195,7 @@ class SelectVC: UIViewController {
         } else {
             
             WebService.instance.playerGroup.notify(queue: .main) {
+                LoadingOverlay.shared.hideOverlayView()
                 self.performSegue(withIdentifier: "toPlayerModel", sender: self.selectedPlayer)
                 self.playerButton.isEnabled = true
                 self.teamButton.isEnabled = true
