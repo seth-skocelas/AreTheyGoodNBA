@@ -24,6 +24,7 @@ class Player {
     private var _startingYear: String!
     private var _selectedSeason: String!
     private var _image: ClassTypeImage!
+    private var _leagueName: LeagueName!
     
     private var _currentRegularSeasonTradStats: TradStats!
     private var _currentPostSeasonTradStats: TradStats!
@@ -158,6 +159,13 @@ class Player {
         
     }
     
+    var leagueName: LeagueName {
+        if _leagueName == nil {
+            return LeagueName.NBA
+        }
+        return _leagueName
+    }
+    
     var currentRegularSeasonTradStats: TradStats {
         if _currentRegularSeasonTradStats == nil {
             return TradStats()
@@ -225,7 +233,7 @@ class Player {
     
     
     //Get data from nba.com API dictionary
-    init(commonPlayerInfo: Dictionary<String, AnyObject>) {
+    init(commonPlayerInfo: Dictionary<String, AnyObject>, leagueName: LeagueName) {
         
         _name = commonPlayerInfo["DISPLAY_FIRST_LAST"] as? String
         _playerID = commonPlayerInfo["PERSON_ID"] as? Int
@@ -237,6 +245,7 @@ class Player {
         _position = commonPlayerInfo["POSITION"] as? String
         _currentTeam = "\(commonPlayerInfo["TEAM_CITY"] as! String) \(commonPlayerInfo["TEAM_NAME"] as! String)"
         _startingYear = commonPlayerInfo["DRAFT_YEAR"] as? String
+        _leagueName = leagueName
         
         determineModelPosition()
         
@@ -244,7 +253,7 @@ class Player {
     
     //Creating a player from CommonTeamRoster is different from CommonPlayerInfo. I should probably combine into one init using the bool to check
     
-    init(commonPlayerInfo: Dictionary<String, AnyObject>, fromTeamRoster: Bool) {
+    init(commonPlayerInfo: Dictionary<String, AnyObject>, fromTeamRoster: Bool, leagueName: LeagueName) {
         
         _name = commonPlayerInfo["PLAYER"] as? String
         _teamID = commonPlayerInfo["TeamID"] as? Int
@@ -253,6 +262,7 @@ class Player {
         _weight = commonPlayerInfo["WEIGHT"] as? String
         _jerseyNumber = commonPlayerInfo["NUM"] as? String
         _position = commonPlayerInfo["POSITION"] as? String
+        _leagueName = leagueName
         
         determineModelPosition()
         

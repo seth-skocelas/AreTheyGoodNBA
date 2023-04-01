@@ -22,6 +22,10 @@ class PlayerModelResponse {
     var maxStatString: String = ""
     var minStatScore: Int!
     var minStatString: String = ""
+    var lowerPronoun = "they"
+    var capPronoun = "They"
+    var lowerPoss = "their"
+    var capPoss = "their"
     
     
     let hsgCutoff = 0.25
@@ -35,11 +39,11 @@ class PlayerModelResponse {
     
     //Static First Line Strings
     
-    let husFirst = "based on his production as a high-usage starter."
-    let starterFirst = "based on his production as a starter."
-    let roleFirst = "based on his production as a role player."
-    let fringeFirst = "based on his production as a fringe player."
-    let unknownFirst = "did not play enough to be judged by the model."
+    var husFirst = "based on his production as a high-usage starter."
+    var starterFirst = "based on his production as a starter."
+    var roleFirst = "based on his production as a role player."
+    var fringeFirst = "based on his production as a fringe player."
+    var unknownFirst = "did not play enough to be judged by the model."
     
     init(model: PlayerModel) {
         
@@ -52,6 +56,7 @@ class PlayerModelResponse {
     func setPlayerInfo() {
         
         player = playerModel.testPlayer
+        setPronoun()
         positionString = positionDict[playerModel.testPlayer.modelPosition]!
         
         if playerModel.testStatDuration == StatDuration.CurrentSeason {
@@ -109,7 +114,7 @@ class PlayerModelResponse {
         if playerModel.inconclusiveData() {
             
             if !(tradStats.isEmpty) || !(advStats.isEmpty) {
-                return "The model would have determined he was \(goodOrNotGood()) based on his production."
+                return "The model would have determined \(lowerPronoun) was \(goodOrNotGood()) based on \(lowerPoss) production."
             }
             
             return ""
@@ -117,11 +122,11 @@ class PlayerModelResponse {
         } else if minStatScore != rankKeys[0] {
             
             if let rankString = rankDict[maxStatScore] {
-                return "His strength is his \(maxStatString), which is \(rankString) of \(positionString)."
+                return "\(capPoss) strength is \(lowerPoss) \(maxStatString), which is \(rankString) of \(positionString)."
             }
             
         } else {
-            return "All of his stats graded by the model are among the best of \(positionString), meaning they are all in the top 25%."
+            return "All of \(lowerPoss) stats graded by the model are among the best of \(positionString), meaning they are all in the top 25%."
         }
         
         return ""
@@ -133,7 +138,7 @@ class PlayerModelResponse {
         if minStatScore != rankKeys[0] && !playerModel.inconclusiveData() {
         
             if let rankString = rankDict[minStatScore] {
-                return "His weakness is his \(minStatString), which is \(rankString) of \(positionString)."
+                return "\(capPoss) weakness is \(lowerPoss) \(minStatString), which is \(rankString) of \(positionString)."
             }
             
         }
@@ -167,6 +172,30 @@ class PlayerModelResponse {
         }
         
     }
+    
+    func setPronoun() {
+        
+        if player.leagueName == LeagueName.WNBA {
+            lowerPronoun = "she"
+            capPronoun = "She"
+            lowerPoss = "her"
+            capPoss = "Her"
+        }
+        else if player.leagueName == LeagueName.NBA {
+            lowerPronoun = "he"
+            capPronoun = "He"
+            lowerPoss = "his"
+            capPoss = "His"
+        }
+        
+        husFirst = "based on \(lowerPoss) production as a high-usage starter."
+        starterFirst = "based on \(lowerPoss) production as a starter."
+        roleFirst = "based on \(lowerPoss) production as a role player."
+        fringeFirst = "based on \(lowerPoss) production as a fringe player."
+        
+    }
+    
+    
     
     
 }

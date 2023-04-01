@@ -254,7 +254,7 @@ class Team {
             
                 for player in teamArray {
                     
-                    let createdPlayer = Player(commonPlayerInfo: player, fromTeamRoster: true)
+                    let createdPlayer = Player(commonPlayerInfo: player, fromTeamRoster: true, leagueName: WebService.instance.currentLeague)
                     createdPlayer.selectedSeason = self.selectedSeason
                     self._teamRoster.append(createdPlayer)
                 
