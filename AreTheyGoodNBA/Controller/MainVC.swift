@@ -31,11 +31,26 @@ class MainVC: UIViewController {
         
         WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[0])&"
         selectedSeason = seasonSelectArray[0]
+        self.seasonPicker.reloadAllComponents()
         
         if let player = comparePlayer {
+            
             print(player.name)
             startButton.setTitle("Back", for: .normal)
             titleLabel.text = "Compare \(player.name) to:"
+            
+            if player.leagueName == LeagueName.WNBA
+            {
+                leaguePicker.selectRow(1, inComponent: 0, animated: true)
+            }
+            else
+            {
+                leaguePicker.selectRow(0, inComponent: 0, animated: true)
+            }
+            
+            leaguePicker.isUserInteractionEnabled = false
+            leaguePicker.alpha = 0.5
+            
         }
         
     }

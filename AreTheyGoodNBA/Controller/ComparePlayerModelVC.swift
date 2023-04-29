@@ -156,6 +156,7 @@ class ComparePlayerModelVC: UIViewController {
             if let destination = segue.destination as? MainVC {
                 destination.modalPresentationStyle = .fullScreen
                 destination.comparePlayer = nil
+                destination.currentLeague = LeagueName.NBA
             }
             
         }
