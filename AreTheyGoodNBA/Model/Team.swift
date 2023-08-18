@@ -25,6 +25,7 @@ class Team {
     private var _conferenceTitles: Int!
     private var _leagueTitles: Int!
     private var _selectedSeason: String!
+    private var _leagueName: LeagueName!
     
     private var _currentWins: Int!
     private var _currentLosses: Int!
@@ -184,6 +185,13 @@ class Team {
         
     }
     
+    var leagueName: LeagueName {
+        if _leagueName == nil {
+            return LeagueName.NBA
+        }
+        return _leagueName
+    }
+    
     var currentRegularSeasonTradStats: TradStats {
         if _currentRegularSeasonTradStats == nil {
             return TradStats()
@@ -215,13 +223,20 @@ class Team {
     
     init() {}
     
-    init(teamDict: Dictionary<String, AnyObject>, index: Int) {
+    init(teamDict: Dictionary<String, AnyObject>, index: Int, leagueName: LeagueName) {
         
         if teamDict.count != 0 {
         
             _teamID = teamDict["TEAM_ID"] as? Int
             _teamName = "\(teamDict["TEAM_CITY"] ?? "Not" as AnyObject) \(teamDict["TEAM_NAME"] ?? "Available" as AnyObject)"
-            _teamAbbreviation = teamAbbrevaiationArray[index]
+            
+            if leagueName == LeagueName.WNBA {
+                _teamAbbreviation = teamAbbrevaiationWNBAArray[index]
+            }
+            else {
+                _teamAbbreviation = teamAbbrevaiationArray[index]
+            }
+            
             _startYear = teamDict["START_YEAR"] as? String
             _years = teamDict["YEARS"] as? Int
             _gamesPlayed = teamDict["GAMES"] as? Int
@@ -232,6 +247,7 @@ class Team {
             _divisionTitles = teamDict["DIV_TITLES"] as? Int
             _conferenceTitles = teamDict["CONF_TITLES"] as? Int
             _leagueTitles = teamDict["LEAGUE_TITLES"] as? Int
+            _leagueName = leagueName
             
         }
         

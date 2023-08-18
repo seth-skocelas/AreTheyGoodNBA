@@ -14,7 +14,9 @@ let BASE_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headsho
 let WNBA_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/wnba/latest/1040x760/"
 let PICTURE_INFO_URL = "/\(PICTURE_YEAR)/260x190/"
 let BASE_LOGO_URL = "http://stats.nba.com/media/img/teams/logos/"
+let WNBA_LOGO_URL = "https://stats.wnba.com/media/img/teams/logos/"
 let LOGO_INFO_URL = "_logo.svg"
+let WNBA_LOGO_INFO_URL = ".svg"
 
 typealias DownloadComplete = () -> ()
 typealias PlayerStatsTuple = (player: Player, statDuration: StatDuration)
@@ -58,8 +60,8 @@ let LAST_N_GAMES = "LastNGames=0&"
 let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
-let SEASON_YEAR_CURRENT = "2022-23"
-let SEASON_YEAR_CURRENT_WNBA = "2022"
+let SEASON_YEAR_CURRENT = "2023-24"
+let SEASON_YEAR_CURRENT_WNBA = "2023"
 let PICTURE_YEAR = "2022"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
@@ -151,6 +153,21 @@ let teamAbbrevaiationArray = [
     "WAS"
 ]
 
+let teamAbbrevaiationWNBAArray = [
+    "ATL",
+    "CHI",
+    "CON",
+    "DAL",
+    "IND",
+    "LVA",
+    "LAS",
+    "MIN",
+    "NYL",
+    "PHO",
+    "SEA",
+    "WAS"
+]
+
 let leagueSelectArray = [
     "NBA",
     "WNBA"
@@ -158,6 +175,7 @@ let leagueSelectArray = [
 
 let seasonSelectArray = [
     SEASON_YEAR_CURRENT,
+    "2022-23",
     "2021-22",
     "2020-21",
     "2019-20",
@@ -188,6 +206,7 @@ let seasonSelectArray = [
 
 let seasonWNBASelectArray = [
     SEASON_YEAR_CURRENT_WNBA,
+    "2022",
     "2021",
     "2020",
     "2019",

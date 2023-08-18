@@ -82,6 +82,11 @@ class ClassTypeImage {
     func getTeamImageURL() -> String {
         
         if let team = self._team {
+            
+            if team.leagueName == LeagueName.WNBA
+            {
+                return "\(WNBA_LOGO_URL)\(team.teamAbbreviation)\(WNBA_LOGO_INFO_URL)"
+            }
             return "\(BASE_LOGO_URL)\(team.teamAbbreviation)\(LOGO_INFO_URL)"
         }
         return ""

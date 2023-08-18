@@ -43,7 +43,7 @@ class League {
             
             for (index,team) in finalTeamsArray.enumerated() {
                 
-                tempTeam = Team(teamDict: team, index: index)
+                tempTeam = Team(teamDict: team, index: index, leagueName: WebService.instance.currentLeague)
                 tempTeam.selectedSeason = selectedSeason
                 //print("\(tempTeam.teamID) " + " has won \(tempTeam.leagueTitles) titles.")
                 self._teams.append(tempTeam)
