@@ -60,9 +60,9 @@ let LAST_N_GAMES = "LastNGames=0&"
 let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
-let SEASON_YEAR_CURRENT = "2023-24"
-let SEASON_YEAR_CURRENT_WNBA = "2023"
-let PICTURE_YEAR = "2022"
+let SEASON_YEAR_CURRENT = "2024-25"
+let SEASON_YEAR_CURRENT_WNBA = "2024"
+let PICTURE_YEAR = "2023"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable
@@ -175,6 +175,7 @@ let leagueSelectArray = [
 
 let seasonSelectArray = [
     SEASON_YEAR_CURRENT,
+    "2023-24",
     "2022-23",
     "2021-22",
     "2020-21",
@@ -206,6 +207,7 @@ let seasonSelectArray = [
 
 let seasonWNBASelectArray = [
     SEASON_YEAR_CURRENT_WNBA,
+    "2023",
     "2022",
     "2021",
     "2020",
