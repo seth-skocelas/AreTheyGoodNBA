@@ -10,26 +10,26 @@ import Foundation
 
 class ForwardCenterModel: PlayerModel {
     
-    let TSMin = 0.412
-    let TSFirst = 0.5965
-    let TSMed = 0.625
-    let TSThird = 0.6478
+    let TSMin = 0.47
+    let TSFirst = 0.576
+    let TSMed = 0.621
+    let TSThird = 0.647
     let TSMax = 0.736
     
     //Assist per min
     
     let ASTMin = 0.02419
-    let ASTFirst = 0.05397
-    let ASTMed = 0.06913
-    let ASTThird = 0.09796
+    let ASTFirst = 0.05372
+    let ASTMed = 0.07051
+    let ASTThird = 0.09881
     let ASTMax = 0.22969
     
     //Total Rebounds per min
     
-    let TRBMin = 0.1481
-    let TRBFirst = 0.2429
-    let TRBMed = 0.2662
-    let TRBThird = 0.3229
+    let TRBMin = 0.1708
+    let TRBFirst = 0.24
+    let TRBMed = 0.2628
+    let TRBThird = 0.3198
     let TRBMax = 0.3838
     
     /* Currently not getting steals, might add this later.
@@ -53,36 +53,35 @@ class ForwardCenterModel: PlayerModel {
     //TOV based on usage
     
     let TOVMin = 0.4938
-    let TOVFirst = 0.3828
-    let TOVMed = 0.3002
-    let TOVThird = 0.255
+    let TOVFirst = 0.374
+    let TOVMed = 0.3082
+    let TOVThird = 0.2468
     let TOVMax = 0.1755
     
-    
-    let ORTGMin = 100.9
-    let ORTGFirst = 109.4
-    let ORTGMed = 113.6
-    let ORTGThird = 116.3
+    let ORTGMin = 102.9
+    let ORTGFirst = 108.5
+    let ORTGMed = 113.3
+    let ORTGThird = 116.5
     let ORTGMax = 121.8
     
     //reverse DRTG
     
-    let DRTGMin = 119.1
-    let DRTGFirst = 114.4
-    let DRTGMed = 112.8
+    let DRTGMin = 121.7
+    let DRTGFirst = 115.0
+    let DRTGMed = 113.2
     let DRTGThird = 109.6
-    let DRTGMax = 103.5
+    let DRTGMax = 101.3
     
-    let USGMin = 0.0870
-    let USGFirst = 0.1290
-    let USGMed = 0.169
-    let USGThird = 0.2233
-    let USGMax = 0.3870
+    let USGMin = 0.087
+    let USGFirst = 0.132
+    let USGMed = 0.1818
+    let USGThird = 0.22
+    let USGMax = 0.387
     
     let PTMin = 0.2258
-    let PTFirst = 0.3237
-    let PTMed = 0.4326
-    let PTThird = 0.5603
+    let PTFirst = 0.3269
+    let PTMed = 0.4297
+    let PTThird = 0.5612
     let PTMax = 1.0327
     
     

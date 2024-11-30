@@ -30,6 +30,11 @@
 		97753B552127645300BCC1D0 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97753B542127645300BCC1D0 /* MainVC.swift */; };
 		977658AB2075B31300E98528 /* PlayerModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977658AA2075B31300E98528 /* PlayerModelVC.swift */; };
 		977658AD2075B32D00E98528 /* TeamModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977658AC2075B32D00E98528 /* TeamModelVC.swift */; };
+		9781C93D2CA9E43900EA7662 /* WNBAGuardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9781C93C2CA9E43600EA7662 /* WNBAGuardModel.swift */; };
+		9781C9432CA9E56A00EA7662 /* WNBACenterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9781C9422CA9E56000EA7662 /* WNBACenterModel.swift */; };
+		9781C9452CA9E5DD00EA7662 /* WNBAGuardForwardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9781C9442CA9E5CF00EA7662 /* WNBAGuardForwardModel.swift */; };
+		9781C9472CA9E61200EA7662 /* WNBAForwardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9781C9462CA9E60200EA7662 /* WNBAForwardModel.swift */; };
+		9781C9492CA9E64F00EA7662 /* WNBAForwardCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9781C9482CA9E64700EA7662 /* WNBAForwardCenter.swift */; };
 		97A6B7AF205B7DCB00EA31E7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7AE205B7DCB00EA31E7 /* Player.swift */; };
 		97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7B0205B7DEE00EA31E7 /* Team.swift */; };
 		97A6B7B3205C7B6E00EA31E7 /* TradStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A6B7B2205C7B6E00EA31E7 /* TradStats.swift */; };
@@ -73,6 +78,11 @@
 		97753B542127645300BCC1D0 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		977658AA2075B31300E98528 /* PlayerModelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModelVC.swift; sourceTree = "<group>"; };
 		977658AC2075B32D00E98528 /* TeamModelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModelVC.swift; sourceTree = "<group>"; };
+		9781C93C2CA9E43600EA7662 /* WNBAGuardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAGuardModel.swift; sourceTree = "<group>"; };
+		9781C9422CA9E56000EA7662 /* WNBACenterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBACenterModel.swift; sourceTree = "<group>"; };
+		9781C9442CA9E5CF00EA7662 /* WNBAGuardForwardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAGuardForwardModel.swift; sourceTree = "<group>"; };
+		9781C9462CA9E60200EA7662 /* WNBAForwardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAForwardModel.swift; sourceTree = "<group>"; };
+		9781C9482CA9E64700EA7662 /* WNBAForwardCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAForwardCenter.swift; sourceTree = "<group>"; };
 		97A6B7AE205B7DCB00EA31E7 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		97A6B7B0205B7DEE00EA31E7 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		97A6B7B2205C7B6E00EA31E7 /* TradStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradStats.swift; sourceTree = "<group>"; };
@@ -169,6 +179,11 @@
 				9757B97120A6B3BA004B7481 /* GuardForwardModel.swift */,
 				9757B97320A6B827004B7481 /* ForwardModel.swift */,
 				9757B97520A6BC4D004B7481 /* ForwardCenterModel.swift */,
+				9781C93C2CA9E43600EA7662 /* WNBAGuardModel.swift */,
+				9781C9422CA9E56000EA7662 /* WNBACenterModel.swift */,
+				9781C9442CA9E5CF00EA7662 /* WNBAGuardForwardModel.swift */,
+				9781C9462CA9E60200EA7662 /* WNBAForwardModel.swift */,
+				9781C9482CA9E64700EA7662 /* WNBAForwardCenter.swift */,
 				97E8127F20ACFD9300751818 /* PlayerModelResponse.swift */,
 				97E8128120B0EF9600751818 /* TeamModel.swift */,
 				97E8128320B38B8D00751818 /* TeamModelResponse.swift */,
@@ -361,6 +376,7 @@
 				97E267AA20EC34AB002D844A /* String-Extension.swift in Sources */,
 				977658AB2075B31300E98528 /* PlayerModelVC.swift in Sources */,
 				97A6B7B1205B7DEE00EA31E7 /* Team.swift in Sources */,
+				9781C9432CA9E56A00EA7662 /* WNBACenterModel.swift in Sources */,
 				97261E0620716DAD00316F52 /* PlayerStatsVC.swift in Sources */,
 				9731443F2066E2E400D357AE /* League.swift in Sources */,
 				97A6B7B3205C7B6E00EA31E7 /* TradStats.swift in Sources */,
@@ -375,6 +391,7 @@
 				97E267AC20EC34BC002D844A /* Data-Extension.swift in Sources */,
 				9744370E2050ACB6008BE29A /* AppDelegate.swift in Sources */,
 				974437272054E930008BE29A /* WebService.swift in Sources */,
+				9781C9492CA9E64F00EA7662 /* WNBAForwardCenter.swift in Sources */,
 				97A6B7AF205B7DCB00EA31E7 /* Player.swift in Sources */,
 				97AAEC162199F4910087512E /* ComparePlayerModelVC.swift in Sources */,
 				971DB8E921BEDF4800DC2783 /* CompareModelResponse.swift in Sources */,
@@ -382,8 +399,11 @@
 				977658AD2075B32D00E98528 /* TeamModelVC.swift in Sources */,
 				972E167D206468FE001B27EE /* AdvStats.swift in Sources */,
 				9757B97020A6661F004B7481 /* CenterModel.swift in Sources */,
+				9781C93D2CA9E43900EA7662 /* WNBAGuardModel.swift in Sources */,
 				973D87EE22EE3A2600FF3171 /* CSVCreation.swift in Sources */,
+				9781C9452CA9E5DD00EA7662 /* WNBAGuardForwardModel.swift in Sources */,
 				9752A72F22EFDA1300A37EE3 /* ClassTypeImage.swift in Sources */,
+				9781C9472CA9E61200EA7662 /* WNBAForwardModel.swift in Sources */,
 				97E8128020ACFD9300751818 /* PlayerModelResponse.swift in Sources */,
 				974437242054A9B1008BE29A /* Constants.swift in Sources */,
 				97753B552127645300BCC1D0 /* MainVC.swift in Sources */,

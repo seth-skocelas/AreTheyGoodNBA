@@ -12,26 +12,26 @@ class CenterModel: PlayerModel {
     
     
     
-    let TSMin = 0.4770
-    let TSFirst = 0.5753
-    let TSMed = 0.6090
-    let TSThird = 0.6522
-    let TSMax = 0.7630
+    let TSMin = 0.477
+    let TSFirst = 0.5805
+    let TSMed = 0.6145
+    let TSThird = 0.6597
+    let TSMax = 0.728
     
     //Assist per min
     
     let ASTMin = 0.02924
-    let ASTFirst = 0.05015
-    let ASTMed = 0.07902
-    let ASTThird = 0.09336
+    let ASTFirst = 0.04673
+    let ASTMed = 0.05692
+    let ASTThird = 0.09020
     let ASTMax = 0.26012
     
     //Total Rebounds per min
     
     let TRBMin = 0.1705
-    let TRBFirst = 0.3104
-    let TRBMed = 0.3455
-    let TRBThird = 0.3946
+    let TRBFirst = 0.2831
+    let TRBMed = 0.3244
+    let TRBThird = 0.3751
     let TRBMax = 0.5263
     
     /* Currently not getting steals, might add this later.
@@ -55,36 +55,36 @@ class CenterModel: PlayerModel {
     //TOV based on usage
     
     let TOVMin = 0.5659
-    let TOVFirst = 0.3598
-    let TOVMed = 0.2964
-    let TOVThird = 0.2671
-    let TOVMax = 0.2002
+    let TOVFirst = 0.3767
+    let TOVMed = 0.3088
+    let TOVThird = 0.2727
+    let TOVMax = 0.1468
     
     let ORTGMin = 94.0
-    let ORTGFirst = 108.2
-    let ORTGMed = 114.3
-    let ORTGThird = 116.9
-    let ORTGMax = 122.4
+    let ORTGFirst = 107.8
+    let ORTGMed = 112.7
+    let ORTGThird = 115.5
+    let ORTGMax = 128.7
     
     //reverse DRTG
     
     let DRTGMin = 118.9
-    let DRTGFirst = 115.0
-    let DRTGMed = 113.0
-    let DRTGThird = 110.8
+    let DRTGFirst = 115.8
+    let DRTGMed = 113.3
+    let DRTGThird = 110.4
     let DRTGMax = 100.8
     
-    let USGMin = 0.1060
-    let USGFirst = 0.1497
-    let USGMed = 0.166
-    let USGThird = 0.1985
+    let USGMin = 0.06
+    let USGFirst = 0.146
+    let USGMed = 0.161
+    let USGThird = 0.1933
     let USGMax = 0.288
     
-    let PTMin = 0.2222
-    let PTFirst = 0.378
-    let PTMed = 0.4155
-    let PTThird = 0.5094
-    let PTMax = 0.763
+    let PTMin = 0.1538
+    let PTFirst = 0.3677
+    let PTMed = 0.4105
+    let PTThird = 0.4955
+    let PTMax = 0.8163
     
     
     override init(player: Player, statDuration: StatDuration, isSecondary: Bool) {

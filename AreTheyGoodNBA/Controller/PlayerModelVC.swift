@@ -157,16 +157,33 @@ class PlayerModelVC: UIViewController {
     
     func createModel(player: Player) {
         
-        if player.modelPosition == Position.Guard {
-            self.model = GuardModel(player: player, statDuration: self.statDuration, isSecondary: false)
-        } else if player.modelPosition == Position.GuardForward {
-            self.model = GuardForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
-        } else if player.modelPosition == Position.Forward {
-            self.model = ForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
-        } else if player.modelPosition == Position.ForwardCenter {
-            self.model = ForwardCenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
-        } else if player.modelPosition == Position.Center {
-            self.model = CenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
+        if player.leagueName == LeagueName.WNBA
+        {
+            if player.modelPosition == Position.Guard {
+                self.model = WNBAGuardModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.GuardForward {
+                self.model = WNBAGuardForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.Forward {
+                self.model = WNBAForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.ForwardCenter {
+                self.model = WNBAForwardCenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.Center {
+                self.model = WNBACenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            }
+        }
+        else
+        {
+            if player.modelPosition == Position.Guard {
+                self.model = GuardModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.GuardForward {
+                self.model = GuardForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.Forward {
+                self.model = ForwardModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.ForwardCenter {
+                self.model = ForwardCenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            } else if player.modelPosition == Position.Center {
+                self.model = CenterModel(player: player, statDuration: self.statDuration, isSecondary: false)
+            }
         }
     }
     

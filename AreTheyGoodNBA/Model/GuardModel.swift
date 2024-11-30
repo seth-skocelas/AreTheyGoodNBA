@@ -10,27 +10,27 @@ import Foundation
 
 class GuardModel: PlayerModel {
     
-    let TSMin = 0.4350
-    let TSFirst = 0.5353
-    let TSMed = 0.5685
-    let TSThird = 0.5942
+    let TSMin = 0.385
+    let TSFirst = 0.524
+    let TSMed = 0.56
+    let TSThird = 0.5925
     let TSMax = 0.679
     
     //Assist per min
     
-    let ASTMin = 0.04
-    let ASTFirst = 0.09474
-    let ASTMed = 0.14752
-    let ASTThird = 0.18957
-    let ASTMax = 0.30220
+    let ASTMin = 0.03623
+    let ASTFirst = 0.08587
+    let ASTMed = 0.13208
+    let ASTThird = 0.17324
+    let ASTMax = 0.33851
     
     //Total Rebounds per min
     
     let TRBMin = 0.05755
-    let TRBFirst = 0.10007
-    let TRBMed = 0.11785
-    let TRBThird = 0.13666
-    let TRBMax = 0.24850
+    let TRBFirst = 0.10348
+    let TRBMed = 0.12465
+    let TRBThird = 0.14881
+    let TRBMax = 0.25498
 
 /* Currently not getting steals, might add this later.
  
@@ -53,36 +53,36 @@ class GuardModel: PlayerModel {
     //TOV based on usage
     
     let TOVMin = 0.53742
-    let TOVFirst = 0.32157
-    let TOVMed = 0.26617
-    let TOVThird = 0.22329
+    let TOVFirst = 0.34072
+    let TOVMed = 0.27353
+    let TOVThird = 0.22516
     let TOVMax = 0.09198
     
-    let ORTGMin = 101.7
-    let ORTGFirst = 110.6
-    let ORTGMed = 113.9
-    let ORTGThird = 117.0
-    let ORTGMax = 122.4
+    let ORTGMin = 91.9
+    let ORTGFirst = 108.5
+    let ORTGMed = 111.8
+    let ORTGThird = 115.8
+    let ORTGMax = 122.8
     
     //reverse DRTG
     
     let DRTGMin = 122.5
-    let DRTGFirst = 115.2
-    let DRTGMed = 112.5
-    let DRTGThird = 110.6
+    let DRTGFirst = 115.4
+    let DRTGMed = 112.6
+    let DRTGThird = 110.3
     let DRTGMax = 100.1
     
     let USGMin = 0.096
-    let USGFirst = 0.1502
-    let USGMed = 0.1825
-    let USGThird = 0.2352
-    let USGMax = 0.311
+    let USGFirst = 0.1485
+    let USGMed = 0.178
+    let USGThird = 0.2265
+    let USGMax = 0.317
     
     let PTMin = 0.186
-    let PTFirst = 0.3512
-    let PTMed = 0.4498
-    let PTThird = 0.5592
-    let PTMax = 0.8107
+    let PTFirst = 0.3468
+    let PTMed = 0.4174
+    let PTThird = 0.5206
+    let PTMax = 0.8853
     
     
     

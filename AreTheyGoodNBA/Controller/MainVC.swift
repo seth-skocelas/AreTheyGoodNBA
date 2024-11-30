@@ -29,8 +29,8 @@ class MainVC: UIViewController {
         leaguePicker.dataSource = self
         leaguePicker.delegate = self
         
-        WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[0])&"
-        selectedSeason = seasonSelectArray[0]
+        //WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[0])&"
+        //selectedSeason = seasonSelectArray[0]
         self.seasonPicker.reloadAllComponents()
         
         if let player = comparePlayer {
@@ -42,10 +42,13 @@ class MainVC: UIViewController {
             if player.leagueName == LeagueName.WNBA
             {
                 leaguePicker.selectRow(1, inComponent: 0, animated: true)
+                selectedSeason = seasonWNBASelectArray[0]
+                WebService.instance.SELECTED_SEASON = "Season=\(seasonWNBASelectArray[0])&"
             }
             else
             {
                 leaguePicker.selectRow(0, inComponent: 0, animated: true)
+                WebService.instance.SELECTED_SEASON = "Season=\(seasonSelectArray[0])&"
             }
             
             leaguePicker.isUserInteractionEnabled = false
