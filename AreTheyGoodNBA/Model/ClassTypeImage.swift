@@ -69,7 +69,8 @@ class ClassTypeImage {
             if WebService.instance.currentLeague == LeagueName.WNBA {
                 urlString = "\(WNBA_PICTURE_URL)"
             } else {
-                urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
+                //urlString = "\(BASE_PICTURE_URL)\(teamID)\(PICTURE_INFO_URL)"
+                urlString = "\(NBA_PICTURE_URL)"
             }
             let playerID = player.playerID
             

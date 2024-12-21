@@ -11,6 +11,7 @@ import Foundation
 let BASE_URL = "https://stats.nba.com/stats/"
 let WNBA_BASE_URL = "https://stats.wnba.com/stats/"
 let BASE_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/"
+let NBA_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/1040x760/"
 let WNBA_PICTURE_URL = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/wnba/latest/1040x760/"
 let PICTURE_INFO_URL = "/\(PICTURE_YEAR)/260x190/"
 let BASE_LOGO_URL = "http://stats.nba.com/media/img/teams/logos/"
@@ -62,7 +63,7 @@ let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
 let SEASON_YEAR_CURRENT = "2024-25"
 let SEASON_YEAR_CURRENT_WNBA = "2024"
-let PICTURE_YEAR = "2023"
+let PICTURE_YEAR = "2024"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable
