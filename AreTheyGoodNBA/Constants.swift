@@ -62,8 +62,8 @@ let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
 let SEASON_YEAR_CURRENT = "2024-25"
-let SEASON_YEAR_CURRENT_WNBA = "2024"
-let PICTURE_YEAR = "2024"
+let SEASON_YEAR_CURRENT_WNBA = "2025"
+let PICTURE_YEAR = "2025"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
 
 //Parameters - Variable
@@ -159,6 +159,7 @@ let teamAbbrevaiationWNBAArray = [
     "CHI",
     "CON",
     "DAL",
+    "GSV",
     "IND",
     "LVA",
     "LAS",
@@ -208,6 +209,7 @@ let seasonSelectArray = [
 
 let seasonWNBASelectArray = [
     SEASON_YEAR_CURRENT_WNBA,
+    "2024",
     "2023",
     "2022",
     "2021",

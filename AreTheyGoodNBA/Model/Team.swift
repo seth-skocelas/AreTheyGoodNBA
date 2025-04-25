@@ -223,6 +223,14 @@ class Team {
     
     init() {}
     
+    init(teamID: Int, teamName: String, teamAbbreviation: String) {
+        
+        _teamID = teamID
+        _teamName = teamName
+        _teamAbbreviation = teamAbbreviation
+        
+    }
+    
     init(teamDict: Dictionary<String, AnyObject>, index: Int, leagueName: LeagueName) {
         
         if teamDict.count != 0 {

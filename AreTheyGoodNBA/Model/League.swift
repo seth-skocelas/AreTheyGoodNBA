@@ -50,6 +50,10 @@ class League {
                 
             }
             
+            if WebService.instance.currentLeague == LeagueName.WNBA && selectedSeason == "2025" {
+                self.addTeamToLeague()
+            }
+            
             WebService.instance.leagueGroup.leave()
             
         }
@@ -110,6 +114,20 @@ class League {
                 
             }
             
+        }
+        
+    }
+    
+    func addTeamToLeague() {
+        //Golden State Valkyries (teamID: 1611661331) currently not coming through Franchise History, will need
+        //to add manually if they aren't added at the start of the season
+        
+        let result = _teams.first { $0.teamID ==  1611661331 }
+        if result == nil {
+            var tempTeam = Team(teamID: 1611661331, teamName: "Golden State Valkyries", teamAbbreviation: "GSV")
+            tempTeam.selectedSeason = selectedSeason
+            self._teams.append(tempTeam)
+            _teams = teams.sorted(by: { $0.teamName < $1.teamName })
         }
         
     }

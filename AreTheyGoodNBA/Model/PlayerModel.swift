@@ -39,8 +39,8 @@ class PlayerModel {
             playerRegularTradStats = self.testPlayer.currentRegularSeasonTradStats
             playerRegularAdvStats = self.testPlayer.currentRegularSeasonAdvStats
             
-            //Season-end average score for all non-inconclusive players in 21-22 season was .489
-            goodCutoff = 0.495
+            //Season-end median score for all non-inconclusive players in 23-24 season was .472
+            goodCutoff = 0.49
             
         } else if statDuration == StatDuration.Career {
             
