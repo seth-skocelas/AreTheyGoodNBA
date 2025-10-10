@@ -61,7 +61,7 @@ let LAST_N_GAMES = "LastNGames=0&"
 let LEAGUE_ID = "LeagueID=00&"
 let PACE_ADJUST_YES = "PaceAdjust=Y&"
 let PACE_ADJUST_NO = "PaceAdjust=N&"
-let SEASON_YEAR_CURRENT = "2024-25"
+let SEASON_YEAR_CURRENT = "2025-26"
 let SEASON_YEAR_CURRENT_WNBA = "2025"
 let PICTURE_YEAR = "2025"
 let CURRENT_SEASON = "Season=\(SEASON_YEAR_CURRENT)&"
@@ -177,6 +177,7 @@ let leagueSelectArray = [
 
 let seasonSelectArray = [
     SEASON_YEAR_CURRENT,
+    "2024-25",
     "2023-24",
     "2022-23",
     "2021-22",
@@ -245,8 +246,7 @@ let specialResponseDict: [Int: String] = [
     202681: "As good as the earth is round.",
     2544: "King James is a top 2 player of all time, you don't need an app to tell you that.",
     201939: "Yes, the best shooter of all time is a good player.",
-    201142: "In the summer of 2016, Kevin Durant took the hardest road. I'll let you decide.",
-    203507: "The Greek Freak is the future."
+    201142: "In the summer of 2016, Kevin Durant took the hardest road. I'll let you decide."
 ]
 
 
